@@ -1,0 +1,30 @@
+Si ejecutamos la función
+	
+	alert("Hola mundo");
+
+
+Lanza una alerta en le navegador, esta función vive en el objeto window
+Si colocamos:
+	window
+
+Podemos ver todos los atributos y funciones que contiene, entre ellos la función alert.
+
+El atributo que nos va a interesar más en este momento es:
+	- document
+
+Este atributo es un objeto que nos permitirá realizar acciones en nuestra página web, vamos a poder crear y editar nodos.
+
+Si vamos a realizar acciones sobre la ventana utilizamos:
+	- window
+
+Si vamos a realizar acciones sobre la página utilizamos:
+	- document
+
+*************************************************
+DOM
+
+	Document Object Model
+
+	Es una representación de la página web la cuál JS puede manipular, es creado a partir de las etiquetas que colocamos dentro del archivo HTML.
+
+	Cada nodo es un elemento y un elemento es una representación de una etiqueta HTML con atributos.
