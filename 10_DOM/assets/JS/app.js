@@ -197,3 +197,59 @@ input.addEventListener('keydown', (event)=>{
 	
 	// console.log('Tecla presionada');
 });
+
+
+// Evento submit
+const form = document.getElementById('course-form');
+form.addEventListener('submit', (event)=> {
+
+	// Método que previene el comportamiento por default
+	// Esto evita que el formulario recargue la página
+	event.preventDefault();
+
+	let title = document.getElementById('input').value;
+	let description = document.getElementById('description-form').value;
+
+	console.log(title);
+	console.log(description);
+});
+
+const checkbox = document.getElementById('checkbox');
+let title_form = document.getElementById('input');
+checkbox.addEventListener('change', ()=> {
+	console.log('Cambio de valor');
+});
+
+
+// documentLoaded
+// Este evento es lanzadocuando en DOM ya fue construido
+//Aquí podemos inlcuir todo el código, esto es útil si es necesario que nuestro JS esté en el head del HTML
+document.addEventListener('DOMContentLoaded', ()=>{
+	console.log('HTML y CSS cargado');
+});
+
+
+// Propagación de eventos
+// Si doy click en un evento también le estoy dando click a la lista, al div_row, al div_container y al body.
+const element_event = document.querySelector('li');
+const list_event = document.querySelector('ul');
+const div_row = document.querySelector('.row');
+const div_container = document.querySelector('.container');
+const body = document.querySelector('body');
+
+element_event.addEventListener('click',show_messages);
+list_event.addEventListener('click',show_messages);
+div_row.addEventListener('click',show_messages);
+div_container.addEventListener('click',show_messages);
+body.addEventListener('click',show_messages);
+
+function show_messages(event) {
+	// this.tagName se va propagando
+	// event.target.tagName hace referencia al objeto que disparó el evento
+	console.log("Elemento actual " + this.tagName);
+	console.log("Elemento que disparó el evento: " + event.target.tagName);
+	console.log();
+
+	// Detener propagación
+	event.stopPropagation();
+}
