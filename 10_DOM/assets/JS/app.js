@@ -212,6 +212,9 @@ form.addEventListener('submit', (event)=> {
 
 	console.log(title);
 	console.log(description);
+
+	create_card(title, description);
+
 });
 
 const checkbox = document.getElementById('checkbox');
@@ -252,4 +255,88 @@ function show_messages(event) {
 
 	// Detener propagación
 	event.stopPropagation();
+}
+
+const row = document.querySelector('.row');
+
+/****************** Modificar el DOM***********************/
+
+// Agregar elementos al DOM
+function create_card_by_innerHTML(title, description) {
+	let html = `
+		<div class="col-sm-6 col-md-4">
+  				<div class="thumbnail">
+  					<div class="caption">
+  						<h3> ${title} </h3>
+  						<p> ${description}</p>
+  						<p><a href="#" class="btn btn-primary">Acción</a></p>
+  					</div>
+  				</div>
+  			</div>
+	`;
+
+	row.innerHTML += html;
+}
+
+function create_card(title, description) {
+	// Creo los elementos necesarios para hacer una card
+	let div = document.createElement('div');
+	div.className = 'col-sm-6 col-md-4';
+
+	let thumbnail = document.createElement('div');
+	thumbnail.className = 'thumbnail';
+
+	let caption = document.createElement('div');
+	caption.className = 'caption';
+	
+	let h3 = document.createElement('h3');
+	h3.textContent = title;
+
+	let p1 = document.createElement('p');
+	p1.textContent = description;
+
+	let p2 = document.createElement('p');
+	let a = document.createElement('a');
+
+	a.className = 'btn btn-primary';
+	a.textContent = 'Eliminar';
+
+	// Agregamos los elementos hijos a los padres
+	// Empezamos de manera ascendente
+
+	p2.appendChild(a);
+
+	caption.appendChild(h3);
+	caption.appendChild(p1);
+	caption.appendChild(p2);
+
+	thumbnail.appendChild(caption);
+
+	div.appendChild(thumbnail);
+
+	row.appendChild(div);
+
+	// Agregamos un evento para eliminar la card
+	p2.addEventListener('click', delete_card);
+}
+
+// Eliminar elementos
+
+function delete_card(event) {
+	// Para eliminar un elemento necesitamos:
+	// Elemento padre
+	// Elemento hijo a eliminar
+	console.log('Carta a eliminar');
+	
+	let ancestro = get_ancestro(event.target, 4);
+	row.removeChild(ancestro);
+}
+
+function get_ancestro(ancestro, level) {
+	if (!level)
+		return ancestro;
+
+	level--;
+
+	return get_ancestro(ancestro.parentElement, level);
 }
