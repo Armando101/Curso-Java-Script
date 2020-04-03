@@ -27,7 +27,7 @@ executor2(titular.nombre_completo);
 executor(titular.nombre_completo);
 
 
-// El métod call recibe como primer argumento el nombre del contexto, después los demás arguementos de la función
+// El método call recibe como primer argumento el nombre del contexto, después los demás argumentos de la función
 
 function saluda(nombre, apellido="") { console.log("Hola " + nombre + " " + apellido); }
 
@@ -39,3 +39,20 @@ saluda.apply(window, ["Armando", "Rivera"]);
 
 // Bind también permite asignar el contexto pero no manda a llamar la función
 executor2(titular.nombre_completo.bind(titular));
+
+function saludar() {
+	console.log(`Hola. Soy ${this.name} ${this.apellido}`);
+}
+
+function caminar(metros, direccion) {
+	console.log(`${this.name} camina ${metros} metros hacia ${direccion}`);
+}
+
+const daniel = { name: "Daniel", apellido: "Sánchez"};
+const danielSaluda = saludar.bind(daniel);
+
+danielSaluda();
+
+// Si necesitamos agregar argumentos lo hacemos así
+const danielCamina = caminar.bind(daniel, 404, "norte");
+danielCamina();
