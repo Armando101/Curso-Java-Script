@@ -1,5 +1,5 @@
 function mayor_de_edad(edad) {
-	if (edad >) 18 {
+	if (edad > 18) {
 		var resultado = "Eres mayor de edad";
 	} else {
 		var resultado = "Eres menor de edad";
