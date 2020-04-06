@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>Proxy</title>
+  </head>
+
+  <body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola</em></p>
+
+    <script src="https://unpkg.com/fast-levenshtein@2.0.6/levenshtein.js"></script>
+    <script>
+      // Proxy es parecido a getters y setters
+      // Usa un concepto que se llama traps: son interceptores de llamadas. A diferencia de getters, no opera sobre una propieda, si no sobre un objeto.
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy#Methods_of_the_handler_object
+
+      // Creemos un ejemplo donde interceptamos llamadas para leer una propiedad
+      // Si la propiedad existe, la regresamos
+      // Si no existe, entonces sugerimos una que pueda funcionar
+
+      // Para eso eso vamos a usar un algoritmo que se llama Levenshtein. (window.Levenshtein.get)
+      // Ejemplos de levenshtein distance (usa window.Levenshtein)
+
+
+      // Declaramos nuestras propedades
+      const target = {
+        red: 'Rojo',
+        green: 'Verde',
+        blue: 'Azul',
+      };
+
+      // Trabajamos con el método get
+      // Este método recibe dos valores, el objeto que representa el target
+      // Y el segundo es la propidad que se está tratando de leer
+      const handler = {
+        get(obj, prop) {
+          // Si la propiedad que estamos buscando está dentro del objeto lo regreso
+          // Esto es si encuentro lo que estpoy buscando
+          if (prop in obj) {
+            return obj[prop];
+          }
+
+          // Si no se encontró podemos mostrar una sugerencia
+          // Vemos cuál es la llave que más se parece a la que el usuario está buscando
+          const suggestion = Object.keys(obj).find(key => {
+            // Vemos que la diferencia de que lo que está buscando el usuario
+            // y lo que tenemos sea menor a 3
+            return Levenshtein.get(key, prop) <= 3;
+          });
+
+          // Si encontramos una buena sugerencia se la mostramos al usuario
+          if (suggestion) {
+            console.log(
+              `${prop} no se encontró. Quisiste decir ${suggestion}?`
+            );
+          }
+
+          return obj[prop];
+        },
+      };
+
+      // Declaramos una instancia de Proxy
+      const p = new Proxy(target, handler);
+
+      // Hagamos pruebas sobre consola del navegador
+      // p.red     Me regresa Rojo
+      // p.green   Me regresa Verde
+      // p.reeee   Me regresa la sugerencia de red
+    </script>
+  </body>
+</html>
