@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Abort Fetch</title>
+  </head>
+
+  <body>
+    <p><em>Abre la consola</em></p>
+
+    <img id="huge-image" height="400" />
+
+    <button id="load">Load HUGE Image</button>
+    <button id="stop" disabled>Stop Fetching</button>
+
+    <script>
+      const url =
+        'https://images.pexels.com/photos/974470/nature-stars-milky-way-galaxy-974470.jpeg?q=100';
+      const img = document.getElementById('huge-image');
+      const loadButton = document.getElementById('load');
+      const stopButton = document.getElementById('stop');
+      let controller;
+
+      function startLoading() {
+        loadButton.disabled = true;
+        loadButton.innerText = 'Loading...';
+        stopButton.disabled = false;
+      }
+
+      function stopLoading() {
+        loadButton.disabled = false;
+        loadButton.innerText = 'Load HUGE Image';
+        stopButton.disabled = true;
+      }
+
+      loadButton.onclick = async function() {
+        startLoading();
+
+        // AbortController nos permite detener un ejecución en este caso Fetch
+        controller = new AbortController();
+
+        // blob es la imagen pero en forma binaria.
+        // createObjectURL recibe el binario, obtiene una URL y la devuelve
+        // signal nos permitirá saber si está cargando la imagen o no
+        try {
+          const response = await fetch(url, { signal: controller.signal });
+          const blob = await response.blob();
+          const imgUrl = URL.createObjectURL(blob);
+          img.src = imgUrl;
+        } catch (error) {
+          console.log(error.message);
+        }
+
+        stopLoading();
+      };
+
+      stopButton.onclick = function() {
+        controller.abort();
+        stopLoading();
+      };
+    </script>
+  </body>
+</html>
