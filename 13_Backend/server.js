@@ -51,6 +51,11 @@ router.post('/message', function(req, res) {
 	response.succes(req, res, "Mensaje creado", 201);
 });
 
+// Podemos servir archivos estáticos
+// Por convención se guardan en una carpeta public
+// Acedemos asi: localhost:3000/app/css/style.css
+app.use('/app', express.static('public'));
+
 /* // Usando una ruta
 app.use('/', function(req, res) {
 	res.send('Hola');
