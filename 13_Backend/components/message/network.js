@@ -7,14 +7,13 @@ const router = express.Router();
 
 
 router.get('/', function(req, res) {
-	// Vemos los headers de la petición
-	console.log(req.headers);
-	// Podemos enviar al cliente headers
-	res.header({
-		"custom-header": "Nuestra cabecera personalizada"
+	controller.getMessages()
+	.then((massageList) => {
+		response.succes(req, res, massageList, 200);
+	})
+	.catch((err) => {
+		response.error(req, res, 'Unexpected Error', 500, err);
 	});
-	// res.send('Hola desde GET');
-	response.succes(req, res, 'Lista de mensajes');
 });
 
 router.post('/', function(req, res) {

@@ -1,5 +1,8 @@
 // Este archivo se encargará de decidir todo lo que sucede creando las funciones necesarias
 
+const store = require('./store');
+
+
 // Guardar mensajes
 // Las promesas me servirán para decirle al network que algo salió bien o mal
 function addMessage(user, message) {
@@ -15,10 +18,21 @@ function addMessage(user, message) {
 			date: new Date()
 		};		
 		console.log(fullMessage);
+		
+		// Lo agregamos a la base de datos
+		store.add(fullMessage);
+
 		resoleve(fullMessage);
+	});
+}
+
+function getMessages() {
+	return new Promise((resoleve, reject) => {
+		resoleve(store.list());
 	});
 }
 
 module.exports = {
 	addMessage,
+	getMessages
 };
