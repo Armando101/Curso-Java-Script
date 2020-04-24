@@ -1,0 +1,113 @@
+¿Qué son y cómo se usan las peticiones HTTP?
+
+	Una petición HTTP es un protocolo de comunicación que permite las transferencias de información en la web.
+
+	Es el lenguaje común para todas las comunicaciones.
+
+	¿Cómo es una petición?
+		- Un cliente hace una petición a internet
+		- Internet hace una petición al servidor
+		- Del servidor regresa a internet
+		- De internet regresa al cliente
+
+	Las cabeceras de una petición se ven así
+		GET /index.html HTTP/1.1
+		Host: www.example.com
+		Referer: www.google.com
+		User-Agent: Mozilla/5.0
+		Connection: keep-alive
+
+	La respuesta tiene:
+		- Status code de la petición
+		- Fecha de la petición
+		- Otras cabeceras como el content type o content length
+		- Cuerpo de la petición. Por ejemplo un archivo index.html
+
+	Puntos claves a tener en cuenta:
+
+		- Métodos: Qué quieres hacer
+		- Estado: Cómo ha ido la operación
+		- Cuerpo: Lo que el servidor devuelve
+
+**************************************************************************
+Métodos, cabeceras y estados
+
+Métodos HTTP:
+
+	- GET: Recoger información del servidor.
+	- POST: Añadir información al servidor.
+	- PUT: Reemplazar información en el servidor.
+	- PATCH: Actualizar parte de la información.
+	- DELETE: Eliminar información del servidor.
+	- OPTIONS: Pedir información sobre métodos (saber si podemos ejecutar alguno de los métodos anteriores).
+
+Cabeceras
+
+	Las cabeceras nos darán información contextual de la petición, esto es, no es lo que quiero hacer sino cómo lo quiero hacer. Podemos tener cabeceras de:
+		- Autenticación: Asegura de que puedes pedir información al servidor
+		- Caché: Almacenamiento temporal. Gestiona durante cuánto tiempo la respuesta será la misma.
+		- Indicaciones
+		- Condiciones
+		- Cors: Cros Origin Resource Sharing, nos permiten manejar información desde fuera de nuestro servicio
+		- Cookies: nos permiten compartir información entre peticiones
+		- Accept: define el contenido que acepta
+
+
+Los estados son números que indica el estado de la petición:
+
+	- 2XX: Todo ha ido bien.
+		- 200: OK
+		- 201: Recurso creado
+
+	- 3XX: La petición se ha redirigido.
+		- 301: Moved permanently
+		- 304: Not modified
+	
+	- 4XX: Errores del cliente.
+		- 400: Bad request
+		- 401: Unauthorized
+		- 403: Forbidden
+		- 404: Not found
+
+	- 5XX: Ha habido un error al procesar la petición.
+		- 500: Internal server error
+
+**************************************************************************
+Cuerpo y query de la petición
+
+Cuerpo
+
+	El cuerpo de la petición es la información en sí que queremos enviar, editar o que el servidor nos devuelva. Ej.
+
+	Si yo quiero añadir un usuario mando toda la información del usuario que quiero crear mediante un método POST.
+
+	¿Qué tiene?
+		Depende de las cabeceras:
+			- Content-Type: nos dice el tipo de contenido 
+			- Content-Length: nos dice el tamaño del contenido
+
+		Posibles Content-Type:
+			- text/html: Cuando me devuelve una página html
+			- text/css: Obtengo el css
+			- application/javascript: le indica al navegador que es un archivo de application y que lo tiene que ejecutar
+			- image/jpeg
+			- application/json: en este caso con application le digo que lo que va a recibir se puede ejecutar pero que no lo ejecute al momento
+			- application/xml 
+
+		En la response:
+			- En cualquier método
+			- Un archivo html, css, js
+			- Los datos de un producto
+
+Querys
+	Las queries van a permitirte añadir información extra a los datos que queramos enviarle al servidor.
+	Ej. 
+		- Orden en el que quieres que se devuelvan los datos.
+		- Parámetros que quieres medir 
+
+	Son una forma de compartir datos con el frontend. El usuario lo verá, así que cuidado con lo que compartes.
+
+	Estructura:
+		- Añadir ? al final de la URL
+		- nombre=valor
+		- Separados con &
