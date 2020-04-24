@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
 const port = 3000;
-// import express from 'express'; // Sintaxis de ECMA 6
+
+const response = require('./network/response');
 
 // Route es una de las piezas más importantes
 // Nos permitirá separa las peticiones por cabeceras, métodos, URL, etc
@@ -27,7 +28,8 @@ router.get('/', function(req, res) {
 	res.header({
 		"custom-header": "Nuestra cabecera personalizada"
 	});
-	res.send('Hola desde GET');
+	// res.send('Hola desde GET');
+	response.succes(req, res, 'Lista de mensajes');
 });
 
 router.post('/', function(req, res) {
@@ -44,7 +46,9 @@ router.post('/message', function(req, res) {
 	// Mensaje
 	// res.status(200).send('hola munod');
 	// Objetos complejos
-	res.status(201).send({"error": "", "status": "Mensaje creado", "Mensaje": req.body});
+	// res.status(201).send({"error": "", "status": "Mensaje creado", "Mensaje": req.body});
+
+	response.succes(req, res, "Mensaje creado", 201);
 });
 
 /* // Usando una ruta
