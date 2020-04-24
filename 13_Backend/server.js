@@ -23,6 +23,7 @@ app.use(router);
 router.get('/', function(req, res) {
 	// Vemos los headers de la petición
 	console.log(req.headers);
+	// Podemos enviar al cliente headers
 	res.header({
 		"custom-header": "Nuestra cabecera personalizada"
 	});
@@ -34,6 +35,16 @@ router.post('/', function(req, res) {
 	console.log('Body: '+ req.body);
 	console.log('Query: '+ req.query);
 	res.send('Hola desde POST');
+});
+
+router.post('/message', function(req, res) {
+	// Podemos distintos tipos de respuestas:
+	// Respuesta vacía
+	// res.status(200).send();
+	// Mensaje
+	// res.status(200).send('hola munod');
+	// Objetos complejos
+	res.status(200).send({"error": "", "body": "Hola desde POST-Message"});
 });
 
 /* // Usando una ruta

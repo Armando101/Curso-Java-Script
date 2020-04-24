@@ -16,3 +16,9 @@ Vamos a crear un servidor, el código se encuentra en server.js
 	
 	Para recoger información por parámetros:
 		- req.query
+
+	Al servidor podemos enviarle varios tipos de respuesta:
+		- Códigos de status
+		- Respuestas vacías (el usuario sólo se fija en el status code)
+		- Mensaje
+		- Objetos complejos
