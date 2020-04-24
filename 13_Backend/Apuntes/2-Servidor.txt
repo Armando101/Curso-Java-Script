@@ -1,0 +1,18 @@
+Vamos a crear un servidor, el código se encuentra en server.js
+	
+	nodemon: es una herramienta que permite que el servidor se actualize cuando detecte un cambio con esto evitamos matar el servidor y volverlo a correr
+
+		- sudo npm -g install nodemon
+
+	Para correr el script ejecutamos:
+		- nodemon server.js
+
+
+	Instalamos body parser que es una extensión que nos permitirá trabajar con el cuerpo de la petición
+		- npm i body-parser
+
+	Para recoger información por body:
+		- req.body
+	
+	Para recoger información por parámetros:
+		- req.query

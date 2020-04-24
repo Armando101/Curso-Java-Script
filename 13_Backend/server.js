@@ -1,14 +1,22 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const router = express.Router();
 const port = 3000;
 // import express from 'express'; // Sintaxis de ECMA 6
 
 // Route es una de las piezas más importantes
 // Nos permitirá separa las peticiones por cabeceras, métodos, URL, etc
-const router = express.Router();
+
+// bodyParser nos permitirá trabajar con el cuerpo de la petición
+// Pasamos el json para indicar que trabaje únicamente con los archivos json recibidos
 
 // Instanciamos la aplicación de express
 var app = express();
 
+/* Es importante que app.use(router) lo coloquemos al final  */
+
+// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(router);
 
 // Con router podemos separar las peticion por ejemplo por metodos
@@ -17,6 +25,8 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
+	console.log('Body: '+ req.body);
+	console.log('Query: '+ req.query);
 	res.send('Hola desde POST');
 });
 
