@@ -1,0 +1,50 @@
+Conceptualmente: Rutas, controladores y bases de datos
+	
+	Todas las peticiones que lleguen ya sea de un ordenador, móvil, otro servidor, etc. Vendrán desde internet.
+
+	Dentro de nuestro servidor el encarcado de recibir las peticiones será el:
+		- server.js
+
+	Este script se encargará de verificar que las peticiones sean correctas y cancelarlas en caso de errores.
+	También se encargará de configurar toda la información importante del servidor como:
+		- Bases de datos
+		- Cabeceras
+
+	server.js mandará la información a routes.js, este archvo será el encargado de gestionar las rutas.
+	Llamará al componente adecuado según la petición.
+
+	Tendremos una carpeta de componentes y esta a su vez tendrá una carpeta por cada componente.
+
+	Tendremos un componente message, esta carpeta tendrá la información de los mensajes.
+	Endpoints de mensajes, acciones, lógica, dónde se almacenan, etc.
+	De esta manera cuando queramos hacer un cambio en los mensajes sabemos que tendremos que ir a components/message.
+
+	Dentro de la carpeta message tendremos un archivo de rutas network.js
+	Aquí gestionaremos las rutas, incluiremos todo lo relacionado con el protocolo HTTP
+	Cuando el routes.js detecte que tenemos una petición hacia los mensajes mandará la petición al componente message, el routes.js ya no hará nada más, el componente se encargará de procesar la información de la petición.
+
+	Dentro de message tendremos un controlador controller.js
+	El controlador tendrá toda la lógica del componente.
+	Si el mensaje necesita una fecha aquí se la añadiremos.
+	Si necesita llamar a otro componente lo haremos aquí
+	Todo lo que sea:
+		- Modificar el mensaje
+		- Hacer comprobaciones
+	Estará incluido en el controlador, a esto se le llama lógica de negocio.
+
+	Ahora lo ideal es que el controlador guarde la información recibida en una base de datos.
+
+	Tendremos un archivo "store" exclusivo para gestionar la base de datos.
+
+
+	Podemos tener varios componentes y todos tendrán:
+		- network (Protocolo HTTP)
+		- controller (Lógica de negocio)
+		- store (Base de datos)
+
+	Para asegurarnos que las respuestas sean siempre iguales sin importar la cantidad de componentes que tengamos tendremos un archivo:
+		- response.js
+
+	Cada vez que una petición sea correcta el network.js le devuelve la respuesta al response.js no al routes.js
+
+	Todos los componentes enviarán las respuestas a response.js y éste enviará la respuesta al cliente.
