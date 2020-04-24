@@ -22,3 +22,10 @@ Vamos a crear un servidor, el código se encuentra en server.js
 		- Respuestas vacías (el usuario sólo se fija en el status code)
 		- Mensaje
 		- Objetos complejos
+
+Errores: Cómo presentarlos e implicaciones en la seguridad
+	
+	Tenemos que ser cuidadosos a la hora de dar información al usuario.
+	Si por ejemplo decimos que el usuario ingresado existe pero la contraseña es incorrecta, estoy dando información de que el usuario existe en la base de datos y pueden hacer peticiones para decifrar la contraseña de ese usuario.
+
+	Es por esto que es mejor práctica usar log's del lado del servidor, cuando ocurra un error sólo enviamos al usuario que hubo un error interno NO más. Y colocamos un mensaje que nos dará más información a nosotros como parte del servidor.

@@ -51,6 +51,15 @@ router.post('/message', function(req, res) {
 	response.succes(req, res, "Mensaje creado", 201);
 });
 
+router.post('/error', function(req, res) {
+	console.log(req.query);
+	if (req.query.error == 'ok') {
+		response.error(req, res, 'Error inesperado', 500, 'Es sólo una simulación de errores');
+	} else {
+		response.succes(req, res, 'Creado coorrectamente', 201);
+	}
+});
+
 // Podemos servir archivos estáticos
 // Por convención se guardan en una carpeta public
 // Acedemos asi: localhost:3000/app/css/style.css
