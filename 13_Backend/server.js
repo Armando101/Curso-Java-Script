@@ -44,7 +44,7 @@ router.post('/message', function(req, res) {
 	// Mensaje
 	// res.status(200).send('hola munod');
 	// Objetos complejos
-	res.status(200).send({"error": "", "body": "Hola desde POST-Message"});
+	res.status(201).send({"error": "", "status": "Mensaje creado", "Mensaje": req.body});
 });
 
 /* // Usando una ruta
