@@ -21,10 +21,16 @@ app.use(router);
 
 // Con router podemos separar las peticion por ejemplo por metodos
 router.get('/', function(req, res) {
+	// Vemos los headers de la petición
+	console.log(req.headers);
+	res.header({
+		"custom-header": "Nuestra cabecera personalizada"
+	});
 	res.send('Hola desde GET');
 });
 
 router.post('/', function(req, res) {
+	// Recogemos información de la petición
 	console.log('Body: '+ req.body);
 	console.log('Query: '+ req.query);
 	res.send('Hola desde POST');
