@@ -111,3 +111,4 @@ temp/
 # End of https://www.gitignore.io/api/node
 
 13_Backend/components/message/config.js
+13_Backend/uploads

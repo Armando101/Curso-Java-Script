@@ -3,10 +3,7 @@ const response = require('../../network/response');
 const controller = require('./controller');
 const router = express.Router();
 
-
 router.post('/', function(req, res) {
-	//console.log(Array.isArray(req.body.users));
-	//console.log(req.body.users);
 	controller.addUser(req.body.users)
 	.then((data)=> {
 		response.succes(req, res, data, 201);

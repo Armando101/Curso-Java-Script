@@ -5,7 +5,7 @@ const store = require('./store');
 
 // Guardar mensajes
 // Las promesas me servirán para decirle al network que algo salió bien o mal
-function addMessage(user, message) {
+function addMessage(chat, user, message) {
 	return new Promise((resoleve, reject) => {
 		if (!chat || !user || !message) {
 			console.error('[messageController]: No hay usuario o mensaje');

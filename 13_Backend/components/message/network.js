@@ -1,10 +1,12 @@
-// La capa de red es la encargada de recibir la petición HTTP, procesarla y enviarla al controlador
-
 const express = require('express');
+const multer = require('multer');
 const response = require('../../network/response');
 const controller = require('./controller');
 const router = express.Router();
 
+const upload = multer({
+	dest: 'uploads/'
+});
 
 router.get('/', function(req, res) {
 	// Recogemos los datos que me llegan en la URL
@@ -18,7 +20,7 @@ router.get('/', function(req, res) {
 	});
 });
 
-router.post('/', function(req, res) {
+router.post('/', upload.single('file'), function(req, res) {
 	// Enviamos a la función del controlador un usuario y un mensaje
 	controller.addMessage(req.body.chat, req.body.user, req.body.message)
 	.then((fullMessage)=> {
