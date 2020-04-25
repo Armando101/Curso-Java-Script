@@ -20,7 +20,7 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
 	// Enviamos a la función del controlador un usuario y un mensaje
-	controller.addMessage(req.body.user, req.body.message)
+	controller.addMessage(req.body.chat, req.body.user, req.body.message)
 	.then((fullMessage)=> {
 		response.succes(req, res, fullMessage, 201);
 	})

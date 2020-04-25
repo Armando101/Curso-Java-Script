@@ -7,12 +7,13 @@ const store = require('./store');
 // Las promesas me servirán para decirle al network que algo salió bien o mal
 function addMessage(user, message) {
 	return new Promise((resoleve, reject) => {
-		if (!user || !message) {
+		if (!chat || !user || !message) {
 			console.error('[messageController]: No hay usuario o mensaje');
 			return reject('Los datos son incorrectos');
 		}
 
 		const fullMessage = {
+			chat: chat,
 			user: user,
 			message: message,
 			date: new Date()
