@@ -13,12 +13,12 @@
 
 	<script>
 		/*Indico que las conexiones sean siempre nuevas*/
-		var socket = io.connect('http://localhost:8080', {
+		var socket = io.connect('http://localhost:3000', {
 			forceNew: true,
 		});
 
 		/* Me pongo a la escucha para recibir mensajes */
-		socket.on('mensaje', function(data) {
+		socket.on('message', function(data) {
 			console.log(data);
 		});
 	</script>

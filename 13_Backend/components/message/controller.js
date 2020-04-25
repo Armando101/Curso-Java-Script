@@ -1,7 +1,7 @@
 // Este archivo se encargará de decidir todo lo que sucede creando las funciones necesarias
 
 const store = require('./store');
-
+const socket = require('../../socket').socket;
 
 // Guardar mensajes
 // Las promesas me servirán para decirle al network que algo salió bien o mal
@@ -29,6 +29,8 @@ function addMessage(chat, user, message, file) {
 		
 		// Lo agregamos a la base de datos
 		store.add(fullMessage);
+
+		socket.io.emit('message', fullMessage);
 
 		resoleve(fullMessage);
 	});
