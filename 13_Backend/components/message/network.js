@@ -27,5 +27,20 @@ router.post('/', function(req, res) {
 	});
 });
 
+// Con esta ruta haremos modificaciones
+router.patch('/:id', function(req, res) {
+	console.log(req.params.id);
+
+	controller.updateMessage(req.params.id, req.body.message)
+	.then((data) => {
+		response.succes(req, res, data, 200);
+	})
+	.catch((err) => {
+		response.error(req, res, 'Error interno', 500, err);
+	});
+
+	// Importante no mandar otro send porque marcará error de headers
+	//res.send('Ok');
+});
 
 module.exports = router;
