@@ -5,8 +5,10 @@ const Schema = mongoose.Schema;
 // Este esquema permite definir propiedades y tipos através de un objeto
 // Podemos definir tipos complejos como en message
 const mySchema = new Schema({
-	user: String,
-	date: String,
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	},
 	message: {
 		type: String,
 		required: true
