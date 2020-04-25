@@ -1,0 +1,11 @@
+WebSockets: Qué son, por qué son interesantes y cómo usarlos
+	Con el protocolo HTTP hacemos peticiones, si queremos saber si hay mensajes o información nueva tendremos que hacer una petición, esto puede resultar en un gasto de recursos. La solución son los WebSockets.
+
+	El protocolo WebSockets o wws crea un túnel de información entre el usuario y el servidror, el cual se quedará abierto hasta que el servidor y/o cliente cierre la conexión para pedir información en tiempo real.
+
+	Si tengo más de un cliente se conectará al mismo túnel y por ahí enviará y recibirá información.
+
+	Esto es muy útil en chats, comunicación de clientes, etc.
+
+	Todo lo que se maneje en tiempo real será por WebSockets.
+

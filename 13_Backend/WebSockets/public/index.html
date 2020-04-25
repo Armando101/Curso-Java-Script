@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<!-- Esta ruta la crea socket.io -->
+	<script src="/socket.io/socket.io.js"></script>
+	<title>WebSockets</title>
+</head>
+<body>
+
+	<h1>Mira la consola</h1>
+
+
+	<script>
+		/*Indico que las conexiones sean siempre nuevas*/
+		var socket = io.connect('http://localhost:8080', {
+			forceNew: true,
+		});
+
+		/* Me pongo a la escucha para escuchar mensajes */
+		socket.on('mensaje', function(data) {
+			console.log(data);
+		});
+	</script>
+</body>
+</html>
