@@ -7,7 +7,9 @@ const router = express.Router();
 
 
 router.get('/', function(req, res) {
-	controller.getMessages()
+	// Recogemos los datos que me llegan en la URL
+	const filterMessages = req.query.user || null;
+	controller.getMessages(filterMessages)
 	.then((massageList) => {
 		response.succes(req, res, massageList, 200);
 	})
