@@ -17,7 +17,8 @@ const mySchema = new Schema({
 		type: String,
 		required: true
 	},
-	date: Date
+	date: Date,
+	file: String
 });
 
 // Pasamos dos parámetros a model
