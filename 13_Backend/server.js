@@ -1,22 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser'); 
-// const router = express.Router(); // Lo quitamos ya que lo importaremos
+const db = require('./db');
+const config = require('./components/message/config');
 const router = require('./network/routes');
 const port = 3000;
 
+db(config.connection);
 
-// Route es una de las piezas más importantes
-// Nos permitirá separa las peticiones por cabeceras, métodos, URL, etc
-
-// bodyParser nos permitirá trabajar con el cuerpo de la petición
-// Pasamos el json para indicar que trabaje únicamente con los archivos json recibidos
-
-// Instanciamos la aplicación de express
 var app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 // app.use(router);
-//console.log(typeof(router));
 router(app);
 
 // Podemos servir archivos estáticos
