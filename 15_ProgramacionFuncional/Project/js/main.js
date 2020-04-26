@@ -55,6 +55,13 @@ console.log(tagAttrs({tag: 'h1', attrs:{class:'title'}})('Title'));
 // <h1 class="title">Title</h1>
 
 // End function composition
+const tableRowTag = tag('tr');
+// const tableRow = items => tableRowTag(tableCell(items));
+const tableRow = items => compose(tableRowTag, tableCell)(items);
+
+
+const tableCell = tag('td');
+const tableCells = items => items.map(tableCell).join('');
 
 const description = document.getElementById('description');
 const calories = document.getElementById('calories');
