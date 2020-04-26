@@ -18,6 +18,9 @@ exports.succes = function(req, res, message, status=200) {
 	});
 }
 
+// Podemos enviar sólo el código de error sin más información con:
+// res.status(404).end();
+
 exports.error = function(req, res, error, status=500, details) {
 
 	// Aquí imprimimos más información sobre un posible error
