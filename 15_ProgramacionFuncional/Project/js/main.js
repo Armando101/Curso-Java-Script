@@ -21,6 +21,7 @@ const compose = (...functions) => data =>
 	tag = "h1" class="title" id="myId"
 */
 
+/*
 const attrsToString = (obj = {}) => {
 	const keys = Object.keys(obj);
 	const attrs = [];
@@ -33,17 +34,28 @@ const attrsToString = (obj = {}) => {
 	const string = attrs.join('');
 	return string;
 }; 
+*/
+
+// función attrsToString de manera declarativa
+const attrsToString = (obj = {}) => 
+	Object.keys(obj)
+	.map(items => `${items}="${obj[items]}"`).join('');
 
 const tagAttrs = obj => (content = "") => 
 				`<${obj.tag}${obj.attrs ? ' ' : ''}${attrsToString(obj.attrs)}>${content}</${obj.tag}>`;
 
+/*
 const tag = t => {
 	if (typeof t === 'string') {
 		return tagAttrs({tag: t});
 	}
 	return tagAttrs(t);
 }
+*/
 
+// Función tag de manera declarativa
+const tag = t => 
+	typeof t === 'string' ? tagAttrs({ tag: t }) : tagAttrs(t);
 
 // const tag = t => content => `<${t}>${content}</${t}>`;
 
