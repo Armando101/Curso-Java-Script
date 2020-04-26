@@ -1,0 +1,7 @@
+¿Qué es ECMAScript?
+	
+	Es una especificación del lenguaje propuesto por ECMA internacional.
+	Se trata de una institución encargada de los estándares.
+	En el 2015 fue lanzada la versión 6 y año con año se agregan nuevos features y nuevas versiones en junio.
+	JS nace el 1996 como una propuesta y se han añadido nuevas caraterísticas.
+	En junio del 2001 se hizo una revisión del lenguaje.
