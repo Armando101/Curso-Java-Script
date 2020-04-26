@@ -37,7 +37,6 @@ const attrsToString = (obj = {}) => {
 const tagAttrs = obj => (content = "") => 
 				`<${obj.tag}${obj.attrs ? ' ' : ''}${attrsToString(obj.attrs)}>${content}</${obj.tag}>`;
 
-/*
 const tag = t => {
 	if (typeof t === 'string') {
 		tagAttrs({tag: t});
@@ -45,9 +44,9 @@ const tag = t => {
 		tagAttrs(t);
 	}
 }
-*/
 
-const tag = t => content => `<${t}>${content}</${t}>`;
+
+// const tag = t => content => `<${t}>${content}</${t}>`;
 
 console.log(tag('h1')('title')); // <h1>title</h1>
 console.log(attrsToString({class: 'title', id:'myId'})); // class="title"id="myId" 
