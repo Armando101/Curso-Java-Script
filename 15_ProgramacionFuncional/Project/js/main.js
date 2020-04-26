@@ -56,6 +56,11 @@ console.log(tagAttrs({tag: 'h1', attrs:{class:'title'}})('Title'));
 const tableCell = tag('td');
 const tableCells = items => items.map(tableCell).join('');
 
+// trashIcon genera el ícono de basura
+// <i class = 'fa fa-trash-alt'></i>
+const trashIcon = tag({tag: 'i', attrs: {class: 'fas fa-trash-alt'}})
+('');
+
 const tableRowTag = tag('tr');
 const tableRow = items => tableRowTag(tableCells(items));
 //const tableRow = items => compose(tableRowTag, tableCells)(items);
@@ -114,16 +119,31 @@ const cleanInputs = () => {
 	protein.value = '';
 }
 
+const removeItem = (index) => {
+	list.splice(index, 1);
+	updateTotal();
+	renderItems();
+}
+
 const renderItems = () => {
 	const elementList = document.querySelector('tbody');
 	elementList.innerHTML = '';
 
-	list.map(items => {
+	list.map((items, index) => {
+		const removeButton = tag({
+			tag: 'button',
+			attrs: {
+				class: 'btn btn-outline-danger',
+				onclick: `removeItem(${index})`
+			}
+		})(trashIcon);
+
 		elementList.innerHTML += tableRow([
 			items.description,
 			items.calories,
 			items.carbs,
-			items.protein
+			items.protein,
+			removeButton
 		]);
 	});
 	console.log(elementList.innerHTML);
