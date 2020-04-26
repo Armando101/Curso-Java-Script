@@ -6,6 +6,7 @@
   "scripts": {
   	"es6:index": "node src/es6/index",
     "es6:index2": "node src/es6/index2",
+    "es7:index": "node src/es7/index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Armando Rivera",
