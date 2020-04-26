@@ -2,15 +2,18 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 
+const config = require('./config');
+
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const socket = require('./socket');
 const db = require('./db');
-const config = require('./components/message/config');
 const router = require('./network/routes');
-const port = 3000;
 
-db(config.connection);
+db(config.dbUrl);
 
+// Agregamos el cors
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -22,8 +25,8 @@ router(app);
 // Podemos servir archivos estáticos
 // Por convención se guardan en una carpeta public
 // Acedemos asi: localhost:3000/app/css/style.css
-app.use('/app', express.static('public'));
+app.use(config.publicRoute, express.static('public'));
 
-server.listen(port, function() {
-	console.log('La aplicación está escuchando en http://localhost:'+ port);
+server.listen(config.port, function() {
+	console.log('La aplicación está escuchando en ' + config.host + ':' + config.port);
 });

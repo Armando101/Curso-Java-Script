@@ -3,14 +3,14 @@ const multer = require('multer');
 const response = require('../../network/response');
 const controller = require('./controller');
 const router = express.Router();
-
+const config = require('../../config');
 // Con multer podemos guardar imágenes
 // Indico que guardará los archivos en la carpeta pública en una carpeta files
 // Esto para después acceder con:
 // localhost:3000/app/files/NombreDeImagen
 // localhost:3000/app/ -> accede directamente a la carpeta public
 const upload = multer({
-	dest: 'public/files'
+	dest: 'public/' + config.filesRoute + 'files'
 });
 
 router.get('/', function(req, res) {

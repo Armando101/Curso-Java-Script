@@ -2,6 +2,7 @@
 
 const store = require('./store');
 const socket = require('../../socket').socket;
+const config = require('../../config');
 
 // Guardar mensajes
 // Las promesas me servirán para decirle al network que algo salió bien o mal
@@ -15,7 +16,7 @@ function addMessage(chat, user, message, file) {
 		// http://localhost:3000/app -> accede directamente a la carpeta public
 		let fileUrl = '';
 		if (file) {
-			fileUrl = 'http://localhost:3000/app/files/' + file.filename;
+			fileUrl = config.host + ':' +config.port + config.publicRoute + '/'+ config.filesRoute + '/' + file.filename;
 		}
 
 		const fullMessage = {
