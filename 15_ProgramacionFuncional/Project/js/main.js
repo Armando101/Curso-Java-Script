@@ -11,7 +11,7 @@ const compose = (...functions) => data =>
 /*
 	{
 		tag: 'h1',
-		attr: {
+		attrs: {
 			class: 'title',
 			id: 'myId'
 		}
@@ -34,10 +34,25 @@ const attrsToString = (obj = {}) => {
 	return string;
 }; 
 
+const tagAttrs = obj => (content = "") => 
+				`<${obj.tag}${obj.attrs ? ' ' : ''}${attrsToString(obj.attrs)}>${content}</${obj.tag}>`;
+
+/*
+const tag = t => {
+	if (typeof t === 'string') {
+		tagAttrs({tag: t});
+	} else {
+		tagAttrs(t);
+	}
+}
+*/
+
 const tag = t => content => `<${t}>${content}</${t}>`;
 
-console.log(tag('h1')('title'));
-console.log(attrsToString({class: 'title'}));
+console.log(tag('h1')('title')); // <h1>title</h1>
+console.log(attrsToString({class: 'title', id:'myId'})); // class="title"id="myId" 
+console.log(tagAttrs({tag: 'h1', attrs:{class:'title'}})('Title'));
+// <h1 class="title">Title</h1>
 
 // End function composition
 
