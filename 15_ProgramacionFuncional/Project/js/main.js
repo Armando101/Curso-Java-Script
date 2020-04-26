@@ -36,6 +36,8 @@ const attrsToString = (obj = {}) => {
 }; 
 */
 
+// El paradigma declarativo trata de explicar que hay que hacer en lugar de cómo hacerlo
+
 // función attrsToString de manera declarativa
 const attrsToString = (obj = {}) => 
 	Object.keys(obj)
