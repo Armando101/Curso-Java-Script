@@ -48,7 +48,7 @@ const tag = t => {
 
 // const tag = t => content => `<${t}>${content}</${t}>`;
 
-console.log(tag('h1')('title')); // <h1>title</h1>
+// console.log(tag('h1')('title')); // <h1>title</h1>
 console.log(attrsToString({class: 'title', id:'myId'})); // class="title"id="myId" 
 console.log(tagAttrs({tag: 'h1', attrs:{class:'title'}})('Title'));
 // <h1 class="title">Title</h1>
@@ -92,7 +92,20 @@ const add = () => {
 	list.push(newItem);
 	console.log(list);
 }
-	
+
+const updateTotal = () => {
+	let calories = 0, carbs = 0, protein = 0;
+	list.map(item => {
+		calories  += item.calories,
+		carbs += item.carbs,
+		protein += item.protein
+	});
+
+	document.getElementById('totalCalories').textContent = calories;
+	document.getElementById('totalCarbs').textContent = carbs;
+	document.getElementById('totalProtein').textContent = protein;
+}
+
 const cleanInputs = () => {
 	description.value = '';
 	calories.value = '';
@@ -111,6 +124,7 @@ const validateInputs = () => {
 		// console.log('Everything is OK');
 		add();
 		cleanInputs();
+		updateTotal();
 	}
 
 
