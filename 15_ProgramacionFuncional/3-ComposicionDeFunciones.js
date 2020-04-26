@@ -18,3 +18,28 @@ const addFive2 = buildSum2(5);
 console.log(addFive2(5)); // 10
 console.log(buildSum(5)(5)); // 10
 
+// Currying
+
+/*
+	Gracias a los closures es posible implementar el Currying, descomponer funciones complejas en otras funciones más pequeñas donde cada función recibe un solo argumento. A continuación un ejemplo:
+*/
+
+// Sin Currying
+function sumThreeNumbers(a, b, c) {
+        return a + b + c
+}
+
+console.log(sumThreeNumbers(1, 2, 3)) // 6
+
+function sumThreeNumbers(a) {
+        return function(b) {
+                return function(c) {
+                        return a + b + c
+                }
+        }
+}
+
+console.log(sumThreeNumbers(1)(2)(3)) // 6
+
+// Con arrow functions
+const sumThreeNumbers = a => b => c => a + b + c;
