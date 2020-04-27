@@ -5,3 +5,20 @@
 	En el 2015 fue lanzada la versión 6 y año con año se agregan nuevos features y nuevas versiones en junio.
 	JS nace el 1996 como una propuesta y se han añadido nuevas caraterísticas.
 	En junio del 2001 se hizo una revisión del lenguaje.
+
+TC39
+	
+	Es un comité de desarroladores que están a cargo de recibir propuestas de mejoras en el lenguaje y evaluarlas para implementarlas o no.
+
+	TC39: https://tc39.es/
+
+Etapas de nuevos features:
+	- Stage 0: Idea -> Se establece la idea del desarrolador
+	
+	- Stage 1: Proposal -> Dejamos las especifiaciones (cómo funciona, que resuelve, cómo se prueba, etc.)
+	
+	- Stage 2: Draft -> Es valorado por el comité
+	
+	- Stage 3: Candidate -> Es revisado por el comité
+	
+	- Stage 4: Ready -> Listo para ser incorporado
