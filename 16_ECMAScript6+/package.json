@@ -9,6 +9,7 @@
     "es7:index": "node src/es7/index",
     "es8:index": "node src/es8/index",
     "es9:index": "node src/es9/index",
+    "es10:index": "node src/es10/index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Armando Rivera",
