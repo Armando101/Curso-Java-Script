@@ -7,6 +7,8 @@
   	"es6:index": "node src/es6/index",
     "es6:index2": "node src/es6/index2",
     "es7:index": "node src/es7/index",
+    "es8:index": "node src/es8/index",
+    "es9:index": "node src/es9/index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Armando Rivera",
