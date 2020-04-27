@@ -3,26 +3,41 @@
 
 const db = {
 	'user': [
-		{id: 1, name: 'Armando', country: 'MX'},
-		{id: 2, name: 'Oscar', country: 'CO'}
+		{id: '1', name: 'Armando', country: 'MX'},
+		{id: '2', name: 'Oscar', country: 'CO'}
 	]
 };
 
-function list(tabla) {
+// Utilizamos async para que me devuelva una promesa
+// En este caso se resuelve automáticamente
+async function list(tabla) {
 	return db[tabla];
 }
 
-function get(table, id) {
-	let coleccion = list(tabla);
+async function get(tabla, id) {
+	let coleccion = await list(tabla);
 	return coleccion.filter(item => item.id == id)[0] || null;
 }
 
-function upsert(tabla, data) {
-	db[data].push(data);
+async function upsert(tabla, data) {
+	let coleccion = await list(tabla)
+	coleccion.push(data);
+	return coleccion;
 }
 
-function remove(tabla, id) {
-	return true;
+async function remove(tabla, id) {
+	let coleccion = await list(tabla);
+	let idValid = await get(tabla, id);
+	if (idValid) {
+		coleccion.splice(coleccion.indexOf(id-1), 1);
+		return `Usuario con id: ${id} eliminado correctamente`;
+	}
+
+	throw {
+		status: 400,
+		details: 'No se encontró el ID',
+		message: 'Id inválido'
+	};
 }
 
 module.exports = {
