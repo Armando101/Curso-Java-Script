@@ -1,4 +1,5 @@
 // const store = require('../../../store/dummy');
+const nanoid = require('nanoid');
 const TABLA = 'user';
 
 // Exportamos contrller como una función para pasarle la base de datos con la que va a trabajar
@@ -15,6 +16,14 @@ module.exports = function(injectedStore = require('../../../store/dummy')) {
 	}
 
 	function upsert(data) {
+		const user = {
+			name: data.name
+		}
+		if(data.id) {
+			user.id = data.id;
+		} else {
+			user.id = nanoid();
+		}
 		return store.upsert(TABLA, data);
 	}
 
