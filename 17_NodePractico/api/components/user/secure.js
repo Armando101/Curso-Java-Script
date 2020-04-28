@@ -1,5 +1,5 @@
 const auth = require('../../../auth');
-
+const response = require('../../../network/response');
 module.exports = function checkAuth(action) {
 
 	function middleWare(req, res, next) {
@@ -8,6 +8,7 @@ module.exports = function checkAuth(action) {
 				// owner es el usuario que quiere modificar su propia información
 				const owner = req.body.id;
 				auth.check.own(req, owner);
+				next();
 				break;
 
 			default:

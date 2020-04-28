@@ -2,6 +2,8 @@
 
 const jwt = require('jsonwebtoken');
 const config = require('../config');
+const error = require('../utils/error');
+
 const secret = config.jwt.secret;
 
 function sign(data) {
@@ -16,6 +18,12 @@ const check = {
 	own: function(req, owner) {
 		const decoded = decodeHeader(req);
 		console.log(decoded);
+
+		// Comprobar si es o no propio
+		if (decoded.id !== owner) {
+			//throw new Error('No puedes hacer esto');
+			throw error('No puedes hacer esto', 401);
+		}
 	}
 }
 
@@ -45,4 +53,5 @@ function decodeHeader(req) {
 
 module.exports = {
 	sign,
+	check
 };
