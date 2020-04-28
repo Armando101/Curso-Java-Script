@@ -14,23 +14,23 @@ router.put('/', secure('update'), upsert);
 
 // Internal functions
 
-function list(req, res) {
+function list(req, res, next) {
 	// const lista = controller.list();
 	// response.success(req, res, lista, 200);
 
 	// Utilizamos una promesa para manejar los casos en los que ocurra un error
 	controller.list()
 	.then((lista)=> { response.success(req, res, lista, 200); })
-	.catch((err) => { response.error(req, res, err.message, 500); });
+	.catch(next);
 };
 
-function get(req, res) {
+function get(req, res, next) {
 	// const lista = controller.get(req.params.id);
 	// response.success(req, res, lista, 200);
 	
 	controller.get(req.params.id)
 	.then((user) => { response.success(req, res, user, 200) })
-	.catch((err) => { response.error(req, res, err.message, 500) });
+	.catch(next);
 };
 
 function upsert(req, res) {
