@@ -3,8 +3,8 @@
 
 const db = {
 	'user': [
-		{id: '1', name: 'Armando', country: 'MX'},
-		{id: '2', name: 'Oscar', country: 'CO'}
+		{id: '1', name: 'Armando'},
+		{id: '2', name: 'Oscar'}
 	]
 };
 
@@ -20,8 +20,13 @@ async function get(tabla, id) {
 }
 
 async function upsert(tabla, data) {
+	// Si no existe la tabla la crea
+	if (!db[tabla]) {
+		db[tabla] = [];
+	}
 	let coleccion = await list(tabla)
 	coleccion.push(data);
+	console.log(db);
 	return coleccion;
 }
 

@@ -1,5 +1,6 @@
 // const store = require('../../../store/dummy');
-const nanoid = require('nanoid');
+const { nanoid } = require('nanoid');
+const auth = require('../auth'); // Llama directamente al index
 const TABLA = 'user';
 
 // Exportamos contrller como una función para pasarle la base de datos con la que va a trabajar
@@ -15,16 +16,26 @@ module.exports = function(injectedStore = require('../../../store/dummy')) {
 		return store.get(TABLA, id);
 	}
 
-	function upsert(data) {
+	async function upsert(data) {
 		const user = {
-			name: data.name
+			name: data.name,
+			username: data.username
 		}
 		if(data.id) {
 			user.id = data.id;
 		} else {
 			user.id = nanoid();
 		}
-		return store.upsert(TABLA, data);
+
+		if (data.password || data.username) {
+			await auth.upsert({
+				id: user.id,
+				username: user.username,
+				password: data.password,
+			})
+		}
+		//console.log(user.id);
+		return store.upsert(TABLA, user);
 	}
 
 	function remove(id) {
