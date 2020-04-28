@@ -11,7 +11,7 @@ const db = {
 // Utilizamos async para que me devuelva una promesa
 // En este caso se resuelve automáticamente
 async function list(tabla) {
-	return db[tabla];
+	return db[tabla] || [];
 }
 
 async function get(tabla, id) {
@@ -46,9 +46,19 @@ async function remove(tabla, id) {
 	};
 }
 
+async function query(tabla, q) {
+	let coleccion = await list(tabla);
+	let keys = Object.keys(q);
+	let key = keys[0];
+	// Comparamos el username que tenemos en la tabla con el que nos manda el usuario
+	// Me regresa el usuario autenticado
+	return coleccion.filter(item => item[key] === q[key])[0] || null;
+}
+
 module.exports = {
 	list, 
 	get, 
 	upsert,
-	remove
+	remove,
+	query,
 };
