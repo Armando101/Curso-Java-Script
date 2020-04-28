@@ -29,8 +29,7 @@ async function remove(tabla, id) {
 	let coleccion = await list(tabla);
 	let idValid = await get(tabla, id);
 	if (idValid) {
-		coleccion.splice(coleccion.indexOf(id), 1);
-		console.log(coleccion.splice(coleccion.indexOf(id), 1));
+		coleccion.splice(coleccion.indexOf(idValid), 1);
 		//return `Usuario con id: ${id} eliminado correctamente`;
 		return coleccion
 	}
