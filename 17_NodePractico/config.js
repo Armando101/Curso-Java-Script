@@ -4,7 +4,7 @@ module.exports = {
 		port: process.env.API_PORT || 3000
 	},
 	post: {
-		port: process.env.API_PORT || 3002
+		port: process.env.POST_PORT || 3002
 	},
 	jwt: {
 		secret: process.env.JWT_SECRET || 'notasecret'

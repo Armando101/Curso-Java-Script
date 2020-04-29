@@ -21,3 +21,9 @@ Es posile que tengamos que dar permisos de ejecución, para esto nos envían un 
 ### Configuración
 Creamos un archivo now.json y ahí agregamos toda la configuración.  
 Es importante que nuestra base de datos sea remota, no local, de lo contrario no podrá hacer las peticiones.
+
+### Now Dev
+Nos despliega un servidor para desarrollo, nos despliega lo mismo pero esta vez en local.
+```
+now dev
+```

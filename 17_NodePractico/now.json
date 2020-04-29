@@ -1,5 +1,13 @@
 {
     "version": 2,
+    "env": {
+    	"MYSQL_HOST": "localhost",
+    	"MYSQL_USER": "root",
+    	"MYSQL_PASS": "toor",
+    	"MYSQL_DB": "proyecto_node",
+    	"MYSQL_SRV_HOST": "localhost",
+    	"MYSQL_SRV_PORT": 3001
+    },
     "builds": [
         {
             "src": "api/index.js",
