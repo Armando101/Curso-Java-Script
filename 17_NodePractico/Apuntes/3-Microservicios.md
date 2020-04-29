@@ -53,6 +53,6 @@ El id del microservicio lo podemos ver con el comando  pm2 status
 
 ### Reiniciar un microservicio
 ```
-pm2 restart
+pm2 restart id
 ```
 
