@@ -40,10 +40,27 @@ module.exports = function(injectedStore = require('../../../store/dummy')) {
 	function remove(id) {
 		return store.remove(TABLA, id);
 	}
+
+	function follow(from, to) {
+		return store.upsert(TABLA + '_follow', {
+			user_from: from,
+			user_to: to,
+		});
+	}
+
+	async function following(id) {
+		const join = {};
+		join[TABLA] = 'user_to';  // { user: 'user_to' }
+		const query = { user_from: id }
+		return await store.query(TABLA + '_follow', query, join);
+	}
+
 	return  {
 		list,
 		get,
 		upsert,
-		remove
+		remove,
+		follow,
+		following
 	}
 }

@@ -24,6 +24,10 @@ const check = {
 			//throw new Error('No puedes hacer esto');
 			throw error('No puedes hacer esto', 401);
 		}
+	},
+
+	logged: function(req) {
+		const decoded = decodeHeader(req);
 	}
 }
 

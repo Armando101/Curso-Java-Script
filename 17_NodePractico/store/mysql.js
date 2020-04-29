@@ -62,8 +62,7 @@ function get(table, id) {
 	})
 }
 
-function insert(table, data) {
-	
+function insert(table, data) {	
 	return new Promise((resolve, reject) => {
 		connection.query(`INSERT INTO ${table} SET ?`, data, (err, result) => {
 			if (err) {
@@ -88,6 +87,9 @@ function update(table, data) {
 };
 
 async function upsert(table, data) {
+	if (!data.id) {
+		return insert(table, data);
+	}
 	const row = await get(table, data.id);
 	if (row.length === 0) {
 		return insert(table, data);
@@ -95,9 +97,15 @@ async function upsert(table, data) {
 	return update(table, data);
 }
 
-function query(table, query) {
+function query(table, query, join) {
+	let joinQuery = '';
+	if (join) {
+		const key = Object.keys(join)[0];
+		const val = join[key];
+		joinQuery = `JOIN ${key} ON ${table}.${val} = ${key}.id`;
+	}
 	return new Promise((resolve, reject) => {
-		connection.query(`SELECT * FROM ${table} WHERE ?`, query, (err, res) => {
+		connection.query(`SELECT * FROM ${table} ${joinQuery} WHERE ${table}.?`, query, (err, res) => {
 			if (err) { return reject(err); }
 			resolve(res[0] || null);
 		});
