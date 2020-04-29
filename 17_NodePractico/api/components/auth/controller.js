@@ -7,15 +7,15 @@ module.exports = function(injectedStore = require('../../../store/dummy')) {
 	
 	async function login(username, password) {
 		const data = await store.query(TABLA, { username: username });
-		
 		// Comparamos si las passwords son iguales con métodos de criptografía
 		return bcrypt.compare(password, data.password)
 				.then(sonIguales => {
-					if(sonIguales === true) {
+					if(sonIguales) {
 						// Generar token
 						// return 'TOKEN';
-						return auth.sign(data);
+						return auth.sign(JSON.parse(JSON.stringify(data)));
 					} else {
+					console.log('Son iguales: ' + sonIguales);
 						throw new Error('Infomración inválida')
 					}
 				});

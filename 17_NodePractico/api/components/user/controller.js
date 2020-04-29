@@ -32,9 +32,8 @@ module.exports = function(injectedStore = require('../../../store/dummy')) {
 				id: user.id,
 				username: user.username,
 				password: data.password,
-			})
+			});
 		}
-		//console.log(user.id);
 		return store.upsert(TABLA, user);
 	}
 
