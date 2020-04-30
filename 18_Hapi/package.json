@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "@hapi/hapi": "^19.1.1",
+    "inert": "^5.1.3",
     "standard": "^14.3.3"
   }
 }
