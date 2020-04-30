@@ -4,6 +4,7 @@ const Hapi = require('@hapi/hapi');
 const handlebars = require('handlebars');
 const inert = require('inert');
 const path = require('path');
+const routes = require('./routes');
 const vision = require('vision');
 
 async function init() {
@@ -39,61 +40,8 @@ async function init() {
 	   		layoutPath: 'views'
 	   	});
 
-	   server.route({
-	      path: '/',
-	      method: 'GET',
-	      handler: (req, h) => {
-	      	// Devuelvo un objeto de respuesta
-	        return h.view('index', {
-	        	title: 'home'
-	        });
-	      }
-	   });
 
-	   server.route({
-	      path: '/register',
-	      method: 'GET',
-	      handler: (req, h) => {
-	      	// Devuelvo un objeto de respuesta
-	        return h.view('register', {
-	        	title: 'Regsitro'
-	        });
-	      }
-	   });
-
-	   server.route({
-	      path: '/create-user',
-	      method: 'POST',
-	      handler: (req, h) => {
-	      	// Muestra el cuerpo de la petición
-	      	console.log(req.payload);
-	      	return 'Usuario Creado';
-	    }
-	   });
-
-	   server.route({
-	      path: '/redirect',
-	      method: 'GET',
-	      handler: (req, h) => {
-	      	// Devuelvo un objeto de respuesta
-	        return h.redirect('https://google.com');
-	      }
-	   });
-		
-		// Esta ruta es para que sirva los archivos css
-		server.route({
-			path: '/{params*}',
-			method: 'GET',
-			handler: {
-				directory: {
-					// Hace referencia al directorio actual
-					// public ya que lo habíamos definido arriba
-					path: '.',
-					index: ['index.html']
-				}
-			}
-		});
-
+	   	server.route(routes);
 	    await server.start();
    	} catch (error) {
    		console.log(error);
