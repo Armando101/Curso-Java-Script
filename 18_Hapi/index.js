@@ -1,8 +1,10 @@
 'use strict'
 
 const Hapi = require('@hapi/hapi');
+const handlebars = require('handlebars');
 const inert = require('inert');
 const path = require('path');
+const vision = require('vision');
 
 async function init() {
     const server = Hapi.server({
@@ -22,13 +24,29 @@ async function init() {
    		// Tenemos que registrar el plugin cada que lo vamos a usar
    		// No basta con sólo importarlo
    		await server.register(inert);
-	   
+	   	await server.register(vision);
+
+	   	// Configuramos vision
+	   	server.views({
+	   		engines: { // engines me permite definir que motor de plantillas voy a utilizar
+	   			// Indico que el motor será handlebars
+	   			// vision va a buscar plantillas en hbs y las renderizará con handlebars
+	   			hbs: handlebars,
+	   		},
+	   		relativeTo: __dirname, // Esto es para que las vistas estén fuera del public
+	   		path: 'views',
+	   		layout: true,	// layout es una característica de handlebars
+	   		layoutPath: 'views'
+	   	});
+
 	   server.route({
-	      path: '/home',
+	      path: '/',
 	      method: 'GET',
 	      handler: (req, h) => {
 	      	// Devuelvo un objeto de respuesta
-	        return h.file('index.html');
+	        return h.view('index', {
+	        	title: 'home'
+	        });
 	      }
 	   });
 
