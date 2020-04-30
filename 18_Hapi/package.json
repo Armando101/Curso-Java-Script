@@ -1,0 +1,18 @@
+{
+  "name": "proyecto_overflow",
+  "version": "1.0.0",
+  "description": "Un sitio como stackOverFlow",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon",
+    "lnit": "standard",
+    "lint-fix": "standard-fix"
+  },
+  "author": "Armando Rivera",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/hapi": "^19.1.1",
+    "standard": "^14.3.3"
+  }
+}
