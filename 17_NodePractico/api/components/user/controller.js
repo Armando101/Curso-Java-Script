@@ -6,10 +6,22 @@ const TABLA = 'user';
 // Exportamos contrller como una función para pasarle la base de datos con la que va a trabajar
 // Esto es útil porque nos permite cambiar de base de datos sin modificar el código
 // Sólo cambiamos la variable store de index.js
-module.exports = function(injectedStore = require('../../../store/dummy')) {
+module.exports = function(injectedStore = require('../../../store/dummy'), injectedCache = require('../../../store/dummy')) {
+	
 	let store = injectedStore;
-	function list() {
-		return store.list(TABLA);
+	let cache = injectedCache;
+	
+	async function list() {
+		let users = await cache.list(TABLA);
+		if (!users) {
+			console.log('No estaba en cache. Buscando en Base de Datos...')
+			users = await store.list(TABLA);
+			cache.upsert(TABLA, users);
+		} else {
+			console.log('Nos traemos datos desde cahe');
+		}
+
+		return users;
 	}
 
 	function get(id) {
