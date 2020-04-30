@@ -84,3 +84,41 @@ Al crear el archivo **layout.hbs** evitaremos repetir las mismas secciones de ht
 En la definición de las rutas, tendremos que cambiar la respuesta devuelta en *handler* para que invoque a *h.view()* en lugar de *h.file()*, con los parámetros esperados por el layout.  
 
 Para poder incorporar el html de las vistas dentro del **layout.hbs**, es necesario usar **triples llaves** en lugar de dobles, ya que por defecto Handlebars escapa el código html convirtiéndolo en su equivalente texto plano.
+
+## Recibiendo parámetros en una ruta POST - Creación del registro
+
+El objeto **request** nos permite obtener datos de la petición recibida desde el cliente. El método pasado como parámetro para la creación de este objeto define si trabajaremos con GET o POST.
+
+Proipiedades del request:
+```
+- request.path
+- request.method
+- request.get
+- request.payload: es en esta propiedad donde recibimos los datos enviados con el método POST.
+```
+Ciclo de vida del objeto request, se refiere a los eventos que suceden durante la carga, existencia y descarga del objeto:  
+
+```
+- OnRequest			// Se recibe el request
+- OnPreAuth			// Se valida la autorización
+- OnCredentials		// Se reciben las credenciales
+- OnPostAuth		// Despues que se valida la autorización
+- OnPreHandler		// Antes de que corra el handler
+- OnPostHandler		// Después de que corra el handler
+- OnPreResponse		// Antes de que responda la ruta
+```
+
+Más información sobre el ciclo de vida del objeto **request** en el repositorio oficial del proyecto: [Link](https://github.com/hapijs/hapi/blob/master/API.md#request-lifecycle)
+
+## Definir una mejor estructura con buenas prácticas en Hapi
+
+Con el fin de tener una mejor organización de los archivos de nuestro proyecto, y considerando que estamos trabajando con la arquitectura MVC, haremos una primera refactorización del código.
+
+Creamos el directorio */controllers* para colocar los controladores site y user de nuestro proyecto. Pasamos la definición de las rutas a su propio módulo *routes.js* como un arreglo que exportaremos más adelante. Distribuímos los handlers asociados a cada vista en la definición de las rutas hacia el archivo del controlador para cada contexto, ya sea site o user. Requerimos los controladores desde el módulo de rutas, y fnalmente importamos la definición de rutas desde el index.js y las asociamos al server con server.route(routes).
+
+La raíz de la estructura general quedaría de momento:  
+- /public
+- /controllers
+- /views
+- routers.js
+- index.js

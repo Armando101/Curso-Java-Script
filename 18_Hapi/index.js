@@ -51,6 +51,27 @@ async function init() {
 	   });
 
 	   server.route({
+	      path: '/register',
+	      method: 'GET',
+	      handler: (req, h) => {
+	      	// Devuelvo un objeto de respuesta
+	        return h.view('register', {
+	        	title: 'Regsitro'
+	        });
+	      }
+	   });
+
+	   server.route({
+	      path: '/create-user',
+	      method: 'POST',
+	      handler: (req, h) => {
+	      	// Muestra el cuerpo de la petición
+	      	console.log(req.payload);
+	      	return 'Usuario Creado';
+	    }
+	   });
+
+	   server.route({
 	      path: '/redirect',
 	      method: 'GET',
 	      handler: (req, h) => {
