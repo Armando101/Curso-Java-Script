@@ -27,6 +27,14 @@ async function init() {
    		await server.register(inert);
 	   	await server.register(vision);
 
+       // Nombre de la cookie y tiempo de vida en milisegundos
+       // si es segura o no
+       server.state('user', {
+         ttl: 1000 * 60 * 60 *24,
+         isSecure: process.env.NODE_ENV === 'prod', 
+         encoding: 'base64json'
+       });
+
 	   	// Configuramos vision
 	   	server.views({
 	   		engines: { // engines me permite definir que motor de plantillas voy a utilizar

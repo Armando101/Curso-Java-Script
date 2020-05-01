@@ -3,21 +3,24 @@
 function register (req, h) {
   	// Devuelvo un objeto de respuesta
     return h.view('register', {
-    	title: 'Regsitro'
+    	title: 'Regsitro',
+      user: req.state.user
     });
   }
 
 function login (req, h) {
     // Devuelvo un objeto de respuesta
     return h.view('login', {
-      title: 'Ingrese'
+      title: 'Ingrese',
+      user: req.state.user
     });
   }
 
 function home(req, h) {
   	// Devuelvo un objeto de respuesta
     return h.view('index', {
-    	title: 'home'
+    	title: 'home',
+      user: req.state.user
     });
  }
 

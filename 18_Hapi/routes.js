@@ -26,6 +26,11 @@ module.exports = [
   handler: site.login
 },
 {
+  path: '/logout',
+  method: 'GET',
+  handler: user.logout
+},
+{
   path: '/create-user',
   options: {
   	// Creamos validaciones para el formulario

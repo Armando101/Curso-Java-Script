@@ -22,10 +22,18 @@
           <div class="col m-2">
             <h1><a href="/"><img src="images/logo.png" style="max-height: 60px;"></a></h1>
           </div>
-          <div class="col m-2 text-right">
-            <a href="./login" class="btn btn-primary btn-lg border border-white" role="button" aria-pressed="true">Login</a>
-            <a href="./register" class="btn btn-primary btn-lg border border-white ml-2" role="button" aria-pressed="true">Registrarse</a>
-          </div>
+          {{#if user}}
+            <div class="col m-2 text-right">
+              <h3><span class="badge badge-info">Hola {{user.name}}</span></h3>
+              <a href="/" class="btn btn-primary btn-lg border border-white" role="button" aria-pressed="true">Preguntar</a>
+              <a href="/logout" class="btn btn-primary btn-lg border border-white ml-2" role="button" aria-pressed="true">Salir</a>
+            </div>
+          {{else}}
+            <div class="col m-2 text-right">
+              <a href="/login" class="btn btn-primary btn-lg border border-white" role="button" aria-pressed="true">Login</a>
+              <a href="/register" class="btn btn-primary btn-lg border border-white ml-2" role="button" aria-pressed="true">Registrarse</a>
+            </div>
+            {{/if}}
         </div>
       </nav>
     </div>
