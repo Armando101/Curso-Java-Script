@@ -121,4 +121,22 @@ La raíz de la estructura general quedaría de momento:
 - /controllers
 - /views
 - routers.js
-- index.js
+- index.js  
+
+## Validando la información - Implementando Joi
+
+La validación de los datos suministrados por el usuario puede hacerse tanto en el frontend como en el *backend*, incluso puede hacerse en ambos lados, lo cual se recomienda.  
+
+Para hacer la validación de información en el backend, Hapi cuenta con un módulo llamado Joi que ofrece múltiples condiciones de validación, como: tipo de dato, mínimos y máximos, condiciones personalizadas, etc.  
+
+**Joi** nos permite generar validación de un esquema específico en Hapi en el mismo momento en que se definen las rutas.  
+
+```
+npm install joi
+```
+
+Luego de instalar y requerir el módulo en el arhivo routes.js será necesario agregar la propiedad options que contiene a su vez *validate* y luego *payload*, en esta caso porque los datos serán recibidos por POST, allí definimos entonces las condiciones de validación para cada dato esperado.  
+  
+Documentación:
+[Joi](https://www.npmjs.com/package/joi)
+

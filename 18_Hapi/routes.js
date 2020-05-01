@@ -1,8 +1,8 @@
 // Arreglo de rutas
 'use strict'
-
-const site = require('./public/controllers/site');
-const user = require('./public/controllers/user');
+const joi = require('joi');
+const site = require('./controllers/site');
+const user = require('./controllers/user');
 
 module.exports = [
 {
@@ -22,6 +22,17 @@ module.exports = [
 },
 {
   path: '/create-user',
+  options: {
+  	// Creamos validaciones para el formulario
+  	validate: {
+  		payload: joi.object({
+  			// name tiene que ser una string de mínimo 3 caracteres
+  			name: joi.string().required().min(3),
+  			email: joi.string().email().required(),
+  			password: joi.string().required().min(6)
+  		})
+  	}
+  },
   method: 'POST',
   handler: user.createUser
 },
