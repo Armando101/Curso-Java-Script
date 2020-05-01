@@ -23,10 +23,22 @@ class Users {
 		// El método push crea una nueva referencia dentro de la colección
 		console.log(user);
 		const newUser = this.collection.push(user);
-		//newUser.set(data); // Indico que guarde la información que me llega
-
+		
 		// La referencia del nuevo objeto creado esta dentro de key
 		return newUser.key;
+	}
+
+	async validateUser(data) {
+		const userQuery = await this.collection.orderByChild('email').equalTo(data.email).once('value'); // once mq garantiza que va a tener un valor, ya sea correcto o incorrecto
+		const userFound = userQuery.val(); // Transforma el valor en un objeto
+		if (userFound) {
+			const userId = Object.keys(userFound)[0];
+			const passwordRight = await bcrypt.compare(data.password, userFound[userId].password); 
+			const result = (passwordRight) ? userFound[userId] : false;
+			return result;
+		}
+
+		return false;
 	}
 
 	static async encrypt(password) {

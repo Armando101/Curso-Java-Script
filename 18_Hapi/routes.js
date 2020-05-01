@@ -21,6 +21,11 @@ module.exports = [
   handler: site.register
 },
 {
+  path: '/login',
+  method: 'GET',
+  handler: site.login
+},
+{
   path: '/create-user',
   options: {
   	// Creamos validaciones para el formulario
@@ -36,7 +41,19 @@ module.exports = [
   method: 'POST',
   handler: user.createUser
 },
-
+{
+  path: '/validate-user',
+  method: 'POST',
+  options: {
+  	validate: {
+  		payload: joi.object({
+  			email: joi.string().email().required(),
+  			password: joi.string().required().min(6)
+  		})
+  	}
+  },
+  handler: user.validateUser
+},
 {
   path: '/redirect',
   method: 'GET',

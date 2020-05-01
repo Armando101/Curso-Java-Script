@@ -7,6 +7,13 @@ function register (req, h) {
     });
   }
 
+function login (req, h) {
+    // Devuelvo un objeto de respuesta
+    return h.view('login', {
+      title: 'Ingrese'
+    });
+  }
+
 function home(req, h) {
   	// Devuelvo un objeto de respuesta
     return h.view('index', {
@@ -16,5 +23,6 @@ function home(req, h) {
 
 module.exports = {
 	register: register,
-	home: home
+	home: home,
+  login: login
 }
