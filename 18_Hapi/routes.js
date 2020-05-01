@@ -54,7 +54,9 @@ module.exports = [
   		payload: joi.object({
   			email: joi.string().email().required(),
   			password: joi.string().required().min(6)
-  		})
+  		}),
+  		// En caso de que no se haga una validación correcta
+  		failAction: user.failValidation
   	}
   },
   handler: user.validateUser

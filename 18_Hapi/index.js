@@ -59,8 +59,15 @@ async function init() {
 	console.log('Server running on %s', server.info.uri);
 }
 
+// unhandledRejection es un error que se genera cuando una promesa no está siendo controlada
 process.on('unhandledRejection', (err) => {
-    console.log(err);
+    console.error('unhandledRejection', err.message, err);
+    process.exit(1);
+});
+
+// unhandledException es un error que se genera cuando una excepción no está siendo controlada
+process.on('unhandledException', (err) => {
+    console.error('unhandledException', err.message, err);
     process.exit(1);
 });
 

@@ -1,6 +1,11 @@
 'use strict'
 
 function register (req, h) {
+    // Si el usuario ya está logeado por lo tanto ya está registrado 
+    // No podrá acceder a la página de register y cuando lo intente lo mandaremos a '/'
+    if (req.state.user) {
+        return h.redirect('/');
+      }
   	// Devuelvo un objeto de respuesta
     return h.view('register', {
     	title: 'Regsitro',
@@ -9,6 +14,11 @@ function register (req, h) {
   }
 
 function login (req, h) {
+    // console.log(req.state);
+    if (req.state.user) {
+      return h.redirect('/');
+    }
+
     // Devuelvo un objeto de respuesta
     return h.view('login', {
       title: 'Ingrese',
