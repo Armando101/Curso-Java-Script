@@ -26,6 +26,10 @@ function login (req, h) {
     });
   }
 
+function notFound(req, h) {
+   return h.view('404', {}, {layout: 'error-layout'}).code(404);
+}
+
 function home(req, h) {
   	// Devuelvo un objeto de respuesta
     return h.view('index', {
@@ -37,5 +41,6 @@ function home(req, h) {
 module.exports = {
 	register: register,
 	home: home,
-  login: login
+  login: login,
+  notFound:notFound
 }

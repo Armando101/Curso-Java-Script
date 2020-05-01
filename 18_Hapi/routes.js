@@ -71,8 +71,11 @@ module.exports = [
 },
 
 // Esta ruta es para que sirva los archivos css
+// Agregamos assets para que no mezclen con las llamadas a 404
+// Agrupamos todas las páginas de nuestro sitio en assets
+// Cualquier petición a la raiz me arrojará un 404
 {
-	path: '/{params*}',
+	path: '/assets/{params*}',
 	method: 'GET',
 	handler: {
 		directory: {
@@ -81,5 +84,13 @@ module.exports = [
 			path: '.',
 			index: ['index.html']
 		}
-	}
+	},
+
+},
+{
+	// Nos permite capturar los errores de 404
+	// Indicamos que todo lo que esté en la raíz me arroja un error 404
+	method: ['GET', 'POST'],
+	path: '/{any*}',
+	handler: site.notFound
 }]

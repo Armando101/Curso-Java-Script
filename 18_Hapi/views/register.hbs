@@ -6,6 +6,16 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
+          {{#with error}}
+            <div class="alert alert-danger" role="alert">
+              {{this}}  <!-- Imprime el contenido de la variable error -->
+            </div>
+          {{/with}}
+          {{#with success}}
+            <div class="alert alert-success">
+              {{this}}
+            </div>
+          {{/with}}
           <form method="POST" action="/create-user">
             <div class="form-group">
               <label for="name">Nombre</label>
