@@ -8,8 +8,17 @@ class Questions {
 	}
 
 	async create(data, user) {
-		data.owner = user;
-		const question = this.collection.push(data);
+		// Es importante deconstruir data, de lo contrario marcará un error de:
+		// Unsupported Media Type ya que de esta manera no se puede incluir en firebas
+		const ask = {
+			...data
+		}
+
+		console.log(ask);
+		console.log(data);
+
+		ask.owner = user;
+		const question = this.collection.push(ask);
 
 		return question.key;
 	}

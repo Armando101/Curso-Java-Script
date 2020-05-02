@@ -59,7 +59,8 @@ function logout (req, h) {
 function failValidation(req, h, err) {
 	const templates = {
 		'/create-user': 'register',
-		'/validate-user': 'login'
+		'/validate-user': 'login',
+		'create-question': 'ask'
 	}
 
 	// Hacemos más amigable la vista al usuario en caso de que haya un error de validación

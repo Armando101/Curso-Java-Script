@@ -50,11 +50,23 @@ function home(req, h) {
     	title: 'home',
       user: req.state.user
     });
- }
+}
 
 function homes(req, h) {
     return h.redirect('/home');
- }
+}
+
+function ask(req, h) {
+  // Si no está logeado el usuario no puede hacer preguntas
+  if (!req.state.user) {
+      return h.redirect('/login');
+  }
+
+  return h.view('ask', {
+    title: 'Crear pregunta',
+    user: req.state.user
+  });
+}
 
 module.exports = {
 	register: register,
@@ -62,5 +74,6 @@ module.exports = {
   homes: homes,
   login: login,
   notFound:notFound,
-  fileNotFound: fileNotFound
+  fileNotFound: fileNotFound,
+  ask: ask
 }

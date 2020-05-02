@@ -3,6 +3,7 @@
 const joi = require('joi');
 const site = require('./controllers/site');
 const user = require('./controllers/user');
+const question = require('./controllers/question');
 
 module.exports = [
 {
@@ -29,6 +30,11 @@ module.exports = [
   path: '/logout',
   method: 'GET',
   handler: user.logout
+},
+{
+  path: '/ask',
+  method: 'GET',
+  handler: site.ask
 },
 {
   path: '/create-user',
@@ -60,6 +66,21 @@ module.exports = [
   	}
   },
   handler: user.validateUser
+},
+{
+  path: '/create-question',
+  method: 'POST',
+  options: {
+  	validate: {
+  		payload: joi.object({
+  			title: joi.string().required(),
+  			description: joi.string().required()
+  		}),
+  		// En caso de que no se haga una validación correcta
+  		failAction: user.failValidation
+  	}
+  },
+  handler: question.createQuestion
 },
 {
   path: '/redirect',
