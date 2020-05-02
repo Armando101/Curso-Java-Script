@@ -1,5 +1,7 @@
 'use strict'
 
+const questions = require('../models/index').questions;
+
 function register (req, h) {
     // Si el usuario ya está logeado por lo tanto ya está registrado 
     // No podrá acceder a la página de register y cuando lo intente lo mandaremos a '/'
@@ -44,11 +46,20 @@ function fileNotFound(req, h) {
   return h.continue;
 }
 
-function home(req, h) {
+async function home(req, h) {
+
+    let data;
+    try {
+      data = await questions.getLast(10);
+    } catch (error) {
+      console.error(error);
+    }
+
   	// Devuelvo un objeto de respuesta
     return h.view('index', {
     	title: 'home',
-      user: req.state.user
+      user: req.state.user,
+      questions: data
     });
 }
 

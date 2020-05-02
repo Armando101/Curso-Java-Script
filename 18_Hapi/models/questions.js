@@ -22,6 +22,13 @@ class Questions {
 
 		return question.key;
 	}
+
+	async getLast(amount) {
+		// limitToLast es una función de firebase que nos permite obtener los últimos registros 
+		const query = await this.collection.limitToLast(amount).once('value');
+		const data = query.val(); 	// Me devuelve la consulta
+		return data;
+	}
 }
 
 
