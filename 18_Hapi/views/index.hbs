@@ -21,9 +21,12 @@
         <div class="card-body">
           <div class="row">
             <div class="col-2 text-center">
-              <a href="#" class="text-dark">
+              <a href="/question/{{key}}" class="text-dark">
                 <h3>
-                  2
+                  <!-- Me devuelve un objeto con las respuestas de cada pregunta y se lo pasamos como argumento al helper answerNumber
+                    answerNumber se encuentra en index.js
+                   -->
+                  {{answerNumber question.answers}}
                 </h3>
                 Respuestas
               </a>

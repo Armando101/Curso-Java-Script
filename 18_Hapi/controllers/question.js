@@ -24,6 +24,9 @@ async function createQuestion(req, h) {
 async function answerQuestion(req, h) {
 	let result;
 	try {
+		if (!req.state.user) {
+			return h.redirect('/login');
+		}
 		result = await questions.answer(req.payload, req.state.user);
 		console.log(`Respuesta creada: ${result}`);
 	} catch (error) {
