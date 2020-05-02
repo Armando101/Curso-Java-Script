@@ -4,4 +4,44 @@
     <p>{{question.description}}</p>
     <p class="mb-0">Creada por <strong>{{question.owner.name}}</strong></p>
   </div>
+
+  {{#each question.answers as |answer key|}}
+  <div class="alert alert-info" role="alert">
+    <p>{{answer.text}}</p>
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          Creada por <strong>{{answer.user.name}}</strong>
+        </div>
+        <div class="col-sm text-right">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <h3>Responder</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <form method="POST" action="/answer-question">
+            <div class="form-group">
+              <label for="answer">Respuesta</label>
+              <textarea class="form-control" id="answer" name="answer" placeholder="Ingrese la respuesta" required></textarea>
+              <input type="hidden" name="id" value="{{key}}" />
+            </div>
+            <div class="text-center mt-5">
+              <button type="submit" class="btn btn-primary">Enviar respuesta</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
