@@ -30,6 +30,20 @@ function notFound(req, h) {
    return h.view('404', {}, {layout: 'error-layout'}).code(404);
 }
 
+// Esta función se ejecuta antes de dar una respuesta
+// Me perimite capturar los errores de tipo 404 que no caputra notFound
+// Por ejemplo :3000/assets/algo
+// Por ejemplo :3000/assets
+function fileNotFound(req, h) {
+  const response = req.response;
+  if (response.isBoom && (response.output.statusCode === 404 || response.output.statusCode === 403)) {
+   return h.view('404', {}, {layout: 'error-layout'}).code(404);
+  }
+
+  // Continuamos el life cycle
+  return h.continue;
+}
+
 function home(req, h) {
   	// Devuelvo un objeto de respuesta
     return h.view('index', {
@@ -38,9 +52,15 @@ function home(req, h) {
     });
  }
 
+function homes(req, h) {
+    return h.redirect('/home');
+ }
+
 module.exports = {
 	register: register,
 	home: home,
+  homes: homes,
   login: login,
-  notFound:notFound
+  notFound:notFound,
+  fileNotFound: fileNotFound
 }

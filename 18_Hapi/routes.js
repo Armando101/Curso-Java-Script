@@ -8,7 +8,7 @@ module.exports = [
 {
   path: '/',
   method: 'GET',
-  handler: site.home
+  handler: site.homes
 },
 {
   path: '/home',

@@ -6,6 +6,7 @@ const inert = require('inert');
 const path = require('path');
 const routes = require('./routes');
 const vision = require('vision');
+const site = require('./controllers/site');
 
 async function init() {
     const server = Hapi.server({
@@ -47,8 +48,10 @@ async function init() {
 	   		layout: true,	// layout es una característica de handlebars
 	   		layoutPath: 'views'
 	   	});
-
-
+      
+      // ext es un método del servidor que nos permite excuchar un hook del life cycle  
+      // Antes de que se ejecute la respuesta quiero que se ejecute la función que esta como segundo argumento
+      server.ext('onPreResponse', site.fileNotFound);
 	   	server.route(routes);
 	    await server.start();
    	} catch (error) {
