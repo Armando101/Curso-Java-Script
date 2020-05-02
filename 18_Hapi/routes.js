@@ -37,6 +37,12 @@ module.exports = [
   handler: site.ask
 },
 {
+	// /{id} indico que voy a leer esa variable por params
+  path: '/question/{id}',
+  method: 'GET',
+  handler: site.viewQuestion
+},
+{
   path: '/create-user',
   options: {
   	// Creamos validaciones para el formulario
