@@ -35,7 +35,8 @@
     </div>
   </div>
   {{/each}}
-
+  
+  {{#if user}}
   <div class="card mb-3">
     <div class="card-header">
       <h3>Responder</h3>
@@ -57,5 +58,7 @@
       </div>
     </div>
   </div>
-
+  {{else}}
+  <p class="text-center mt-5"> <a href="/login" class="btn btn-primary" role="button">Ingrese para responder</a> </p>
+  {{/if}}
 </div>
