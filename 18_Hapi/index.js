@@ -1,21 +1,12 @@
 'use strict'
 
 const Hapi = require('@hapi/hapi');
-const handlebars = require('handlebars');
+const handlebars = require('./lib/helpers');
 const inert = require('inert');
 const path = require('path');
 const routes = require('./routes');
 const vision = require('vision');
 const site = require('./controllers/site');
-
-// Este register helper nos ayudará a comunicarnos con el HTML
-// Es como incluir una función en html
-// Nos dirá el número de respuestas que tiene una pregunta
-handlebars.registerHelper('answerNumber', (answers) => {
-  if (answers === undefined) return 0;
-  const keys = Object.keys(answers);
-  return keys.length;
-});
 
 async function init() {
     const server = Hapi.server({
