@@ -3,6 +3,7 @@
 const Hapi = require('@hapi/hapi');
 const handlebars = require('./lib/helpers');
 const inert = require('inert');
+const methods = require('./lib/methods');
 const path = require('path');
 const routes = require('./routes');
 const vision = require('vision');
@@ -27,6 +28,12 @@ async function init() {
    		// No basta con sólo importarlo
    		await server.register(inert);
 	   	await server.register(vision);
+
+         // Esto es un método de servidor, estará disponible en cualquier función de ruta por medio del request
+         // Podemos acceder al servidor y a todos sus métodos
+         // Esto es útil cuando tengamos mucha lógica que compartir entre diferentes rutas
+
+        server.method('setAnswerRight', methods.setAnswerRight);
 
        // Nombre de la cookie y tiempo de vida en milisegundos
        // si es segura o no
