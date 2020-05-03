@@ -6,7 +6,7 @@
   </div>
 
   {{#each question.answers as |answer key|}}
-  <div class="alert alert-info" role="alert">
+  <div class="alert {{#if answer.correct}}alert-success{{else}}alert-info{{/if}}" role="alert">
     <p>{{answer.text}}</p>
     <hr>
     <div class="container">
@@ -15,14 +15,21 @@
           Creada por <strong>{{answer.user.name}}</strong>
         </div>
         <div class="col-sm text-right">
-            <!-- Estos datos se obtienn de la base de datos -->
-            <!-- ../ representan subidas de contexto -->
-            <!-- Hacemos una subida de contexto, por el bloque ifEqual -->
-            <!-- De esta maera llegaresmos a la variable question y a user -->
-            {{#ifEquals ../question.owner.email ../user.email}}
-              <a href="" class="btn btn-primary" role="button">Elegir respuesta correcta</a>
-            {{/ifEquals}}
-          
+            
+              <!-- Estos datos se obtienn de la base de datos -->
+              <!-- ../ representan subidas de contexto -->
+              <!-- Hacemos una subida de contexto, por el bloque ifEqual -->
+              <!-- De esta maera llegaresmos a la variable question y a user -->
+              {{#ifEquals ../question.owner.email ../user.email}}
+                {{#unless answer.correct}}
+                  <a href="/answer/{{../../../key}}/{{key}}" class="btn btn-primary" role="button">Elegir respuesta correcta</a>
+                {{/unless}}
+              {{/ifEquals}}
+            
+
+            {{#if answer.correct}}
+              <h3><span class="badge badge-success">Respuesta correcta</span></h3>
+            {{/if}}
         </div>
       </div>
     </div>

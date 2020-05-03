@@ -1,6 +1,6 @@
 'use strict'
 
-const question = require('../models/index').question;
+const question = require('../models/index').questions;
 
 async function setAnswerRight(questionId, answerId, user) {
 	let result

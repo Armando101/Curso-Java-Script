@@ -43,6 +43,11 @@ module.exports = [
   handler: site.viewQuestion
 },
 {
+  path: '/answer/{questionId}/{answerId}',
+  method: 'GET',
+  handler: question.setAnswerRight
+},
+{
   path: '/create-user',
   options: {
   	// Creamos validaciones para el formulario
