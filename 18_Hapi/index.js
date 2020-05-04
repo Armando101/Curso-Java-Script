@@ -32,8 +32,14 @@ async function init() {
          // Esto es un método de servidor, estará disponible en cualquier función de ruta por medio del request
          // Podemos acceder al servidor y a todos sus métodos
          // Esto es útil cuando tengamos mucha lógica que compartir entre diferentes rutas
-
+         // Aquí registro los métodos de servidor
         server.method('setAnswerRight', methods.setAnswerRight);
+        server.method('getLast', methods.getLast, {
+          cache: {
+            expiresIn: 1000*60,
+            generateTimeout: 2000 // Si el método falla después de este tiempo se carga fuera de cache
+          }
+        });
 
        // Nombre de la cookie y tiempo de vida en milisegundos
        // si es segura o no

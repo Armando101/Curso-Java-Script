@@ -68,12 +68,7 @@ function fileNotFound(req, h) {
 
 async function home(req, h) {
 
-    let data;
-    try {
-      data = await questions.getLast(10);
-    } catch (error) {
-      console.error(error);
-    }
+    const data = await req.server.methods.getLast(10);
 
   	// Devuelvo un objeto de respuesta
     return h.view('index', {

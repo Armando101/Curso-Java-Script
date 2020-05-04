@@ -14,6 +14,13 @@ module.exports = [
 {
   path: '/home',
   method: 'GET',
+  // Definimos las opciones para agregar caché en el lado del browser en home
+  options: {
+    cache: {
+      expiresIn: 1000 * 30, // Cuánto va a durar en caché
+      privacy: 'private'  // Indico la privacidad
+    }
+  },
   handler: site.home
 },
 {
