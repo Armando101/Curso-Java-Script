@@ -58,7 +58,9 @@ function notFound(req, h) {
 // Por ejemplo :3000/assets
 function fileNotFound(req, h) {
   const response = req.response;
-  if (response.isBoom && (response.output.statusCode === 404 || response.output.statusCode === 403)) {
+  // Esto es para que no me muestre la vista de 404 cuando no encuentre un id
+  // Esto es más amigable para el desarrollador
+  if (!req.path.startsWith('/api') && response.isBoom && (response.output.statusCode === 404 || response.output.statusCode === 403)) {
    return h.view('404', {}, {layout: 'error-layout'}).code(404);
   }
 

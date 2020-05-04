@@ -46,6 +46,13 @@ async function init() {
         }
       });
 
+      await server.register({
+        plugin: require('./lib/api'),
+        options: {
+          prefix: 'api'
+        }
+      });
+
          // Esto es un método de servidor, estará disponible en cualquier función de ruta por medio del request
          // Podemos acceder al servidor y a todos sus métodos
          // Esto es útil cuando tengamos mucha lógica que compartir entre diferentes rutas
