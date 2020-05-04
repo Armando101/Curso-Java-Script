@@ -2,13 +2,21 @@
   <div class="alert alert-primary" role="alert">
     <h4 class="alert-heading">{{question.title}}</h4>
     <p>{{question.description}}</p>
+    <hr>
+    {{#with question.filename}}
+      <p class="text-center">
+        <img style="max-width:80%" src="/assets/uploads/{{this}}" alt="imagen">
+      </p>
+      <hr>
+    {{/with}}
+    <hr>
     <p class="mb-0">Creada por <strong>{{question.owner.name}}</strong></p>
   </div>
 
   {{#each question.answers as |answer key|}}
   <div class="alert {{#if answer.correct}}alert-success{{else}}alert-info{{/if}}" role="alert">
     <p>{{answer.text}}</p>
-    <hr>
+    
     <div class="container">
       <div class="row">
         <div class="col-sm">

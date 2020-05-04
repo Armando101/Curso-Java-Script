@@ -7,17 +7,25 @@ class Questions {
 		this.collection = this.ref.child('questions') // Creo la colección en firebase
 	}
 
-	async create(data, user) {
+	async create(data, user, filename) {
 		// Es importante deconstruir data, de lo contrario marcará un error de:
 		// Unsupported Media Type ya que de esta manera no se puede incluir en firebas
-		const ask = {
+		let ask = {
 			...data
 		}
 
-		console.log(ask);
-		console.log(data);
+		ask = {
+			description: data.description,
+			title: data.title,
+			owner: user
+		}
 
-		ask.owner = user;
+		if (filename) {
+			ask.filename = filename;
+		}
+
+		console.log(ask);
+
 		const question = this.collection.push(ask);
 
 		return question.key;

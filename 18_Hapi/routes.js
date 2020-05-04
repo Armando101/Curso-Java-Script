@@ -92,7 +92,8 @@ module.exports = [
   	validate: {
   		payload: joi.object({
   			title: joi.string().required(),
-  			description: joi.string().required()
+  			description: joi.string().required(),
+        image: joi.any().optional()
   		}),
   		// En caso de que no se haga una validación correcta
   		failAction: user.failValidation
