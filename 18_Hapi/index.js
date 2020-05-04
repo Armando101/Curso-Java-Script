@@ -3,6 +3,7 @@
 const Hapi = require('@hapi/hapi');
 const handlebars = require('./lib/helpers');
 const inert = require('inert');
+const good = require('good');
 const methods = require('./lib/methods');
 const path = require('path');
 const routes = require('./routes');
@@ -28,6 +29,22 @@ async function init() {
    		// No basta con sólo importarlo
    		await server.register(inert);
 	   	await server.register(vision);
+      await server.register({  // Esta es una manera distinta de registrar un plugin
+        plugin: require('good'),
+        options: {
+          ops: {
+            interval: 2000
+          },
+          reporters: {
+            myConsoleReporters: [
+              {
+                module: require('good-console'), // Se requiere instalar
+              },
+              'stdout'
+            ]
+          }
+        }
+      });
 
          // Esto es un método de servidor, estará disponible en cualquier función de ruta por medio del request
          // Podemos acceder al servidor y a todos sus métodos
@@ -72,18 +89,22 @@ async function init() {
    		process.exit(1);
    	}
 	
-	console.log('Server running on %s', server.info.uri);
+  // Aquí podemos utilizar el plugin de good
+	server.log('Server running on %s', server.info.uri);
+  // console.log('Server running on %s', server.info.uri);
 }
 
 // unhandledRejection es un error que se genera cuando una promesa no está siendo controlada
 process.on('unhandledRejection', (err) => {
-    console.error('unhandledRejection', err.message, err);
+    //console.error('unhandledRejection', err.message, err);
+    server.log('unhandledRejection',err);
     process.exit(1);
 });
 
 // unhandledException es un error que se genera cuando una excepción no está siendo controlada
 process.on('unhandledException', (err) => {
-    console.error('unhandledException', err.message, err);
+    // console.error('unhandledException', err.message, err);
+    server.log('unhandledException',err);
     process.exit(1);
 });
 

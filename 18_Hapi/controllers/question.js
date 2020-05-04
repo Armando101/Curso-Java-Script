@@ -25,10 +25,12 @@ async function createQuestion(req, h) {
 			await write(join(__dirname, '..', 'public', 'uploads', filename), req.payload.image);
 		}
 		result = await questions.create(req.payload, req.state.user, filename);
-		console.log(`Pregunta creada con el ID ${result}`);
+		// Usamos el plugin de good
+		// console.log(`Pregunta creada con el ID ${result}`);
+		req.log(`Pregunta creada con el ID ${result}`);
 	
 	} catch (error) {
-		console.error('Ocurrión en error: ', error);
+		req.error('Ocurrión en error: ', error);
 
 		return h.view('ask', {
 			title: 'Crar pregunta',
