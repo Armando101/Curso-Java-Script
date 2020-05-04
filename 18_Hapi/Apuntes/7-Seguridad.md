@@ -58,4 +58,40 @@ await server.register({
 
 **Crumb** utiliza una cookie para realizar la validación del token en cada una de las rutas de nuestra aplicación y la contrasta con el valor de un input de tipo hidden y de nombre crumb, que debe estar presente en cada una de las vistas.
 
-La propiedad isSecure estaría entonces activa (en true) cuando estemos en el entorno de producción e inactiva (en false) mientras estemos en el entorno de desarrollo. Cuando no está presente el input de validación o su valor no es el correcto, el servidor devuelve un código de error 403 al browser, indicando que el acceso está prohibido o no está autorizado. 
+La propiedad isSecure estaría entonces activa (en true) cuando estemos en el entorno de producción e inactiva (en false) mientras estemos en el entorno de desarrollo. Cuando no está presente el input de validación o su valor no es el correcto, el servidor devuelve un código de error 403 al browser, indicando que el acceso está prohibido o no está autorizado.   
+## Seguridad básica - Asegurando el servidor contra XSS
+
+Otra de las vulnerabilidades que es muy común es XSS o Cross-site scripting, que es un tipo de ataque de seguridad por inyección en el que un atacante inyecta datos o algún script o códio malicioso desde otro sitio web diferente.
+
+Para manejar y corregir esta vulnerabilidad en la seguridad de nuestra aplicación implementaremos la estrategia de CSP o Content Security Policy para definir específicamente los orígenes desde los cuales vamos a permitir la ejecución de scripts o el acceso a recursos desde y hacia nuestra aplicación. Para esto usaremos un par de plugins adicionales: Blankie y scooter (scooter por ser dependencia de blankie).
+
+Instalamos ambos desde la terminal y requerimos ambos en nuestro script principal.
+
+### Instalación
+```
+npm i @hapi/scooter
+```
+```
+npm i blankie
+```
+
+Al igual que los plugins anteriores, registramos blankie con las siguientes opciones:
+```
+await server.register ([ scooter, {
+  'plugin': blankie,
+  'options': {
+    'defaultSrc': `'self' 'unself-inline' <urls adicionales>`,
+    'styleSrc': `'self' 'unself-inline' <urls adicionales>`,
+    'fontSrc': `'self' 'unself-inline' <urls adicionales>`,
+    'scriptSrc': `'self' 'unself-inline' <urls adicionales>`,
+    'generateNonces': false
+  }
+}])
+```
+
+Finalmente, al acceder a nuestra aplicación, notaremos que sólo serán permitidos los scripts y recursos que provengan desde las fuentes explícitamente definidas en las opciones indicadas al registrar el plugin, de lo contrario simplemente no se cargarán.
+
+### Documentación
+
+[blankie](https://www.npmjs.com/package/blankie)  
+[scooter](https://www.npmjs.com/package/scooter)  

@@ -1,6 +1,7 @@
 'use strict'
 
 const crumb = require('crumb');
+const blankie = require('blankie');
 const Hapi = require('@hapi/hapi');
 const handlebars = require('./lib/helpers');
 const inert = require('inert');
@@ -10,6 +11,7 @@ const path = require('path');
 const routes = require('./routes');
 const vision = require('vision');
 const site = require('./controllers/site');
+const scooter = require('@hapi/scooter');
 
 async function init() {
     const server = Hapi.server({
@@ -55,6 +57,17 @@ async function init() {
           }
         }
       });
+
+      await server.register([scooter, {
+        plugin: blankie,
+        options: {
+          defaultSrc: `'self' 'unsafe-inline'`, // self: para adjuntar scripts // unsafe-inline: para poner código css en linea
+          styleSrc: `'self' 'unsafe-inline' https://maxcdn.bootstrapcdn.com http://localhost:3000/assets/css/platzi-overflow.css http://localhost:3000/assets/css/custom.css` ,
+          fontSrc: `'self' 'unsafe-inline' data:`,
+          scriptSrc: `'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://maxcdn.bootstrapcdn.com/ https://code.jquery.com/`,
+          generateNonces: false // Genera anotaciones al código
+        }
+      }]);
 
       await server.register({
         plugin: require('./lib/api'),
