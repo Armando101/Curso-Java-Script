@@ -26,7 +26,7 @@ async function init() {
     });
 
 
-
+  
    	try {
    		// Tenemos que registrar el plugin cada que lo vamos a usar
    		// No basta con sólo importarlo
