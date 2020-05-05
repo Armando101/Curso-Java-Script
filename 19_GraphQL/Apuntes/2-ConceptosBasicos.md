@@ -102,3 +102,21 @@ nombreQuery(campo: tipo): tipo
 ```
 
 Dentro del resolver los argumentos de la petición pasarían como segundo parámetro, el primero es *root* y el segundo es *args*.
+
+## Configuración de base de datos
+
+Por el momento nuestra API maneja pura información estática, vamos a cambiar esto pasando la información a una base de datos, en este caso usaremos MongoDB.
+
+Es recomendable almacenar las credenciales de conexión a la base de datos como variables de entorno del sistema y utilizar dotenv para la lectura de dichas credenciales. Para su instalación vamos a correr el comando
+
+```
+npm i dotenv
+```
+#### Instalación de mongo
+```
+npm i mongo
+```
+
+Vamos a utilizar Roboto 3T para conexión con Mongo DB  
+
+[Roboto](https://robomongo.org/)

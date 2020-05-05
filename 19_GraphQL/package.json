@@ -12,10 +12,12 @@
   "author": "Armando Rivera",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^15.0.0",
     "graphql-tools": "^5.0.0",
+    "mongo": "^0.1.0",
     "npx": "^10.2.2"
   }
 }

@@ -1,5 +1,7 @@
 'use strict'
 
+// Esto automáticamente carga las configuraciones que tenemos en .env
+require('dotenv').config();
 // makeExecutableSchema tiene más funcionalidades que buildSchema  
 const { makeExecutableSchema } = require('graphql-tools')
 const express = require('express')
