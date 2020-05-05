@@ -86,3 +86,19 @@ type Course {
   title: String!
 }
 ```
+
+## Argumentos
+
+Vamos a instalar una nueva dependencia para facilitar el trabajo con GraphQL, vamos a correr el siguiente comando:
+
+```
+npm i graphql-tools
+```
+
+Podemos pasar argumentos con distintos tipos de información dentro de las peticiones que hagamos en GraphQL, su sintaxis quedaría de la siguiente manera:
+
+```
+nombreQuery(campo: tipo): tipo
+```
+
+Dentro del resolver los argumentos de la petición pasarían como segundo parámetro, el primero es *root* y el segundo es *args*.

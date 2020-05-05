@@ -1,6 +1,7 @@
 'use strict'
 
-const { buildSchema } = require('graphql')
+// makeExecutableSchema tiene más funcionalidades que buildSchema  
+const { makeExecutableSchema } = require('graphql-tools')
 const express = require('express')
 const gqlMiddleware = require('express-graphql')
 const { readFileSync } = require('fs');
@@ -10,14 +11,13 @@ const resolvers = require('./lib/resolvers');
 const app = express()
 const port = process.env.port || 3000
 
-// Definiendo el esquema
-// Indico el nombre de la query
-const schema = buildSchema(
-  readFileSync(
+const typeDefs = readFileSync(
     join(__dirname, 'lib', 'schema.graphql'),
     'utf-8'
-  )
 );
+
+// Hacemos un pequeño cambio en la siguiente línea y en los resolvers
+const schema = makeExecutableSchema({ typeDefs, resolvers});
 
 // Definimos una ruta en /api
 // Ejecuta el Middleware de graphql que recibe un objeto con:

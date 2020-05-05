@@ -12,14 +12,14 @@ const courses = [
 		topic: 'Programación'
 	},
 	{
-		_id: 'anyid',
+		_id: 'anyid2',
 		title: 'Backend con Node',
 		teacher: 'Mi profesor',
 		description: 'Curso de Backend con Node desde cero',
 		topic: 'Programación'
 	},
 	{
-		_id: 'anyid',
+		_id: 'anyid3',
 		title: 'Backend con Hapi',
 		teacher: 'Mi profesor',
 		description: 'Curso de Backend con Hapi desde cero',
@@ -28,10 +28,13 @@ const courses = [
 ];
 
 module.exports = {
-  getCourses: () => {
-    return courses
-  },
-  saludo: () => {
-    return 'Hola a todos'
-  }
+	Query: {
+	  getCourses: () => {
+	    return courses
+	  },
+	  getCourse: (root, args) => courses.find((course) => course._id === args.id),
+	  saludo: () => {
+	    return 'Hola a todos'
+	  }
+	}
 }

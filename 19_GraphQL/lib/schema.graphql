@@ -1,17 +1,22 @@
 # Defino mi custom type persoalizado
 
 type Course {
-	_id: ID 	 # El tipo id es un escalar que me permite usar identificadores 
-	title: String
+	_id: ID! 	 # El tipo id es un escalar que me permite usar identificadores 
+	title: String!
 	teacher: String
-	description: String
+	description: String!
 	topic: String
 }
 
 # Esta query me permitirá consultar los cursos
 # getCourses devuelve un arreglo de tipo Course
+# El signo de admiración dice que es un campo obligatorio
+# Mando argumentos entre paréntesis
 type Query {
 	"Devuelve todos los cursos"
 	getCourses: [Course]
+	"Devuelve sólo un curso"
+	getCourse(id: ID!): Course
+	"Manda un saludo"
 	saludo: String
 }
