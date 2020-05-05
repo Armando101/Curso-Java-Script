@@ -120,3 +120,29 @@ npm i mongo
 Vamos a utilizar Roboto 3T para conexión con Mongo DB  
 
 [Roboto](https://robomongo.org/)
+
+## Integrando una base de datos
+Usamos el cliente **Roboto 3T**  
+Creamos una colección con el nombre que definimos en .env y agregamos los datos.
+```
+db.getCollection('courses').insertMany([
+    {
+		title: 'GraphQL',
+		teacher: 'Mi profesor 1',
+		description: 'Curso de GraphQL desde cero',
+		topic: 'Programación'
+	},
+	{
+		title: 'Backend con Node',
+		teacher: 'Mi profesor 2',
+		description: 'Curso de Backend con Node desde cero',
+		topic: 'Programación'
+	},
+	{
+		title: 'Backend con Hapi',
+		teacher: 'Mi profesor 3',
+		description: 'Curso de Backend con Hapi desde cero',
+		topic: 'Programación'
+	}
+])
+```

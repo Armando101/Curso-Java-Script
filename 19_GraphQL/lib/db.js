@@ -1,5 +1,5 @@
 'use strict'
-const { MongoClient } = require('mongo');
+const { MongoClient } = require('mongodb');
 
 const {
 	DB_USER,
@@ -9,7 +9,8 @@ const {
 	DB_NAME,
 } = process.env;
 
-const mongoUrl = `mongodb://${DB_USER}:${DB_PASSWD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+// const mongoUrl = `mongodb://${DB_USER}:${DB_PASSWD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+const mongoUrl = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 let connection;
 
 async function connectDB() {
