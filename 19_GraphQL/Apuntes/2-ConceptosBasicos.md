@@ -146,3 +146,44 @@ db.getCollection('courses').insertMany([
 	}
 ])
 ```
+
+Para ver los datos en GraphQL lo hacemos de la siguiente manera
+```
+{
+  getCourse(id:"5eb108235977e1bc06a3054b") {
+    title
+    description
+  }
+}
+```
+## Mutations e Inputs
+
+Ya hemos visto cómo consultar información mediante GraphQL, pero en un API también vas a necesitar mandar información para que sea almacenada, dentro de GraphQL esto es posible gracias a la especificación mutation.
+
+Un mutation va a requerir de un campo de tipo Input que son como plantillas que le van a indicar qué campos son necesarios para insertar o modificar información.
+
+La sintaxis de una mutation queda de la siguiente manera:
+
+```
+nombreMutation(input: InputType): tipo
+```
+
+Un input es como una plantilla que me permiten identificar que tipos son necesarios para modificar o insertar información
+
+### Documentación
+[Mutations](https://graphql.org/learn/queries/#mutations)
+
+## Insertar un dato con inputs
+```
+mutation {
+  createCourse(input: {
+    title: "Curso de python",
+    description: "Curso avanzado de python",
+    topic: "Programación",
+  }) {
+    _id
+    title
+    description
+  }
+}
+```
