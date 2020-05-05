@@ -1,4 +1,17 @@
+# Defino mi custom type persoalizado
+
+type Course {
+	_id: ID 	 # El tipo id es un escalar que me permite usar identificadores 
+	title: String
+	teacher: String
+	description: String
+	topic: String
+}
+
+# Esta query me permitirá consultar los cursos
+# getCourses devuelve un arreglo de tipo Course
 type Query {
-	hello: String
+	"Devuelve todos los cursos"
+	getCourses: [Course]
 	saludo: String
 }

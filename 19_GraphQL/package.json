@@ -4,7 +4,7 @@
   "description": "Curso de GraphQL",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -e js, graphql index.js",
+    "dev": "nodemon -e js, graphql index",
     "lint": "standard",
     "lint-fix": "standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
