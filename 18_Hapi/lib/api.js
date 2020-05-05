@@ -2,7 +2,7 @@
 
 // También es necesario registrar este plugin en index.js
 
-const authBasic = require('hapi-auth-basic');
+const authBasic = require('@hapi/basic');
 const joi = require('joi');
 const boom = require('boom');
 const questions = require('../models/index').questions;

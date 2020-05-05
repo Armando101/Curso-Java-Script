@@ -12,6 +12,7 @@
   "author": "Armando Rivera",
   "license": "MIT",
   "dependencies": {
+    "@hapi/basic": "^6.0.0",
     "@hapi/hapi": "^19.1.1",
     "@hapi/scooter": "^6.0.0",
     "bcrypt": "^4.0.1",
