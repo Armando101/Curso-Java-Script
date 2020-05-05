@@ -187,3 +187,41 @@ mutation {
   }
 }
 ```
+
+### Creando un estudiante
+```
+mutation {
+  createStudent(input: {
+    name: "Armando"
+    email: "rivera.armando997@gmail.com"
+  }) {
+    _id
+    name
+    email
+  }
+}
+```
+
+### Consultando estudiantes
+```
+{
+  getStudents {
+    _id
+    name
+    email
+  }
+}
+```
+
+### Editando estudiantes
+```
+mutation {
+  editStudent(_id: "5eb1224da73d580a7d692d66", input: {
+    name: "Armando Rivera"
+  }) {
+    _id
+    name
+    email
+  }
+}
+```

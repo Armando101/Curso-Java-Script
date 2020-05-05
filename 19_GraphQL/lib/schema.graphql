@@ -8,6 +8,12 @@ type Course {
 	topic: String
 }
 
+type Student {
+	_id: ID!
+	name: String!
+	email: String!
+}
+
 # Esta query me permitirá consultar los cursos
 # getCourses devuelve un arreglo de tipo Course
 # El signo de admiración dice que es un campo obligatorio
@@ -17,7 +23,13 @@ type Query {
 	getCourses: [Course]
 	"Devuelve sólo un curso"
 	getCourse(id: ID!): Course
+
+	"Devuelve todos los estudiantes"
+	getStudents: [Student]
+	"Devuelve sólo un estudiante"
+	getStudent(id: ID!): Student
 	"Manda un saludo"
+	
 	saludo: String
 }
 
@@ -28,7 +40,30 @@ input CourseInput {
 	topic: String
 }
 
+input CourseEditInput {
+	title: String
+	teacher: String
+	description: String
+	topic: String
+}
+
+input StudentInput {
+	name: String!
+	email: String!
+}
+
+input StudentEditInput {
+	name: String
+	email: String
+}
+
 type Mutation {
 	"Crea un curso"
 	createCourse(input: CourseInput!): Course
+	"Edita un curso"
+	editCourse(_id: ID!, input: CourseEditInput): Course
+	"Crea un estudiante"
+	createStudent(input: StudentInput!): Student
+	"Edita un estudiante"
+	editStudent(_id: ID!, input: StudentEditInput): Student
 }

@@ -26,6 +26,28 @@ module.exports = {
   	
     return course;
   },
+  getStudents: async () => {
+  	let db, students = [];
+  	try {
+  		db = await connectDb();
+  		students = await db.collection('students').find().toArray();
+  	} catch (error) {
+  		console.error(error);
+  	}
+
+    return students
+  },
+  getStudent: async (root, { id }) => {
+  	let db, student;
+  	try {
+  		db = await connectDb();
+  		student = await db.collection('students').findOne({_id: ObjectID(id)});
+  	} catch (error) {
+  		console.error(error);
+  	}
+  	
+    return student;
+  },
   saludo: () => {
     return 'Hola a todos'
   }
