@@ -1,3 +1,10 @@
+"Enum para validar los tipos de nivel"
+enum Level {
+	principiante
+	intermedio
+	avanzado
+}
+
 # Defino mi custom type persoalizado
 
 type Course {
@@ -7,6 +14,7 @@ type Course {
 	description: String!
 	topic: String
 	people: [Student]
+	level: Level		# Campo de nombre Level de tipo Level
 }
 
 type Student {
@@ -39,6 +47,7 @@ input CourseInput {
 	teacher: String
 	description: String!
 	topic: String
+	level: Level
 }
 
 input CourseEditInput {

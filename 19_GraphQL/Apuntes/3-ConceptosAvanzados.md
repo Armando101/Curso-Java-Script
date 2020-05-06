@@ -1,0 +1,165 @@
+## Alias y fragments
+
+Dentro de GraphQL podemos correr más de una petición a la vez y nombrarlas de distinta manera para poder identificarlas, esto es posible gracias a los **Aliases** o simplemente Alias.
+
+La sintaxis de un **Alias** es bastante simple:
+
+```
+nombreDelAlias: tipoDeDato(argumento: tipo) {
+  datos
+}
+```
+
+### Ejemplo
+
+```
+{
+  AllCourses: getCourses {
+    _id
+    title
+  }
+  
+  Course1: getCourse(id: "5eb108235977e1bc06a3054b") {
+    _id
+    title
+    description
+    people {
+      name
+      email
+    }
+  }
+  
+  Course2: getCourse(id: "5eb108235977e1bc06a3054c") {
+    _id
+    title
+    description
+  }
+}
+```
+
+Además de los Alias, podemos agrupar campos para ser reutilizados en distintas peticiones gracias a los Fragments.
+
+### Fragments
+```
+{
+  AllCourses: getCourses {
+    ...CourseFields
+  }
+  
+  Course1: getCourse(id: "5eb108235977e1bc06a3054b") {
+    ...CourseFields
+    description
+    people {
+      name
+      email
+    }
+  }
+  
+  Course2: getCourse(id: "5eb108235977e1bc06a3054c") {
+    ...CourseFields
+    topic
+    teacher
+  }
+}
+
+fragment CourseFields on Course {
+  _id
+  title
+}
+```
+
+### Documentación
+[Aliases](https://graphql.github.io/learn/queries/#aliases)
+
+## Variables
+Podemos utilizar variables dentro de las peticiones que hagamos a GraphQL simplemente definiéndolas con la siguiente sintaxis:
+
+```
+$nombre: tipo
+```
+
+### Ejemplo
+Indicamos el nombre del nevo mutatios, las variables que recibirá y dentro el mutation
+```
+mutation AddPersonToCourse ($course: ID!, $person: ID!) {
+  addPeople(courseID: $course, personID: $person) {
+    _id
+    title
+  }
+}
+```
+
+En la parte inferior izquierda abrimos la ventana de query y declaramos las variables
+```
+mutation AddPersonToCourse ($course: ID!, $person: ID!) {
+  addPeople(courseID: $course, personID: $person) {
+    _id
+    title
+  }
+}
+```
+
+### Ejemplo 2
+Vamos a utilizar querys  
+
+```
+query GetCourse2 ($course: ID!) {
+  getCourse(id: $course) {
+    _id
+    title
+    people {
+      _id
+      name
+      email
+    }
+  }
+}
+```
+En querys
+```
+{
+  "course": "5eb108235977e1bc06a3054d"
+}
+```
+
+### Documentación 
+[Variables](https://graphql.github.io/learn/queries/#variables)
+
+## Enums
+
+Los **Enums** o enumeration types son tipos de datos escalares cuyos valores son configurables. Si definimos un tipo de dato como enum sus valores posibles solamente serán aquellos que se encuentren entre los definidos en el enum.
+
+```
+mutation CretateNewCourse($createInput: CourseInput!) {
+  	createCourse(input: $createInput) {
+    _id
+    title
+  }
+}
+```
+
+En la parte de Query values
+```
+{
+  "createInput": {
+    "title": "Curso de Marketing Digital",
+    "teacher": "Profesor1",
+    "description": "Este es un curso de mkt digital",
+    "topic": "Marketing",
+    "level": "principiante"
+  }
+}
+```
+
+En el schema declaramos el **enum**  
+```
+"Enum para validar los tipos de nivel"
+enum Level {
+	principiante
+	intermedio
+	avanzado
+}
+```
+
+### Documentación
+[Enums](https://graphql.github.io/learn/schema/#enumeration-types)
