@@ -2,6 +2,7 @@
 
 const connectDb = require('./db');
 const { ObjectID } = require('mongodb'); // Me transforma un objeto Id de string a Objeto ID de mongo, esto para hacer la consulta a la BD
+const errorHandler = require('./errorHandler');
 
 module.exports = {
   getCourses: async () => {
@@ -10,7 +11,7 @@ module.exports = {
   		db = await connectDb();
   		courses = await db.collection('courses').find().toArray();
   	} catch (error) {
-  		console.error(error);
+  		errorHandler(error);
   	}
 
     return courses
@@ -21,7 +22,7 @@ module.exports = {
   		db = await connectDb();
   		course = await db.collection('courses').findOne({_id: ObjectID(id)});
   	} catch (error) {
-  		console.error(error);
+  		errorHandler(error);
   	}
   	
     return course;
@@ -32,7 +33,7 @@ module.exports = {
   		db = await connectDb();
   		students = await db.collection('students').find().toArray();
   	} catch (error) {
-  		console.error(error);
+  		errorHandler(error);
   	}
 
     return students
@@ -43,7 +44,7 @@ module.exports = {
   		db = await connectDb();
   		student = await db.collection('students').findOne({_id: ObjectID(id)});
   	} catch (error) {
-  		console.error(error);
+  		errorHandler(error);
   	}
   	
     return student;

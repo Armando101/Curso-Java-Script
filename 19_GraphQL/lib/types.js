@@ -4,6 +4,7 @@
 
 const connectDb = require('./db');
 const { ObjectID } = require('mongodb');
+const errorHandler = require('./errorHandler');
 
 const types = {
 	Course: {
@@ -23,7 +24,7 @@ const types = {
 				console.log(people);
 				console.log({people});
 			} catch(error) {
-				console.error(error);
+				errorHandler(error);
 			}
 
 			return peopleData;

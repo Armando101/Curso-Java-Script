@@ -2,6 +2,8 @@
 
 const connectDb = require('./db');
 const { ObjectID } = require('mongodb');
+const errorHandler = require('./errorHandler');
+
 
 module.exports = {
 	createCourse: async (root, { input }) => {
@@ -19,7 +21,7 @@ module.exports = {
 			course = await db.collection('courses').insertOne(newCourse); // Insertamos el elemento
 			newCourse._id = course.insertedId
 		} catch(error) {
-			console.error(error);
+			errorHandler(error);
 		}
 
 	return newCourse;	// Devuelvo la información que me mandaron más el id que me da mongo
@@ -34,7 +36,7 @@ module.exports = {
 			student = await db.collection('students').insertOne(input); // Insertamos el elemento
 			input._id = student.insertedId
 		} catch(error) {
-			console.error(error);
+			errorHandler(error);
 		}
 
 	return input;	// Devuelvo la información que me mandaron más el id que me da mongo
@@ -52,7 +54,7 @@ module.exports = {
 			course = await db.collection('courses').findOne({_id: ObjectID(_id)});
 			
 		} catch(error) {
-			console.error(error);
+			errorHandler(error);
 		}
 
 	return course;
@@ -69,7 +71,7 @@ module.exports = {
 			student = await db.collection('students').findOne({_id: ObjectID(_id)});
 			
 		} catch(error) {
-			console.error(error);
+			errorHandler(error);
 		}
 
 	return student;
@@ -93,7 +95,7 @@ module.exports = {
 			});
 
 		} catch (error) {
-			console.error(error);
+			errorHandler(error);
 		}
 
 		return course;
