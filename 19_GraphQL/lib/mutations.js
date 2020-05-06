@@ -73,6 +73,30 @@ module.exports = {
 		}
 
 	return student;
+	},
+
+	addPeople: async(root, { courseID, personID }) => {
+		let db;
+		let person;
+		let course;
+
+		try {
+			db = await connectDb();
+			course = await db.collection('courses').findOne({_id: ObjectID(courseID)});
+			person = await db.collection('students').findOne({_id: ObjectID(personID)});
+
+			if (!course || !person) throw new Error('La persona o el curso no existe');
+
+			await db.collection('courses').updateOne(
+				{_id: ObjectID(courseID)},
+				{ $addToSet: { people: ObjectID(personID)} // $addToSet comprueba si es un arreglo, si no lo es, crea el arreglo y añade el valor del ID de persona
+			});
+
+		} catch (error) {
+			console.error(error);
+		}
+
+		return course;
 	}
 
 };
