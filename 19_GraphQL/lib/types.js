@@ -29,6 +29,18 @@ const types = {
 
 			return peopleData;
 		}
+	},
+
+	Person: {
+		// __resolverType es una propiedad que requieren las interfaces
+		// Esto es para que cuando esté resolviendo los campos me pueda decir si es de tipo estudiante o de tipo monitor
+		__resolveType: ( person, context, info) => {
+			if (person.phone) {
+				return 'Monitor';
+			} else {
+				return 'Student'
+			}
+		}
 	}
 }
 

@@ -17,11 +17,26 @@ type Course {
 	level: Level		# Campo de nombre Level de tipo Level
 }
 
-type Student {
+interface Person {
 	_id: ID!
 	name: String!
 	email: String!
 }
+
+type Monitor implements Person {
+	_id: ID!
+	name: String!
+	email: String!
+	phone: String
+}
+
+type Student implements Person {
+	_id: ID!
+	name: String!
+	email: String!
+	avatar: String
+}
+
 
 # Esta query me permitirá consultar los cursos
 # getCourses devuelve un arreglo de tipo Course
@@ -34,9 +49,9 @@ type Query {
 	getCourse(id: ID!): Course
 
 	"Devuelve todos los estudiantes"
-	getStudents: [Student]
+	getPersons: [Person]
 	"Devuelve sólo un estudiante"
-	getStudent(id: ID!): Student
+	getPerson(id: ID!): Person
 	"Manda un saludo"
 	
 	saludo: String
@@ -57,14 +72,20 @@ input CourseEditInput {
 	topic: String
 }
 
-input StudentInput {
+# Si creo las personas con un phone será un monitor
+# Si creo las personas con un avatar será un estudiante
+input PersonInput {
 	name: String!
 	email: String!
+	phone: String
+	avatar: String
 }
 
-input StudentEditInput {
+input PersonEditInput {
 	name: String
 	email: String
+	phone: String
+	avatar: String
 }
 
 type Mutation {
@@ -72,10 +93,10 @@ type Mutation {
 	createCourse(input: CourseInput!): Course
 	"Edita un curso"
 	editCourse(_id: ID!, input: CourseEditInput): Course
-	"Crea un estudiante"
-	createStudent(input: StudentInput!): Student
-	"Edita un estudiante"
-	editStudent(_id: ID!, input: StudentEditInput): Student
+	"Crea una persona"
+	createPerson(input: PersonInput!): Person
+	"Edita una persona"
+	editPerson(_id: ID!, input: PersonEditInput): Person
 	"Agrega una persona a un curso"
 	addPeople(courseID: ID!, personID: ID!): Course
 }

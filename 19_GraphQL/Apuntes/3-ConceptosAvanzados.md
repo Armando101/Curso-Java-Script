@@ -163,3 +163,48 @@ enum Level {
 
 ### Documentación
 [Enums](https://graphql.github.io/learn/schema/#enumeration-types)
+
+## Interfaces - Tipo Monitor
+
+Las interfaces son muy importantes y útiles cuando nos encontramos con tipos de datos similares. Una interfaz nos permite definir un tipo de dato padre que utilizando la palabra implements va a implementar los campos que tenga definidos dentro del tipo de dato que queramos.
+
+### Ejemplo
+Creamos un monitor con mutation
+
+```
+mutation createNewMonitor($monitorInput: PersonInput!) {
+  createPerson(input: $monitorInput) {
+    _id
+    name
+  }
+}
+```
+
+En el campo de query variables
+```
+{
+  "monitorInput": {
+    "name": "Monitor 1",
+    "email": "monitor@gmail.com",
+    "phone": "1234567"
+  }
+}
+```
+  
+Ahora podemos hacer las consultas
+```
+{
+  getPersons {
+    _id
+    name
+    email
+    ... on Monitor {
+      phone
+    }
+    
+    ... on Student {
+      avatar
+    }
+  }
+}
+```

@@ -27,7 +27,7 @@ module.exports = {
   	
     return course;
   },
-  getStudents: async () => {
+  getPersons: async () => {
   	let db, students = [];
   	try {
   		db = await connectDb();
@@ -38,7 +38,7 @@ module.exports = {
 
     return students
   },
-  getStudent: async (root, { id }) => {
+  getPerson: async (root, { id }) => {
   	let db, student;
   	try {
   		db = await connectDb();

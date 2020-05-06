@@ -27,7 +27,7 @@ module.exports = {
 	return newCourse;	// Devuelvo la información que me mandaron más el id que me da mongo
 	},
 
-	createStudent: async (root, { input }) => {
+	createPerson: async (root, { input }) => {
 
 		let db;
 		let student;
@@ -59,7 +59,7 @@ module.exports = {
 
 	return course;
 	},
-	editStudent: async (root, { _id, input }) => {
+	editPerson: async (root, { _id, input }) => {
 		let db;
 		let student;
 		try {
