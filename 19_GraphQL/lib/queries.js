@@ -49,6 +49,30 @@ module.exports = {
   	
     return student;
   },
+
+  searchItems:  async (root, { keyword }) => {
+    let db, items, courses, people;
+
+    try {
+      db = await connectDb();
+      
+      // Para hacer una búsqueda global en mongo necesitamos index
+      // Los creamos con Robo 3T
+      courses = await db.collection('courses').find(
+        { $text: {$search: keyword }}
+      ).toArray();
+      people = await db.collection('students').find(
+        { $text: {$search: keyword }}
+      ).toArray();
+
+      items = [...courses, ...people];
+
+    } catch (error) {
+      errorHandler(error);
+    }
+    
+    return items;
+  },
   saludo: () => {
     return 'Hola a todos'
   }

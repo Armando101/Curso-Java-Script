@@ -32,7 +32,7 @@ const types = {
 	},
 
 	Person: {
-		// __resolverType es una propiedad que requieren las interfaces
+		// __resolveType es una propiedad que requieren las interfaces
 		// Esto es para que cuando esté resolviendo los campos me pueda decir si es de tipo estudiante o de tipo monitor
 		__resolveType: ( person, context, info) => {
 			if (person.phone) {
@@ -40,6 +40,20 @@ const types = {
 			} else {
 				return 'Student'
 			}
+		}
+	},
+
+	GlobalSearch: {
+		__resolveType: (item, context, info) => {
+			if (item.title) {
+				return 'Course';
+			}
+
+			if (item.phone) {
+				return 'Monitor';
+			}
+
+			return 'Student';
 		}
 	}
 }

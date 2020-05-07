@@ -5,6 +5,9 @@ enum Level {
 	avanzado
 }
 
+
+union GlobalSearch = Course | Student | Monitor
+
 # Defino mi custom type persoalizado
 
 type Course {
@@ -52,8 +55,11 @@ type Query {
 	getPersons: [Person]
 	"Devuelve sólo un estudiante"
 	getPerson(id: ID!): Person
-	"Manda un saludo"
 	
+	"Ejecuta una busqueda global"
+	searchItems(keyword: String!): [GlobalSearch]
+
+	"Manda un saludo"
 	saludo: String
 }
 

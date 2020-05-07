@@ -256,3 +256,44 @@ topic: String       @deprecated
 
 ### Documentación
 [Directivas](https://graphql.github.io/learn/queries/#directives)
+
+## Unions
+
+Unions permite agrupar varios custom types sin importar si tienen algo en común, su sintaxis es la siguiente:
+
+```
+union SearchResult = CustomType1 | CustomType2 | CustomType3
+```
+
+Al momento de realizar una query que retorna una union podemos identificar el tipo de dato solicitando el campo **\__typename**.
+
+## Ejercicio
+Para el ejercicio creamos in index desde Robo 3T  
+Para hacer una búsqueda global en mongo necesitamos index
+```
+db.courses.createIndex({"$**": "text"})
+db.students.createIndex({"$**": "text"})
+```
+  
+Ahora podemos hacer consultas por una keyword
+```
+{
+  searchItems(keyword: "backend") {
+    __typename
+    ... on Course {
+      title
+      description
+    }
+    ... on Monitor {
+      name 
+      phone
+    }
+    ... on Student {
+      name
+      email
+    }
+  }
+}
+```
+### Documentación
+[Unions](https://graphql.github.io/learn/schema/#union-types)
