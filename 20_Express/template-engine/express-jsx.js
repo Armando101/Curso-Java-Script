@@ -21,6 +21,10 @@ function getRenderedContent(content, options) {
 	return contentString;
 }
 
+// Esta función se manda a llamar cuando res.render en index.js
+// Recibe como argumento el path del archivo index que se encuentra en views
+// opciones que dan información del renderizado, lo que nos interesa es el objeto que paso en render
+// calbackk es la función que me permite regresar un renderizado o un error
 function expressJxs(filePath, options, callback) {
 	fs.readFile(filePath, (err, content) => {
 		if (err) {
