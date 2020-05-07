@@ -24,3 +24,34 @@ Con el método .listen inicializamos nuestro server en el puerto que elijamos. E
 En el archivo package.json definimos el script con el que arrancaremos nuestro server, el cual ejecutará la instrucción node index, adicionalmente podemos definir un script para desarrollo en el que ejecutemos el index con nodemon que es una dependencia que ejecutará el servidor y actualizará su ejecución de manera automática cada vez que se hagan cambios en los archivos.  
 
 Finalmente con npm run dev iniciamos el servidor y estamos listos para ver los resultados en el navegador, ya sea como html o como JSON.
+
+## Express application generator
+
+El generador de aplicaciones oficial de Express, llamado **express-generator** permite generar toda una estructura base o scafold predeterminada para iniciar un proyecto nuevo.  
+
+Primero debemos instalarlo como una dependencia global con la instrucción:
+
+```
+npm i express-generator -g
+```
+
+Luego para generar una aplicación, ejecutamos la instrucción:
+
+```
+express --view=pug <nombre-de-la-aplicacion>
+```
+
+Finalmente seguimos las instrucciones que nos indica:
+
+```
+#Cambiar de directorio:
+cd <nombre-de-la-aplicacion>
+
+#Instalar las dependencias:
+npm install
+
+#Ejecutar la app:
+DEBUG=<nombre-de-la-aplicacion>:* npm start
+```
+
+Con esta funcionalidad creamos una estructura inicial, predeterminada para un nuevo proyecto con **Express.js**, con algunas rutas y middlewares iniciales con los que podemos empezar a trabajar, ahorrándonos algunos pasos de configuración.
