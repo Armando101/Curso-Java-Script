@@ -12,7 +12,7 @@ type Course {
 	title: String!
 	teacher: String
 	description: String!
-	topic: String
+	topic: String 			@deprecated # Indico que en un futuró no estará disponible este campo
 	people: [Student]
 	level: Level		# Campo de nombre Level de tipo Level
 }

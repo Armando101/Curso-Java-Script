@@ -208,3 +208,51 @@ Ahora podemos hacer las consultas
   }
 }
 ```
+
+## Directivas
+Las directivas son una instrucción que permite agregar condicionales a nuestras peticiones. Podemos modificar de manera dinámica nuestra query simplemente añadiendo:
+
+```
+@include(if: Boolean) {
+  datos
+}
+```
+
+### Ejemplo 
+```
+query getPeopleData($monitor: Boolean!, $avatar: Boolean!) {
+  getPersons {
+    _id
+    name
+    ... on Monitor @include(if: $monitor) {
+      phone
+    }
+    ... on Student @include(if: $avatar) {
+      avatar
+      email
+    }
+  }
+}
+```
+
+Si $monitor es true me mostrará el phone de los monitores de lo contrario no
+  
+Query Variables
+```
+{
+  "monitor": true,
+  "avatar": true
+}
+```
+
+### Deprecated
+Esta directiva indica que un campo no existirá en un futuro, esto es útil para indicar a los consumidores de la API que por ahora puede que exista ese campo pero que se preparen porque en un futuró no existirá
+
+```
+topic: String       @deprecated
+```
+
+
+
+### Documentación
+[Directivas](https://graphql.github.io/learn/queries/#directives)
