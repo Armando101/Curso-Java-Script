@@ -23,10 +23,10 @@ router.get('/:productId', async function (req, res) {
 	const { productId } = req.params;
 
 	try {
-		const products = await productsService.getProduct({ productId });
+		const product = await productsService.getProduct({ productId });
 
 		res.status(200).json({
-			data: products,
+			data: product,
 			message: 'products retrived' 
 		})
 	} catch (error) {
@@ -39,10 +39,10 @@ router.post('/', async function (req, res) {
 	const { body: product } = req;
 
 	try {
-		const products = await productsService.createProduct({ product });
+		const productcreated = await productsService.createProduct({ product });
 
 		res.status(201).json({
-			data: product,
+			data: productcreated,
 			message: 'product created' 
 		});
 	} catch (error) {
@@ -70,10 +70,10 @@ router.delete('/:productId', async function (req, res) {
 	const { productId } = req.params;
 	
 	try {
-		const product = await productsService.updateProduct({ productId });
+		const productDeleted = await productsService.updateProduct({ productId });
 
 		res.status(200).json({
-			data: product,
+			data: productDeleted,
 			message: 'product deleted' 
 		});
 	} catch (error) {
