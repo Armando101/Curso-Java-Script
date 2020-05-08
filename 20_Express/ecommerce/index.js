@@ -3,11 +3,14 @@ const path = require('path');
 const productsRouter = require('./routes/products');
 const productsAPIRouter = require('./routes/api/products');
 const bodyParser = require('body-parser');
+const boom = require('@hapi/boom');
 const {
 	logErrors,
+	wrapErrors,
 	clientErrorHandler,
 	errorHandler
 } = require('./utils/middlewares/errorsHandlers');
+const isRequestAjaxOrApi = require('./utils/isRequestAjaxOrApi');
 const port = 8000;
 
 // app
@@ -32,8 +35,22 @@ app.get('/', (req, res) => {
 	res.redirect('/products');
 });
 
+// Este middleware se manda llamar hasta el final, si no se ejecutó ninguno anterior significa que el recurso no se encontró
+app.use(function(req, res, next) {
+	if (isRequestAjaxOrApi(req)) {
+		const {
+			output: { statusCode, payload }
+		} = boom.notFound()
+
+		res.status(statusCode).json(payload);
+	}
+
+	res.status(404).render('404');
+});
+
 // error handlers
 app.use(logErrors);
+app.use(wrapErrors);
 app.use(clientErrorHandler);
 app.use(errorHandler);
 
