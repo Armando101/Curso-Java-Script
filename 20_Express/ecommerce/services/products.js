@@ -8,26 +8,41 @@ class ProductsService {
 	}
 
 	async getProducts({ tags }) {
-		const query = tags && { tags: { $in: tags }};
-		const products = await this.mongoDB.getAll(this.collection, query);
+	    const query = tags && { tags: { $in: tags } };
+	    console.log(query)
+	    const products = await this.mongoDB.getAll(this.collection, query);
 
-		return products || [];
+	    return products || [];
+  	}
+
+	async getProduct({ productId }) {
+		const product = await this.mongoDB.get(this.collection, productId);
+		return product || {};
 	}
 
-	getProduct({ productId }) {
-		return Promise.resolve(productsMocks[0]);
+	async createProduct({ product }) {
+		const createProductId = await this.mongoDB.create(this.collection, product);
+
+		return createProductId;
 	}
 
-	createProduct({ product }) {
-		return Promise.resolve(productsMocks[0]);
+	async updateProduct({ productId, product }) {
+		const updateProductId = await this.mongoDB.update(
+		  this.collection,
+		  productId,
+		  product
+		);
+
+		return updateProductId;
 	}
 
-	updateProduct({ productId, product }) {
-		return Promise.resolve(productsMocks[0])
-	}
+	async deleteProduct({ productId }) {
+		const deletedProductId = await this.mongoDB.delete(
+		  this.collection,
+		  productId
+		);
 
-	deleteProduct({ productId }) {
-		return Promise.resolve(productsMocks[0]);
+		return deletedProductId;
 	}
 
 }

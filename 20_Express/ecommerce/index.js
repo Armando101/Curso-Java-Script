@@ -2,10 +2,14 @@ const express = require('express');
 const path = require('path');
 const productsRouter = require('./routes/products');
 const productsAPIRouter = require('./routes/api/products');
+const bodyParser = require('body-parser');
 const port = 8000;
 
 // app
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 // Definimos la ruta de los archivos estáticos
 app.use("/static", express.static(path.join(__dirname, "public")));
@@ -23,7 +27,7 @@ app.get('/', (req, res) => {
 	res.redirect('/products');
 });
 
-app.use(express.json());	// Remplazo de body-parser
+// app.use(express.urlencoded({extended: false}));	// Remplazo de body-parser
 
 // Server
 const server = app.listen(port, ()=> {

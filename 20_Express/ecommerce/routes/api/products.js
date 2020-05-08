@@ -19,7 +19,7 @@ router.get('/', async function (req, res, next) {
 
 });
 
-router.get('/:productId', async function (req, res) {
+router.get('/:productId', async function (req, res, next) {
 	const { productId } = req.params;
 
 	try {
@@ -35,8 +35,10 @@ router.get('/:productId', async function (req, res) {
 
 });
 
-router.post('/', async function (req, res) {
+router.post('/', async function (req, res, next) {
 	const { body: product } = req;
+
+	console.log("REQ: ", req.body);
 
 	try {
 		const productcreated = await productsService.createProduct({ product });
@@ -50,7 +52,7 @@ router.post('/', async function (req, res) {
 	}
 });
 
-router.put('/:productId', async function (req, res) {
+router.put('/:productId', async function (req, res, next) {
 	const { productId } = req.params;
 	const { body: product } = req;
 
@@ -66,7 +68,7 @@ router.put('/:productId', async function (req, res) {
 	}
 });
 
-router.delete('/:productId', async function (req, res) {
+router.delete('/:productId', async function (req, res, next) {
 	const { productId } = req.params;
 	
 	try {
