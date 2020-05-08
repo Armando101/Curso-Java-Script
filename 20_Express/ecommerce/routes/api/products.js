@@ -19,7 +19,7 @@ router.get('/', async function (req, res, next) {
 
 });
 
-router.get('/:prductId', async function (req, res) {
+router.get('/:productId', async function (req, res) {
 	const { productId } = req.params;
 
 	try {
