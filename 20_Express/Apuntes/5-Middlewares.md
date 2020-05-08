@@ -72,3 +72,13 @@ npm install @hapi/boom
 ### Doumentación
 [Joi](https://hapi.dev/module/joi/)  
 [Boom](https://hapi.dev/module/boom/)
+
+## Middlewares populares de express:
+
+- **express.json** o **body-parser.json**: Sirve para que nuestras requests entiendan json
+- **cors**: Middleware de seguridad que sirve para que los requests sean aceptados de ciertos dominios específicos
+- **morgan**: Middleware para el manejo de logs
+- **helmet**: Middleware de seguridad
+- **express-debug**: El debugger predeterminado de express para debuggear tu aplicación
+- **express-slash**: Permite aceptar urls sin el slash (’/’)
+- **passport**: Para autentifación y autorización
