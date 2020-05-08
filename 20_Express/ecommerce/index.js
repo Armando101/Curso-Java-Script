@@ -3,6 +3,11 @@ const path = require('path');
 const productsRouter = require('./routes/products');
 const productsAPIRouter = require('./routes/api/products');
 const bodyParser = require('body-parser');
+const {
+	logErrors,
+	clientErrorHandler,
+	errorHandler
+} = require('./utils/middlewares/errorsHandlers');
 const port = 8000;
 
 // app
@@ -26,6 +31,11 @@ app.use('/api/products', productsAPIRouter)
 app.get('/', (req, res) => {
 	res.redirect('/products');
 });
+
+// error handlers
+app.use(logErrors);
+app.use(clientErrorHandler);
+app.use(errorHandler);
 
 // app.use(express.urlencoded({extended: false}));	// Remplazo de body-parser
 
