@@ -3,7 +3,7 @@ const EventEmmiter = require('events');
 class Logger extends EventEmmiter {
 	execute(cb) {
 		console.log('Before');
-		this.emit('start');
+		this.emit('start', 'this is an argument');
 		cb();
 		this.emit('finish');
 		console.log('After');
@@ -12,7 +12,7 @@ class Logger extends EventEmmiter {
 
 const logger = new Logger();
 
-logger.on('start', () => console.log('Starting'))
+logger.on('start', (msg) => console.log('Starting', msg))
 logger.on('finish', () => console.log('Finishing'))
 logger.on('finish', () => console.log("It's Done"));
 
