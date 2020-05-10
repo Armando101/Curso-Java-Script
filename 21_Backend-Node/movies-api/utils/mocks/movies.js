@@ -9,6 +9,22 @@ const moviesMock = [{"id":"de93a888-d0a7-4a79-a391-fdd48d6d4faa","title":"Dead &
 {"id":"85acdc63-d872-42f6-b2e4-f5a0a463a061","title":"The Monastery of Sendomir","year":2004,"cover":"http://dummyimage.com/189x193.bmp/ff4444/ffffff","duration":12,"contentRating":null,"source":"http://stumbleupon.com/faucibus/cursus.js?lacinia=sed&erat=tristique&vestibulum=in&sed=tempus&magna=sit&at=amet&nunc=sem&commodo=fusce&placerat=consequat&praesent=nulla&blandit=nisl&nam=nunc&nulla=nisl&integer=duis&pede=bibendum&justo=felis&lacinia=sed&eget=interdum&tincidunt=venenatis&eget=turpis&tempus=enim&vel=blandit&pede=mi&morbi=in&porttitor=porttitor&lorem=pede&id=justo&ligula=eu&suspendisse=massa&ornare=donec&consequat=dapibus&lectus=duis&in=at&est=velit&risus=eu&auctor=est&sed=congue&tristique=elementum&in=in&tempus=hac&sit=habitasse&amet=platea&sem=dictumst","tags":["Documentary","Action|Drama","Drama","Action|Adventure|Animation","Action|Drama|Thriller"]},
 {"id":"16fa23bc-2507-4979-9168-26de2d9fc001","title":"Sofia's Last Ambulance (Poslednaka lineika na Sofia)","year":2002,"cover":"http://dummyimage.com/159x226.bmp/ff4444/ffffff","duration":32,"contentRating":null,"source":"https://de.vu/lacus/at/velit/vivamus/vel/nulla.aspx?in=nibh&eleifend=quisque&quam=id&a=justo&odio=sit&in=amet&hac=sapien&habitasse=dignissim&platea=vestibulum&dictumst=vestibulum&maecenas=ante&ut=ipsum&massa=primis&quis=in&augue=faucibus&luctus=orci","tags":["Documentary","Drama|War","Horror","Drama"]}]
 
+function filteredMoviesMock(tag) {
+	return moviesMock.filter(movie => movie.tags.includes(tag));
+}
+
+class MovieServiceMock {
+	async getMovies() {
+		return Promise.resolve(moviesMock);
+	}
+
+	async createMovie() {
+		return Promise.resolve(moviesMock[0]);
+	}
+}
+
 module.exports = {
-	moviesMock
+	moviesMock,
+	MovieServiceMock,
+	filteredMoviesMock
 }
