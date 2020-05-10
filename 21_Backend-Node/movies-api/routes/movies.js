@@ -1,7 +1,7 @@
 const express = require('express');
 const MoviesService = require('../services/movies');
 
-function moviesApi(app) {
+function moviesApi(app) {	
 	const router = express.Router();
 	app.use('/api/movies', router);
 	
@@ -36,7 +36,7 @@ function moviesApi(app) {
 	});
 
 	router.post('/', async function (req, res, next) {
-		const { body: movie } = req.body;
+		const movie = req.body;
 		try	{
 			const createMovieId = await moviesService.createMovie({ movie });
 			res.status(201).json({
@@ -50,7 +50,7 @@ function moviesApi(app) {
 
 	router.put('/:movieId', async function (req, res, next) {
 		const { movieId } = req.params;
-		const { body: movie } = req.body;
+		const movie = req.body;
 
 		try	{
 			const updatedMoviesId = await moviesService.updateMovie({ movieId, movie });
@@ -68,7 +68,7 @@ function moviesApi(app) {
 		const { body: movie } = req.body;
 
 		try	{
-			const updatedMoviesId = await moviesService.updatePartialMovie({ movieId, movie });
+			const updatedMoviesId = await moviesService.updateMovie({ movieId, movie });
 			res.status(200).json({
 				data: updatedMoviesId,
 				message: 'movie updated'
