@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "DEBUG=app:* nodemon index.js",
     "start": "NODE_ENV=production node index.js",
-    "test":"mocha --exit"
+    "test":"mocha --exit",
+    "cover": "nyc npm run test",
+    "report": "nyc report --reporter=html && open coverage/index.html"
   },
   "author": "Armando Rivera",
   "license": "MIT",
@@ -36,5 +38,9 @@
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix"
+  },
+  "nyc": {
+    "all": true,
+    "include": ["routes", "services", "lib", "utils"]
   }
 }
