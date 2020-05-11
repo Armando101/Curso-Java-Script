@@ -6,7 +6,7 @@ const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
 const DB_NAME = config.dbName;
 
-const MONGO_URI = `mongodb+srv://${USER}:${PASSWORD}@${config.dbHost}`;
+const MONGO_URI = `mongodb+srv://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/test?retryWrites=true&w=majority`;
 
 class MongoLib {
 	constructor() {
@@ -15,15 +15,22 @@ class MongoLib {
 	}
 
 	connect() {
-		return new Promise((resolve, reject) => {
-			this.client.connect(err => {
-				if (err) {
-					reject(err);
-				}
-				console.log('Connected succesfully to mongo');
-				resolve(this.client.db(this.dbName));
+		// Patron Singleton para que sólo haya una instancia
+		if (!MongoLib.connection) {
+			MongoLib.connection = new Promise((resolve, reject) => {
+				this.client.connect(err => {
+					if (err) {
+						reject(err);
+					}
+					console.log('Connected succesfully to mongo');
+					// console.log('Cliente: ', this.client)
+					// console.log('DB name: ', this.dbName)
+					resolve(this.client.db(this.dbName));
+				});
 			});
-		});
+		}
+
+		return MongoLib.connection;
 	}
 
 	getAll(collection, query) {
