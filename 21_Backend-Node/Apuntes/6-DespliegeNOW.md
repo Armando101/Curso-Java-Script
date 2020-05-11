@@ -45,9 +45,7 @@ now
 ```
 Cuando hagamos cambios sólo queda ejecutar dicho comando.
 
-#### Importante!!!
-No tener el plugin de cors, de lo contrario no se podrá hacer el despliegue.
-Podemos agregar un alias a la URL que nos da now.js.
+
 ```
 now alias  https://movies-video.armando101.now.sh movies-api.now.sh
 ```

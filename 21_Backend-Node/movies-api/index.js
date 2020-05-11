@@ -1,5 +1,5 @@
 const express = require('express');
-// const cors = require('cors'); //  Quitamos los cors para hacer el despliegue
+const cors = require('cors');
 const app = express();
 
 const { config } = require('./config');
@@ -12,7 +12,7 @@ const notFoundHandler = require('./utils/middleware/notFoundHandler');
 // const corsOptions = { origin: "http://example.com" };
 // app.use(cors(corsOptions));
 
-// app.use(cors);
+app.use(cors());
 
 // Body parser
 app.use(express.json());
