@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const productsRouter = require('./routes/products');
 const productsAPIRouter = require('./routes/api/products');
+const authApiRouter = require('./routes/api/auth');
 const bodyParser = require('body-parser');
 const boom = require('@hapi/boom');
 const {
@@ -29,6 +30,7 @@ app.set("view engine", "pug");
 // Routes
 app.use('/products', productsRouter);
 app.use('/api/products', productsAPIRouter)
+app.use('/api/auth', authApiRouter);
 
 // La ruta raíz nos redirecciona al la página principal que es products
 app.get('/', (req, res) => {
