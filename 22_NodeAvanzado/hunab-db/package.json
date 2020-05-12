@@ -6,16 +6,19 @@
   "scripts": {
     "lint": "standard",
     "setup": "DEBUG=hunab:* node setup.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "DEBUG=hunab:* ava --verbose"
   },
   "author": "Armando Rivera",
   "license": "MIT",
   "devDependencies": {
+    "ava": "^3.8.2",
     "debug": "^4.1.1",
+    "sqlite3": "^4.2.0",
     "standard": "^14.3.4"
   },
   "dependencies": {
     "chalk": "^4.0.0",
+    "defaults": "^1.0.3",
     "inquirer": "^7.1.0",
     "pg": "^8.1.0",
     "pg-hstore": "^2.3.3",
