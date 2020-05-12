@@ -6,13 +6,14 @@
   "scripts": {
     "lint": "standard",
     "setup": "DEBUG=hunab:* node setup.js",
-    "test": "DEBUG=hunab:* ava --verbose"
+    "test": "DEBUG=hunab:* nyc --reporter=lcov ava --verbose"
   },
   "author": "Armando Rivera",
   "license": "MIT",
   "devDependencies": {
     "ava": "^3.8.2",
     "debug": "^4.1.1",
+    "nyc": "^15.0.1",
     "sqlite3": "^4.2.0",
     "standard": "^14.3.4"
   },
