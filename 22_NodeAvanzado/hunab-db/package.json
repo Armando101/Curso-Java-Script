@@ -5,14 +5,18 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard",
+    "setup": "DEBUG=hunab:* node setup.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Armando Rivera",
   "license": "MIT",
   "devDependencies": {
+    "debug": "^4.1.1",
     "standard": "^14.3.4"
   },
   "dependencies": {
+    "chalk": "^4.0.0",
+    "inquirer": "^7.1.0",
     "pg": "^8.1.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.8"

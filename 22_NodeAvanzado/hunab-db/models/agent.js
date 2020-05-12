@@ -1,37 +1,37 @@
 'use strict'
 
-const Sequalize = require('sequalize')
+const Sequelize = require('sequelize')
 const setupDatabase = require('../lib/db')
 
 module.exports = function setupAgentModel (config) {
-  const sequalize = setupDatabase(config)
+  const sequelize = setupDatabase(config)
 
   // Configuración del modelo de agente
   // Va a crear automáticamente la tabla en la base de datos con los campos
   // Pluraliza el nombre de la tabla
-  return sequalize.define('agent', {
+  return sequelize.define('agent', {
     uuid: {
-      type: Sequalize.STRING,
+      type: Sequelize.STRING,
       allowNull: false
     },
     username: {
-      type: Sequalize.STRING,
+      type: Sequelize.STRING,
       allowNull: false
     },
     name: {
-      type: Sequalize.STRING,
+      type: Sequelize.STRING,
       allowNull: false
     },
     hostname: {
-      type: Sequalize.STRING,
+      type: Sequelize.STRING,
       allowNull: false
     },
     pid: {
-      type: Sequalize.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false
     },
     connected: {
-      type: Sequalize.BOOLEAN,
+      type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false
     }
