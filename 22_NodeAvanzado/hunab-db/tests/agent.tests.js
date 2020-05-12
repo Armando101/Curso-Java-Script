@@ -34,6 +34,10 @@ test.beforeEach(async () => {
 		hasMany: sandbox.spy()
 	}
 
+	// Model findById Stub
+	AgentStub.findById = sandbox.stub()
+	AgentStub.findById.withArgs(id).returns(Promise.resolve(agentFixtures.findById(id)))
+
 	// Reemplaza las llamadas en el index.js por los stubs
 	const setupDatabase = proxyquire('../', {
 		'./models/agent': () => AgentStub,
@@ -65,6 +69,10 @@ test.serial('Setup', t => {
 
 test.serial('AgentFindById', async t => {
 	let agent = await db.Agent.findById(id)
+
+	t.true(AgentStub.findById.called, 'findById shoul be called on model')
+	t.true(AgentStub.findById.calledOnce, 'Shoul be called once')
+	t.true(AgentStub.findById.calledWith(id), 'Should be called whit id')
 
 	t.deepEqual(agent, agentFixtures.findById(id), 'Should be the same')
 })
