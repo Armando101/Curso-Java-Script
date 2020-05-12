@@ -26,8 +26,41 @@ module.exports = function setupAgent(AgentModel) {
 		return AgentModel.findById(id)
 	}
 	
+	// Métodos implementados por nosotros ya que no están en sequelize
+	function findByUuid(uuid) {
+		return AgentModel.findOne({
+			where: {
+				uuid
+			}
+		})
+	}
+
+	function findAll() {
+		return AgentModel.findAll()
+	}
+
+	function findConnected() {
+		return AgentModel.findAll({
+			whre: {
+				connected: true
+			}
+		})
+	}
+
+	function findByUsername(username) {
+		return AgentModel.findAll({
+			whre: {
+				username,
+				connected: true
+			}
+		})
+	}
 	return {
 		findById,
-		createOrUpdate
+		createOrUpdate,
+		findByUuid,
+		findAll,
+		findConnected,
+		findByUsername
 	}
 }
