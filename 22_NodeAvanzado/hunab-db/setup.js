@@ -9,17 +9,21 @@ const db = require('./')
 const prompt = inquirer.createPromptModule()
 
 async function setup () {
-  const answer = await prompt([
-    {
-      type: 'confirm',
-      name: 'setup',
-      message: 'This will destroy your database, are you sure?'
+  const args = process.argv;
+
+  if (args[2] !== '--yes') {
+    const answer = await prompt([
+      {
+        type: 'confirm',
+        name: 'setup',
+        message: 'This will destroy your database, are you sure?'
+      }
+    ])
+    if (!answer.setup) {
+    	return console.log('Nothing happend :)')
     }
-  ])
-  
-  if (!answer.setup) {
-  	return console.log('Nothing happend :)')
   }
+  
 
   const config = {
     database: process.env.DB_NAME || 'hunab',
