@@ -24,7 +24,39 @@ const server = new mosca.Server(settings)
 // Este objeto es un event emitter
 // Puedo agregar funciones o listener cuando el servidor me lanze ciertos eventos
 
+// ATENCION:
+// Instalamos mqtt de manera global
+// `sudo npm i -g mqtt`
+// Para asegurarnos de que está instalado correctamente lanzar: mqtt
+// Correr el servidor
+// Ahora podemos mandar un mensaje:
+// `mqtt pub -t 'agent/message' -h localhost -m '{"Hello": "Hunab"}'`
+
+server.on('clientConnected', client => {
+	debug(`Client Connected: ${client.id}`);
+});
+
+server.on('clientDisconnected', client => {
+	debug(`Client Disconnected: ${client.id}`);
+});
+
+server.on('published', (packet, client) => {
+	debug(`Recived: ${packet.topic}`);
+	debug(`Payload: ${packet.payload}`);
+});
+
 // Para el evento ready
 server.on('ready', ()=> {
 	console.log(`${chalk.green('[hunab-mqtt]')} server is running`)
 });
+
+server.on('error', handlerFatalError);
+
+function handlerFatalError(err) {
+	console.error(`${chalk.red('[fatal error]')} ${err.message}`);
+	console.error(err.stack);
+	process.exit(1);
+}
+
+process.on('uncaughtException', handlerFatalError);	// Cuando se lanzó una excepción que no fue manejada
+process.on('unhandledRejection', handlerFatalError); // Cuando no manejo promesas	
