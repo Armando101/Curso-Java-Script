@@ -4,6 +4,7 @@ const debug = require('debug')('hunab:mqtt');
 const mosca = require('mosca');
 const redis = require('redis');
 const chalk = require('chalk');
+const db = require('hunab-db');	// Para instalarlo  npm i ../hunab-db/
 
 // Configuración del backend
 // Usaremos redis para el back
@@ -17,6 +18,17 @@ const settings = {
 	port: 1883,
 	backend
 }
+
+const config = {
+    database: process.env.DB_NAME || 'hunab',
+    username: process.env.DB_USER || 'armando',
+    password: process.env.DB_PASS || 'armando',
+    host: process.env.DB_HOST || 'localhost',
+    dialect: 'postgres',
+    logging: s => debug(s),
+}
+
+let Agent, Metric;
 
 // Instanciamos el servidor
 const server = new mosca.Server(settings)
@@ -46,7 +58,12 @@ server.on('published', (packet, client) => {
 });
 
 // Para el evento ready
-server.on('ready', ()=> {
+server.on('ready', async ()=> {
+	// Instanciamos los servicios
+	const services = await db(config).catch(handlerFatalError);
+
+	Agent = services.Agent;
+	Metric = services.Metric;
 	console.log(`${chalk.green('[hunab-mqtt]')} server is running`)
 });
 

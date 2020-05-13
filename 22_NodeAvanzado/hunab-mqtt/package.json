@@ -14,6 +14,7 @@
   "dependencies": {
     "chalk": "^4.0.0",
     "debug": "^4.1.1",
+    "hunab-db": "file:../hunab-db",
     "mosca": "^2.8.3",
     "mqtt": "^4.0.1",
     "redis": "^3.0.2"
