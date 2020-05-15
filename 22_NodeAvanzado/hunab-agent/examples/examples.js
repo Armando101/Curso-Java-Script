@@ -1,9 +1,7 @@
-# Hunab-agent
+// Para ejecuta este ejemplo tenemos que correr el servidor que está en hunab-mqtt
+// Después corremos este script -> node expamples.js
 
-## Usage
-
-```js
-const HunabAgent = require('hunab-agent');
+const HunabAgent = require('../');
 
 const agent = new HunabAgent({
 	name: 'myapp',
@@ -43,5 +41,4 @@ function handler(payload) {
 	console.log(payload);
 }
 
-setTimeout(() => agent.disconnected(), 20000);
-```
+setTimeout(() => agent.disconnect(), 10000);
