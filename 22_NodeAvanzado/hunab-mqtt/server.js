@@ -50,11 +50,37 @@ const server = new mosca.Server(settings)
 
 server.on('clientConnected', client => {
 	debug(`Client Connected: ${client.id}`);
+	clients.set(client.id, null);	// Indico que un cliente se conecto
 });
 
-server.on('clientDisconnected', client => {
+server.on('clientDisconnected', async(client) => {
 	debug(`Client Disconnected: ${client.id}`);
-	clients.set(client.id, null);	// Indico que un cliente se conecto
+	const agent = clients.get(client.id);
+
+	if (agent) {
+		// Mark Agent as Diconnected
+		agent.connected = false;
+
+		try {
+			await Agent.createOrUpdate(agent);
+		} catch(error) {
+			return handlerError(error);
+		}
+
+		// Delete Agent from Clients List
+		clients.delete(clients.id);
+
+		server.publish({
+			topic: 'agent/disconnected',
+			payload: JSON.stringify({
+				agent: {
+					uuid: agent.uuid
+				}
+			})
+		});
+
+		debug(`Client (${client.id}) associated to Agent (${agent.uuid}) marked as disconnected`);
+	}
 });
 
 server.on('published', async (packet, client) => {
@@ -98,7 +124,18 @@ server.on('published', async (packet, client) => {
 						})
 					})
 				}
+				// Store Metrics
+				for (let metric of payload.metrics) {
+					let m;
 
+					try	{
+						m = await Metric.create(agent.uuid, metric);
+					} catch (error) {
+						return handlerError(error);
+					}
+
+					debug(`Metric ${m.id} saved on agen ${agent.uuid}`);
+				}
 			}
 			break;
 	}

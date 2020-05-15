@@ -8,12 +8,12 @@ function parsePayload(payload) {
 	try {
 		payload = JSON.parse(payload);
 	} catch (e) {
-		payload = {};
+		payload = null;
 	}
 
 	return payload;
 }
 
-module.expors = {
+module.exports = {
 	parsePayload
 }
