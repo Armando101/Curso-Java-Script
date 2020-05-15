@@ -1,0 +1,19 @@
+{
+  "name": "hunab-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Simple IoT Platform - API",
+  "main": "server.js",
+  "scripts": {
+    "start": "NODE_ENV=production node server.js",
+    "dev": "DEBUG=hunab:* nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Armando Rivera",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "debug": "^4.1.1",
+    "express": "^4.17.1"
+  }
+}
