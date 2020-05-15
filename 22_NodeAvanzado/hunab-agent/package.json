@@ -9,5 +9,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Armanod Rivera",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^4.1.1",
+    "defaults": "^1.0.3",
+    "mqtt": "^4.0.1",
+    "uuid": "^8.0.0"
+  }
 }
