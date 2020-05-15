@@ -48,6 +48,9 @@ const server = new mosca.Server(settings)
 // Ahora podemos mandar un mensaje:
 // `mqtt pub -t 'agent/message' -h localhost -m '{"Hello": "Hunab"}'`
 
+// Mandamos un agente con sus métricas
+// mqtt pub -t 'agent/message' -m '{"agent": {"uuid": "yyy", "name": "armando", "username": "Armando101", "pid": 10, "hostname": "localhost"}, "metrics": [{"type": "memory", "value": "1001"}, {"type": "temp", "value":"33"}]}'
+
 server.on('clientConnected', client => {
 	debug(`Client Connected: ${client.id}`);
 	clients.set(client.id, null);	// Indico que un cliente se conecto
@@ -111,7 +114,7 @@ server.on('published', async (packet, client) => {
 				// Notiy Agent is Connected
 				if (!clients.get(client.id)) {
 					clients.set(client.id, agent);
-					server.published({
+					server.publish({
 						topic: 'agent/connected',
 						payload: JSON.stringify({
 							agent: {
