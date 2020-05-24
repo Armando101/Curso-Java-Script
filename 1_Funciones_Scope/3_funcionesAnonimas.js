@@ -1,3 +1,26 @@
+// una función anónima es una función que no tiene nombre
+// Un callback es una función que se pasa como parámetro
+function sumar(num1, num2, multiplicar, dividir) {
+	const suma = num1 + num2;
+
+	multiplicar(num1, num2);
+	dividir(num1, num2);
+
+	return suma;
+}
+
+// Mandamos llamar a la función sumar y como callback le paso funciones anónimas
+let suma = sumar(5, 4,
+	function(num1, num2) {
+		console.log('La multiplicación es: ', num1*num2);
+	}, 
+	function(num1, num2) {
+		console.log('La división es: ', num1/num2);
+	}
+);
+
+console.log(suma);
+
 function executor(funcion) {
 	funcion();
 }
