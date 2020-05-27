@@ -30,3 +30,9 @@ Métodos de Jest usados:
 - .toBeFalsy()
 - .toBeUndefined()
 - .not.toBeTruthy()
+
+## Arrays
+Métodos:
+
+- .toContain()
+- .toHaveLength()
