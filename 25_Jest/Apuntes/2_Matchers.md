@@ -20,3 +20,13 @@ Los Métodos para numeros que nos provee jest son:
 - .toBeLessThan()
 - .toBeLessThanOrEqual()
 - .toBeCloseTo()
+
+## Truthness / Verdadero
+
+Métodos de Jest usados:
+
+- .toBeNull()
+- .toBeTruthy()
+- .toBeFalsy()
+- .toBeUndefined()
+- .not.toBeTruthy()
