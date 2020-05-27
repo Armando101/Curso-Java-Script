@@ -47,3 +47,7 @@ Para ello debemos agregar el flag --coverage en nuestro comando. Como output, no
 - toMatch()
 - not.toMatch()
 - toHaveLength()
+
+## Monitoreo
+Crearemos un watcher para que escuche los cambios y realice las pruebas automaticamente. Para ello usamos el flag **–watch**.
+también podemos crear un script en nuetro package.json
