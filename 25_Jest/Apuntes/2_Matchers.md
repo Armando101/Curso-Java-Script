@@ -41,3 +41,9 @@ Métodos:
 Coverage de Jest es una opción que nos permite verificar el código de nuestra aplicación validando que porciones de código no han sido testeadas.
 
 Para ello debemos agregar el flag --coverage en nuestro comando. Como output, nos dará un reporte.
+
+## Métodos:
+
+- toMatch()
+- not.toMatch()
+- toHaveLength()
