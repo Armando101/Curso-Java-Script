@@ -51,3 +51,15 @@ Para ello debemos agregar el flag --coverage en nuestro comando. Como output, no
 ## Monitoreo
 Crearemos un watcher para que escuche los cambios y realice las pruebas automaticamente. Para ello usamos el flag **–watch**.
 también podemos crear un script en nuetro package.json
+
+## Setup de pruebas
+
+Jest nos proporciona funciones auxiliares para mejorar el manejo de nuestras pruebas, esto significa. Que podremos correr funciones antes, durante o después de nuestras pruebas.
+
+Esto nos permite setear ciertas configuraciones muy particulares que necesitemos antes que corra la prueba o después de esta.
+
+afterEach() // Despues de cada prueba
+afterAll() // Despues de todas las pruebas
+
+beforeEach() // Antes de cada prueba
+beforeAll() // Antes de todas las pruebas
