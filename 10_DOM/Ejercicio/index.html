@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+		.box {
+			margin: 20px;
+			width: 250px;
+			float: left;
+		}
+		.dashed {
+			border: 3px dashed black;
+			padding: 10px;
+			height: 250px;
+		}
+	</style>
+	<meta charset="UTF-8">
+	<title>I'm Learning JS [DOM]</title>
+</head>
+<body>
+	
+	<!--
+		1. Form: Name, lastname, year.
+		2. Submit button.
+		3. Show data.
+		4. Validate form
+	-->
+	<h1>
+		DOM Exercice, events and functions
+	</h1>	
+		<div class="box">
+			<form action="" method="post" id="form" >
+				<label for="name">Name: </label> <br>
+				<input type="text" name="Name" id="name"><br>
+
+				<label for="lastname">Lastname: </label> <br>
+				<input type="text" name="Lastname" id="lastname"><br>
+
+				<label for="age">Age: </label> <br>
+				<input type="number" name="Age" id="age"><br>
+
+				<input type="submit" value="send" id="sumbit">
+			</form>
+		</div>
+
+		<div class="box dashed">
+			<h3>User information</h3>
+			<hr>
+		</div>
+	<script type="text/javascript" src="js/exercice.js"></script>
+</body>
+</html>
