@@ -48,7 +48,7 @@ function myFunction() {
 
 function otherFunction() {
     lastname = 'Rivera'; // Se guarda en el scope global
-    const countrie = 'Mexico'; // Scope local, no se puede acceder a este valor fuera de la variable
+    const country = 'Mexico'; // Scope local, no se puede acceder a este valor fuera de la variable
 }
 
 myFunction();
@@ -67,7 +67,7 @@ console.log(name); // Armando, no se sobreescribe
 /* Scope de bloque */
 
 function age(num = 18) {
-    let message; // Si omito esta linea no funciona ya que message solo vive dentro del bloque if o else
+    let message;
     if (num >= 18) {
         message = 'You are adult';
     } else {
@@ -123,7 +123,8 @@ console.log(myCounter());
 console.log(myCounter());
 console.log(myCounter());
 console.log(myCounter());
-
+myCounter.console = 1;
+console.log(myCounter());
 
 /* Uso practico de clousures */
 function makeMultiplier(x) {
@@ -243,6 +244,6 @@ function* fibonacci(max = null) {
     }
 }
 
-for (let i of genEvenNumber()) {
+/*for (let i of genEvenNumber()) {
     console.log(i);
-}
+}*/
