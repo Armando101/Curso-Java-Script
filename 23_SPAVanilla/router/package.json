@@ -1,0 +1,14 @@
+{
+  "name": "router",
+  "version": "1.0.0",
+  "description": "SPA Router",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Armando Rivera",
+  "license": "MIT",
+  "devDependencies": {
+    "static-server": "^2.2.1"
+  }
+}

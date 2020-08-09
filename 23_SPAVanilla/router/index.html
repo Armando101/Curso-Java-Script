@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<htmllang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"content="width=device-width, initial-scale=1.0" />
+    <title>Curso SPA</title>
+  </head>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
+    }
+    .menu--item {
+      cursor: pointer;
+      border: 0px;
+      background: transparent;
+    }
+    .menu--item:hover {
+      color: limegreen;
+      text-decoration: underline;
+    }
+  </style>
+  <body>
+    <header class="menu">
+      <button class="menu--item" onclick="router.loadRoute('')">
+        Home
+      </button>
+      <button class="menu--item" onclick="router.loadRoute('contacto')">
+        Contact
+      </button>
+      <button class="menu--item" onclick="router.loadRoute('about')">
+        About me
+      </button>
+    </header>
+    <div data-router></div>
+    <script src="./routes.js"></script>
+    <script src="./router.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
