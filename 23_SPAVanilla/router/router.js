@@ -1,13 +1,13 @@
 class Router {
 	constructor(routes) {
 		this.routes = routes;
-		this._loadInitialRoute()
+		this._loadInitialRoute();
 	}
 	
 	loadRoute(...urlSegs) {
 		const matchedRoute = this._matchUrlToRoute(urlSegs);
 
-		const url = `/${urlSegs.join('/')}`;
+		const url = `/${urlSegs.toString()}`;
 
 		history.pushState({}, 'This works', url);
 
@@ -17,7 +17,7 @@ class Router {
 
 	_loadInitialRoute() {
 		const pathNameSplit = window.location.pathname.split('/');
-		const pathSegs = pathNameSplit.length > 1 ? pathNameSplit.slice(1) : '';
+		const pathSegs = pathNameSplit.slice(1);
 
 		this.loadRoute(...pathSegs);
 	}
@@ -26,15 +26,10 @@ class Router {
 		const matchedRoute = this.routes.find(route => {
 			const routePathSegs = route.path.split('/').slice(1);
 
-			if (routePathSegs.length !== urlSegs.length) {
-				return false;
-			}
-
-			return routePathSegs
-				.every((routePathSegs, i) => routePathSegs === urlSegs[i]);
+			return routePathSegs.toString() === urlSegs.toString();
 
 		});
 
-		return matchedRoute;
+		return matchedRoute ? matchedRoute : this.routes[0];
 	}
 }
