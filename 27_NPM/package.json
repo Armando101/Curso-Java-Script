@@ -1,0 +1,21 @@
+{
+  "name": "random-messages",
+  "version": "1.0.0",
+  "description": "random de mensajes",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "JavaScript",
+    "node",
+    "npm",
+    "messages"
+  ],
+  "author": "Armando Rivera",
+  "license": "MIT",
+  "bin": {
+    "random-msg": "./bin/global.js"
+  },
+  "preferGlobal": true
+}
