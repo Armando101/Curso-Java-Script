@@ -1,0 +1,138 @@
+.content__hero {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin-top: 40px;
+	height: 25%;
+}
+
+.content h2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	font-size: 200%;
+	text-align: center;
+	text-shadow: 1px 1px 1px;
+}
+
+.first {
+	margin-left: 10%;
+}
+
+.content__hero--image {
+	transform-origin: center;
+	transform: perspective(800px) rotateY(20deg);
+	transition: 0.5s;
+	height: 75%;
+	width: 80%;
+	border-radius: 10px;
+	margin-top: 10%;
+}
+.content__hero--image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+}
+.content__hero--image .content__hero--info:before {
+	content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(2,0,36,1)
+    	        0%, rgba(9,9,9,1)
+    	        20%, rgba(255,255,255,0) 60%);
+    z-index: 1;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    transition: 0.5s;
+}
+.content__hero:hover .content__hero--image {
+	opacity: 0.7;
+}
+
+.content__hero .content__hero--image:hover {
+	transform: perspective(800px) rotateY(0deg);
+	opacity: 1;
+	transform: scale(1.25);
+	box-shadow: 0 5px 10px rgba(0,0,0,.5);
+
+}
+
+.content__hero--image:hover .content__hero--info:before {
+	opacity: 0.5;
+}
+
+.content__hero--info {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    padding: 20px;
+    align-items: flex-end;
+    box-sizing: border-box;
+}
+
+.content__hero--info h2, 
+.content__hero--info p {
+	color: #fff;
+    transform: translateY(200px);
+    transition: 0.5s;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-size: 20px;
+    z-index: 1;
+    opacity: 0;
+}
+
+.content__hero--info p {
+    font-size: 14px;
+}
+
+.content__hero--image:hover .content__hero--info h2 {
+    transform: translateY(0);
+    opacity: 1; 
+    transition-delay: 0.2s;   
+}
+
+.content__hero--image:hover .content__hero--info p {
+	transform: translateY(0);
+    opacity: 1; 
+    transition-delay: 0.3s;
+}
+
+
+@media screen and (max-width: 880px) {
+	.content__hero {
+		height: 20%;
+	} 
+}
+
+@media screen and (max-width: 768px) {
+
+	.content__hero { 
+		grid-template-columns: 100%;
+		height: 165%;
+	}
+
+	.content__hero--image {
+		height: 80%;
+		width: 70%;
+		justify-self: center; 
+	}
+
+	.first {
+		margin-left: 0px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.content__hero {
+		height: 105%;
+	}
+}

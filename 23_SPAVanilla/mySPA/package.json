@@ -1,0 +1,16 @@
+{
+  "name": "my-spa",
+  "version": "1.0.0",
+  "description": "This is a simple single page aplication",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "http-server-spa . ./index.html",
+  },
+  "keywords": [
+    "SPA",
+    "ecommerce"
+  ],
+  "author": "Armando Rivera",
+  "license": "MIT"
+}

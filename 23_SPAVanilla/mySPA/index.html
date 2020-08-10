@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"content="width=device-width, initial-scale=1.0" />
+    <title>My single page application</title>
+  </head>
+  <style>
+  	* {
+  		margin: 0px;
+  		padding: 0px;
+      font-family: sans-serif;
+  	}
+  	header {
+  		background-color: #40798C;
+  	}
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .menu--item {
+      cursor: pointer;
+      border: 0px;
+      background: transparent;
+      line-height: 50px;
+      color: white;
+      font-weight: bold;
+    }
+    .menu--item:hover {
+      color: #CFE0C3;
+      text-decoration: underline;
+    }
+    #skill {
+    	color: #40798C;
+    }
+  </style>
+  <link rel="stylesheet" href="./src/styles/styles.css">
+  <body>
+    <header>
+    	<nav class="menu">
+	      <button class="menu--item" onclick="router.loadRoute('')">
+	        Home
+	      </button>
+	      <button class="menu--item" onclick="router.loadRoute('contact')">
+	        Contacto
+	      </button>
+	      <button class="menu--item" onclick="router.loadRoute('about')">
+	        About me
+	      </button>
+   	</nav>
+    </header>
+    <div data-router></div>
+    <script src="./src/routes.js"></script>
+    <script src="./src/router.js"></script>
+    <script src="./src/index.js"></script>
+    <script src="./src/feature.js"></script>
+  </body>
+</html>
