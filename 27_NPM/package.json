@@ -1,6 +1,6 @@
 {
-  "name": "random-messages",
-  "version": "1.0.0",
+  "name": "random-messages-armando101",
+  "version": "1.2.0",
   "description": "random de mensajes",
   "main": "src/index.js",
   "scripts": {

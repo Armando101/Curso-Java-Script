@@ -8,7 +8,7 @@ const messages = [
 ];
 
 const randomMsg = () => {
-	const message = messages[Math.floor(Math.random()*message.length)];
+	const message = messages[Math.floor(Math.random()*messages.length)];
 
 	console.log(message);
 
