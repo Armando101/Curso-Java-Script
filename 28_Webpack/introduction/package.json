@@ -1,0 +1,19 @@
+{
+  "name": "learning-webpack",
+  "version": "1.0.0",
+  "description": "This will be funny, Im learning Webpack",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "Armando Rivera",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "4.32.2",
+    "webpack-cli": "3.3.2"
+  }
+}
