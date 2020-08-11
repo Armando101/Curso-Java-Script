@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 // Para que el servidor se quede escuchando ejecutamos
 // npm run build:dev -- -w
@@ -14,15 +15,18 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'js/[name].js'	// nombre del archivo comprimido
 	},
+	devServer: {
+		hot: true,
+		open: true,	// Abre el navegador automaticamente
+		port: 9090	// Indico el puerto
+	},
 	module: {
 		rules: [
 			{
 				test: /\.css$/,
 				use: [
-					{
-						loader: MiniCSSExtractPlugin.loader // extrae el css, la manera en como lo va a tratar se indica en plugins
-					},
-				'css-loader'	// Interpreta el codigo css
+					'style-loader',
+					'css-loader'	// Interpreta el codigo css
 				]
 			}
 		]
@@ -30,11 +34,9 @@ module.exports = {
 
 
 	plugins: [
+		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({	// Esto genera un html
-			title: 'Home'
-		}),
-		new MiniCSSExtractPlugin({
-			filename: 'css/[name].css'
+			title: 'webpack-dev-server'
 		})
 	]
 }
