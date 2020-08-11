@@ -1,0 +1,11 @@
+body {
+	background: papayawhip;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	min-height: 100vh;
+	margin: 0px;
+	font-size: 40px;
+	font-family: sans-serif;
+	color: lightgreen;
+}
