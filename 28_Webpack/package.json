@@ -4,7 +4,9 @@
   "description": "This will be funny, Im learning Webpack",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --entry ./index.js --output ./bundle.js --mode development",
+    "build:local": "webpack --mode production",
+    "build:external": "webpack --config ./external/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
