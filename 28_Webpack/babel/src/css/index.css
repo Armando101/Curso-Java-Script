@@ -1,6 +1,8 @@
 body {
 	background: papayawhip;
 	display: flex;
+	flex-direction: column;
+	align-items: center;
 	align-content: center;
 	justify-content: center;
 	max-height: 100vh;
@@ -11,6 +13,10 @@ body {
 	color: lightgreen;
 	text-shadow: 1px 1px 1px black;
 	animation: 1s latido infinite;
+}
+
+img {
+	width: 10%;
 }
 
 @keyframes latido {
