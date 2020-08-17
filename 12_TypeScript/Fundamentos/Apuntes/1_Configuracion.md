@@ -19,4 +19,14 @@ tsc your_file.ts
 tsc --watch your_file.ts
 ```
 
+### Generar un archivo de configuracion
+```npm
+tsc --init
+```
 
+### Compilar proyecto
+
+Por defecto toma el archivo de configuracion
+```npm
+tsc
+```

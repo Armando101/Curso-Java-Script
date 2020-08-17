@@ -1,0 +1,15 @@
+{
+  "name": "Practica",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "dev:ts-node": "nodemon --exec ts-node ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Armando Rivera",
+  "license": "ISC"
+}
