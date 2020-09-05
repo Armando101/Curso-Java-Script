@@ -1,30 +1,39 @@
-import { asyncScheduler } from 'rxjs';
+import { of, from } from 'rxjs';
 
-// setTimeout(() => {}, 3000);
-// setInterval(() => {}, 3000);
+/*
+ * of =Toma argumentos y genera una secuencia
+ * from = array, promise, iterable, observable
+*/
 
-const saludar = () => console.log('Hello World');
-const saludar2 = (nombre: string) => console.log(`Hello World ${nombre}`);
-const saludar3 = state => console.log(`Hello World ${state.nombre} ${state.apellido}`);
+const observer = {
+    next: value => console.log('next: ', value),
+    complete: () => console.log('complete')
+}
 
-// schedule: recibe como primer argumento una funcion y como segundo el tiempo dentro del cual se va a ejecutar
-// asyncScheduler.schedule(saludar2, 1000, 'Armando');
+// const sources$ = from([1, 2, 3, 4, 5]);
+// const sources$ = from('Armando');
+// const sources$ = of('Armando');
+// const sources$ = of(...[1, 2, 3, 4, 5]);
 
-// Como tercer parametro recibe el estado
-// asyncScheduler.schedule(saludar3, 1000, {nombre: 'Armando', apellido: 'Rivera'});
+const sources$ = from(fetch('https://api.github.com/users/Armando101'));
 
-/********** Caso practico ************/
-// Hagamos un setInterval
+// Nos subscribimos para obtener datos de una api
+// sources$.subscribe(async (response) => {
+//     console.log(response);
+//     const data = await response.json();
+//     console.log(data);
+// });
 
-const subs = asyncScheduler.schedule(function(state) {
-    console.log('state', state);
-    this.schedule( state + 1, 1000 );
-}, 3000, 0);
+// Generadores con rxjs
 
-// Desubscripcion con setTimeOut
-// setTimeout(() => {
-//     subs.unsubscribe();
-// }, 6000);
+const myGenerator = function*() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+}
 
-// Desubscripcion con asyncSchedule
-asyncScheduler.schedule(() => subs.unsubscribe(), 6000);
+const myIterable = myGenerator();
+
+from( myIterable ).subscribe(observer);
