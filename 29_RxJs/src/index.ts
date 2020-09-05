@@ -1,15 +1,21 @@
-import { range, asyncScheduler } from 'rxjs';
+import { interval, timer } from 'rxjs';
 
-// Emite 100 valores empezando en 1
-// const src$ = range(1, 100);
+const observer = {
+    next: val => console.log('nex: ', val),
+    complete: () => console.log('Complete'),
+}
 
-// Emite 10 valores empezando en -5
-// const src$ = range(-5, 10);
+const date = new Date(); // Fecha actual
+date.setSeconds(date.getSeconds() + 5);
 
-// Emite 5 valores empezando en 1
-// asyncScheduler indica que sera de manera asincrona
-const src$ = range(1, 5, asyncScheduler);
+const interval$ = interval(1000);
+// const timer$ = timer(2000); // Timer es similar a interval con la diferencia de que se completa
 
+// Podemos colocar una fecha de ejecucion
+const timer$ = timer(date);
+
+// Por defecto es asincrono
 console.log('Inicio');
-src$.subscribe(console.log);
-console.log('Final');
+// interval$.subscribe(observer);
+timer$.subscribe(observer);
+console.log('Fin');
