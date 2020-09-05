@@ -1,48 +1,9 @@
-import { Observable, Observer, Subject } from 'rxjs';
+import { of } from 'rxjs';
 
-const observer: Observer<any> = {
-    next: value => console.log('next: ', value),
-    error: error => console.error('error: ', error),
-    complete: () => console.info('completed')
-}
+const obs$ = of(1, 2, 3, 4, 5, 6);
+// const obs$ = of(...[1, 2, 3, 4, 5, 6]);
+// const obs$ = of([1, 2], {a:1, b:2}, function(){}, true, Promise.resolve(true));
 
-const intervalo$ = new Observable<number>(subscriber => {
-
-    const interlavID = setInterval(() => subscriber.next(Math.random()), 2000);
-
-    return  () => {
-        clearInterval(interlavID);
-        console.log('Intervalo destruido');
-    }
-
-});
-
-/*
-    Caracteristicas principales del subject
- 1- Casteo multiple: podemos tener varias subscripciones y todos recibiran lo mismo
- 2- Tambien es un observer
- 3- Manejo Next, error y complete
-*/
-
-const subject$ = new Subject();
-const interlSubject = intervalo$.subscribe(subject$);
-
-// Vemos que sub1 y sub2 nos arrojan resultados distintos
-// const subs1 = intervalo$.subscribe(console.log);
-// const subs2 = intervalo$.subscribe(console.log);
-
-// Vemos que sub3 y sub4 nos arrojan resultados iguales
-const subs3 = subject$.subscribe(console.log);
-const subs4 = subject$.subscribe(console.log);
-
-setTimeout(() => {
-
-    subject$.next(10);
-
-    // Completamos el observer
-    subject$.complete();
-
-    // Nos desuscribimos a la subscripcion
-    interlSubject.unsubscribe();
-
-}, 3500)
+console.log('Inicio del Obs$');
+obs$.subscribe( item => console.log('Next: ', item), null, () => console.log('Terminamos la secuencia'));
+console.log('Fin del Obs$');
