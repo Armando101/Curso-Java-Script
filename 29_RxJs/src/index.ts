@@ -1,4 +1,4 @@
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, Subject } from 'rxjs';
 
 const observer: Observer<any> = {
     next: value => console.log('next: ', value),
@@ -7,26 +7,25 @@ const observer: Observer<any> = {
 }
 
 const intervalo$ = new Observable<number>(subscriber => {
-    // Crear contador 1, 2, 3, 4, 5, 6
-    let i = 0;
-    const interval = setInterval(() => {
-        // Cada segundo
-        subscriber.next(++i);
-        console.log(i);
-    }, 1000);
 
-    // Si no ponemos este return se siguen emitiendo valores aunque no los obtenga en mi subscripcion
-    // Esto puede ocasionar un desborde de memoria
-    return () => {
-        clearInterval(interval);
-        console.log('Intervalo destruido');
-    }
+    setInterval(() => subscriber.next(Math.random()), 2000);
+
 });
 
-const mySubscription = intervalo$.subscribe(num=>console.log('Num: ', num));
+/*
+    Caracteristicas principales del subject
+ 1- Casteo multiple: podemos tener varias subscripciones y todos recibiran lo mismo
+ 2- Tambien es un observer
+ 3- Manejo Next, error y complete
+*/
 
-setTimeout(() => {
-    // Cancelamos la subscripcion despues de 3 segundos
-    mySubscription.unsubscribe();
-    console.log('Completado timeout')
-}, 3000);
+const subject$ = new Subject();
+intervalo$.subscribe(subject$);
+
+// Vemos que sub1 y sub2 nos arrojan resultados distintos
+// const subs1 = intervalo$.subscribe(console.log);
+// const subs2 = intervalo$.subscribe(console.log);
+
+// Vemos que sub3 y sub4 nos arrojan resultados iguales
+const subs3 = subject$.subscribe(console.log);
+const subs4 = subject$.subscribe(console.log);
