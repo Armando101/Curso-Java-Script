@@ -1,21 +1,30 @@
-import { interval, timer } from 'rxjs';
+import { asyncScheduler } from 'rxjs';
 
-const observer = {
-    next: val => console.log('nex: ', val),
-    complete: () => console.log('Complete'),
-}
+// setTimeout(() => {}, 3000);
+// setInterval(() => {}, 3000);
 
-const date = new Date(); // Fecha actual
-date.setSeconds(date.getSeconds() + 5);
+const saludar = () => console.log('Hello World');
+const saludar2 = (nombre: string) => console.log(`Hello World ${nombre}`);
+const saludar3 = state => console.log(`Hello World ${state.nombre} ${state.apellido}`);
 
-const interval$ = interval(1000);
-// const timer$ = timer(2000); // Timer es similar a interval con la diferencia de que se completa
+// schedule: recibe como primer argumento una funcion y como segundo el tiempo dentro del cual se va a ejecutar
+// asyncScheduler.schedule(saludar2, 1000, 'Armando');
 
-// Podemos colocar una fecha de ejecucion
-const timer$ = timer(date);
+// Como tercer parametro recibe el estado
+// asyncScheduler.schedule(saludar3, 1000, {nombre: 'Armando', apellido: 'Rivera'});
 
-// Por defecto es asincrono
-console.log('Inicio');
-// interval$.subscribe(observer);
-timer$.subscribe(observer);
-console.log('Fin');
+/********** Caso practico ************/
+// Hagamos un setInterval
+
+const subs = asyncScheduler.schedule(function(state) {
+    console.log('state', state);
+    this.schedule( state + 1, 1000 );
+}, 3000, 0);
+
+// Desubscripcion con setTimeOut
+// setTimeout(() => {
+//     subs.unsubscribe();
+// }, 6000);
+
+// Desubscripcion con asyncSchedule
+asyncScheduler.schedule(() => subs.unsubscribe(), 6000);
