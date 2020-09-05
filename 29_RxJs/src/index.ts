@@ -8,7 +8,12 @@ const observer: Observer<any> = {
 
 const intervalo$ = new Observable<number>(subscriber => {
 
-    setInterval(() => subscriber.next(Math.random()), 2000);
+    const interlavID = setInterval(() => subscriber.next(Math.random()), 2000);
+
+    return  () => {
+        clearInterval(interlavID);
+        console.log('Intervalo destruido');
+    }
 
 });
 
@@ -20,7 +25,7 @@ const intervalo$ = new Observable<number>(subscriber => {
 */
 
 const subject$ = new Subject();
-intervalo$.subscribe(subject$);
+const interlSubject = intervalo$.subscribe(subject$);
 
 // Vemos que sub1 y sub2 nos arrojan resultados distintos
 // const subs1 = intervalo$.subscribe(console.log);
@@ -29,3 +34,15 @@ intervalo$.subscribe(subject$);
 // Vemos que sub3 y sub4 nos arrojan resultados iguales
 const subs3 = subject$.subscribe(console.log);
 const subs4 = subject$.subscribe(console.log);
+
+setTimeout(() => {
+
+    subject$.next(10);
+
+    // Completamos el observer
+    subject$.complete();
+
+    // Nos desuscribimos a la subscripcion
+    interlSubject.unsubscribe();
+
+}, 3500)
