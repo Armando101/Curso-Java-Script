@@ -1,9 +1,20 @@
-import { of } from 'rxjs';
+import { fromEvent } from 'rxjs';
 
-const obs$ = of(1, 2, 3, 4, 5, 6);
-// const obs$ = of(...[1, 2, 3, 4, 5, 6]);
-// const obs$ = of([1, 2], {a:1, b:2}, function(){}, true, Promise.resolve(true));
+/*
+Eventos del DOM
+*/
 
-console.log('Inicio del Obs$');
-obs$.subscribe( item => console.log('Next: ', item), null, () => console.log('Terminamos la secuencia'));
-console.log('Fin del Obs$');
+const scr1$ = fromEvent<PointerEvent>(document, 'click');
+const scr2$ = fromEvent<KeyboardEvent>(document, 'keyup');
+
+const observer = {
+    next: (value) => console.log('next', value)
+}
+
+scr1$.subscribe(({x, y}) => {
+    console.log(x, y);
+});
+
+scr2$.subscribe(event => {
+    console.log(event.key);
+});
