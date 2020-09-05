@@ -1,31 +1,32 @@
 import { Observable, Observer } from 'rxjs';
 
 const observer: Observer<any> = {
-    next: value => console.log('Siguiente [next]: ', value),
-    error: error => console.error('Error [obs]: ', error),
-    complete: () => console.info('Completed')
+    next: value => console.log('next: ', value),
+    error: error => console.error('error: ', error),
+    complete: () => console.info('completed')
 }
 
-// const obs$ = Observable.create();
-const obs$ = new Observable<string>((subscriber) => {
-    subscriber.next('Hello');
-    subscriber.next('World');
+const intervalo$ = new Observable<number>(subscriber => {
+    // Crear contador 1, 2, 3, 4, 5, 6
+    let i = 0;
+    const interval = setInterval(() => {
+        // Cada segundo
+        subscriber.next(++i);
+        console.log(i);
+    }, 1000);
 
-    // const a = undefined;
-    // a.name = 'Armando';
-
-    subscriber.complete();
-
-    subscriber.next('Hola');
-    subscriber.next('Mundo');
+    // Si no ponemos este return se siguen emitiendo valores aunque no los obtenga en mi subscripcion
+    // Esto puede ocasionar un desborde de memoria
+    return () => {
+        clearInterval(interval);
+        console.log('Intervalo destruido');
+    }
 });
 
-// Esta es una manera de subscribirnos
-// obs$.subscribe(
-//     value => console.log('next:', value),
-//     error => console.warn('error', error),
-//     () => console.info('Completed')
-// );
+const mySubscription = intervalo$.subscribe(num=>console.log('Num: ', num));
 
-// Esta es otra manera distinta de subsribirnos
-obs$.subscribe(observer);
+setTimeout(() => {
+    // Cancelamos la subscripcion despues de 3 segundos
+    mySubscription.unsubscribe();
+    console.log('Completado timeout')
+}, 3000);
