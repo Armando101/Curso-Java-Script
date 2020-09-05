@@ -1,20 +1,15 @@
-import { fromEvent } from 'rxjs';
+import { range, asyncScheduler } from 'rxjs';
 
-/*
-Eventos del DOM
-*/
+// Emite 100 valores empezando en 1
+// const src$ = range(1, 100);
 
-const scr1$ = fromEvent<PointerEvent>(document, 'click');
-const scr2$ = fromEvent<KeyboardEvent>(document, 'keyup');
+// Emite 10 valores empezando en -5
+// const src$ = range(-5, 10);
 
-const observer = {
-    next: (value) => console.log('next', value)
-}
+// Emite 5 valores empezando en 1
+// asyncScheduler indica que sera de manera asincrona
+const src$ = range(1, 5, asyncScheduler);
 
-scr1$.subscribe(({x, y}) => {
-    console.log(x, y);
-});
-
-scr2$.subscribe(event => {
-    console.log(event.key);
-});
+console.log('Inicio');
+src$.subscribe(console.log);
+console.log('Final');
