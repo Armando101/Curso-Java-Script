@@ -1,39 +1,10 @@
-import { of, from } from 'rxjs';
+import { range, fromEvent } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-/*
- * of =Toma argumentos y genera una secuencia
- * from = array, promise, iterable, observable
-*/
+// range(1, 5).pipe(map<number, number>(value => value * 10)).subscribe(console.log);
 
-const observer = {
-    next: value => console.log('next: ', value),
-    complete: () => console.log('complete')
-}
+const keyup$ = fromEvent<KeyboardEvent>(document, 'keyup');
 
-// const sources$ = from([1, 2, 3, 4, 5]);
-// const sources$ = from('Armando');
-// const sources$ = of('Armando');
-// const sources$ = of(...[1, 2, 3, 4, 5]);
+// keyup$.subscribe(({code}) => console.log('map', code));
 
-const sources$ = from(fetch('https://api.github.com/users/Armando101'));
-
-// Nos subscribimos para obtener datos de una api
-// sources$.subscribe(async (response) => {
-//     console.log(response);
-//     const data = await response.json();
-//     console.log(data);
-// });
-
-// Generadores con rxjs
-
-const myGenerator = function*() {
-    yield 1;
-    yield 2;
-    yield 3;
-    yield 4;
-    yield 5;
-}
-
-const myIterable = myGenerator();
-
-from( myIterable ).subscribe(observer);
+keyup$.pipe(map(event => event.code)).subscribe(console.log);
