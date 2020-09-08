@@ -1,26 +1,22 @@
-import { from } from "rxjs";
-import { distinctUntilKeyChanged } from "rxjs/operators";
+import { fromEvent } from "rxjs";
+import { debounceTime, pluck, distinctUntilChanged } from "rxjs/operators";
 
-interface Charcter {
-    name: string;
-};
+const click$ = fromEvent(document, 'click');
 
-const characters: Charcter[] =[
-    { name: 'Wonderwoman'},
-    { name: 'Spiderman'},
-    { name: 'Wonderwoman'},
-    { name: 'Superman'},
-    { name: 'Wonderwoman'},
-    { name: 'Batman'},
-    { name: 'Batman'},
-    { name: 'Batman'},
-    { name: 'Wonderwoman'},
-    { name: 'Spiderman'},
-]
+click$
+.pipe(debounceTime(300))
+.subscribe(console.log);
 
+// Ejemplo 2
+const input = document.createElement('input');
+document.querySelector('body').append(input);
 
-// distinctUntilKeyChanged compara por atributo de objeto
-// Compara con el valor emitido inmediato anterior
-from(characters)
-    .pipe(distinctUntilKeyChanged('name'))
-    .subscribe(console.log);
+const input$ = fromEvent<KeyboardEvent>(input, 'keyup');
+
+input$
+.pipe(
+    debounceTime(300),
+    pluck('target', 'value'),
+    distinctUntilChanged()
+)
+.subscribe(console.log);
