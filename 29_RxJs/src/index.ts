@@ -1,28 +1,12 @@
-import { fromEvent, asyncScheduler } from "rxjs";
-import { throttleTime, pluck, distinctUntilChanged } from "rxjs/operators";
+import { fromEvent } from 'rxjs';
+import { map, sampleTime } from 'rxjs/operators';
 
-const click$ = fromEvent(document, 'click');
+const click$ = fromEvent<MouseEvent>(document, 'click');
 
+// sampleTime devuelve el ultimo valor emitido en el intervalo de tiempo especificado
 click$
-.pipe(throttleTime(300))
-.subscribe(console.log);
-
-// Ejemplo 2
-const input = document.createElement('input');
-document.querySelector('body').append(input);
-
-const input$ = fromEvent<KeyboardEvent>(input, 'keyup');
-
-// asyncScheduler y el objeto de configuracion se pueden omitir
-// Si colocamos leading en falso el comportamiento es similar a debounce time, hasta despues del timpo se emite el valor
-// si colocmaos triling en true emite tambien el ultimo valor
-input$
 .pipe(
-    throttleTime(1000, asyncScheduler, {
-        leading: true,
-        trailing: true
-    }),
-    pluck('target', 'value'),
-    distinctUntilChanged()
+    sampleTime(2000),
+    map(({x, y}) => ({x, y}))
 )
 .subscribe(console.log);
