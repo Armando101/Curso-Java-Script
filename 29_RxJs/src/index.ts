@@ -1,12 +1,13 @@
-import { fromEvent } from 'rxjs';
-import { map, sampleTime } from 'rxjs/operators';
+import { interval, fromEvent } from "rxjs";
+import { sample } from "rxjs/operators";
 
-const click$ = fromEvent<MouseEvent>(document, 'click');
+const interval$ = interval(300);
+const click$ = fromEvent(document, 'click');
 
-// sampleTime devuelve el ultimo valor emitido en el intervalo de tiempo especificado
-click$
+// sample: obtengo el valor emitido justo antes de que se haya emitido un evento en el observer que se le pasa como argumento a sample
+
+interval$
 .pipe(
-    sampleTime(2000),
-    map(({x, y}) => ({x, y}))
+    sample(click$)
 )
 .subscribe(console.log);
