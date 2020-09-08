@@ -1,20 +1,35 @@
-import { interval, fromEvent } from "rxjs";
-import { takeUntil, skip } from "rxjs/operators";
+import { of, from } from "rxjs";
+import { distinct } from "rxjs/operators";
 
-const button = document.createElement('button');
-button.innerHTML = 'Detener Timer';
+const numbers$ = of<number | string>(1, '1', 1, 3, 3, 4, 5, 6, 7, 1, 2, 3, 0);
 
-document.querySelector('body').append(button);
+// Solo emite valores diferentes
+// Cabe destacar que para comparar los valores hace un ===
+numbers$.pipe(distinct())
+.subscribe(console.log);
 
-const counter$ = interval(1000);
-// const clickBtn$ = fromEvent(button, 'click');
-const clickBtn$ = fromEvent(button, 'click').pipe(skip(1)); // Emite un valor hasta que se haya pulsado dos veces ya que la primera vez la salta
+interface Charcter {
+    name: string;
+};
 
-// Takeuntil me permite desubscribirme cuando otro observador haya emitido un evento
-counter$
-.pipe(
-    takeUntil(clickBtn$)
-).subscribe({
-    next: (value) => console.log('next', value),
-    complete: () => console.log('complete')
-});
+const characters: Charcter[] =[
+    { name: 'Wonderwoman'},
+    { name: 'Spiderman'},
+    { name: 'Wonderwoman'},
+    { name: 'Superman'},
+    { name: 'Wonderwoman'},
+    { name: 'Batman'},
+    { name: 'Batman'},
+    { name: 'Batman'},
+    { name: 'Wonderwoman'},
+    { name: 'Spiderman'},
+]
+
+// De esta manera devuelve lo mismo ya que al hacer === tambien hace comparacion de refrencias
+// from(characters).pipe(distinct()).subscribe(console.log);
+
+// Podemos hacer un distinct de una propiedad como nombre
+// De esta manera solucionamos el error
+from(characters)
+    .pipe(distinct(character => character.name))
+    .subscribe(console.log);
