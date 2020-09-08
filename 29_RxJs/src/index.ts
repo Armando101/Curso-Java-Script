@@ -1,13 +1,21 @@
-import { of } from "rxjs";
-import { take, tap } from "rxjs/internal/operators";
+import { fromEvent } from "rxjs";
+import { take, first, map } from "rxjs/internal/operators";
 
-const numbers = of(1, 2, 3, 4, 5);
+const click$ = fromEvent<MouseEvent>(document, 'click');
 
-// Take nos permite tomar un cierto numero de emisiones
-// Despues del numero de emisiones dado ya no recibe mas
-// Esto quire decir que se desuscribe automaticamente
-numbers
-.pipe(take(3), tap(console.log))
+// First toma solo el primer evento emitido
+click$
+.pipe(
+    // take(1) // Con take solo toma un click, manda el complete y lod demas clicks ya no los toma
+    // first() // Toma solo el primer evento
+    first(event => event.clientY >= 150) // Toma solo el primer evento cuya coordenada Y sea mayor a 150
+)
+.subscribe({
+    next: value => console.log('next: ', value),
+    complete: () => console.log('complete')
+});
+
+click$.pipe(map(({ clientX, clientY}) => ({clientY, clientX})))
 .subscribe({
     next: value => console.log('next: ', value),
     complete: () => console.log('complete')
