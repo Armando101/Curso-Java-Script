@@ -1,13 +1,12 @@
-import { interval, fromEvent } from "rxjs";
-import { sample } from "rxjs/operators";
+import { fromEvent } from "rxjs";
+import { auditTime } from "rxjs/operators";
 
-const interval$ = interval(300);
-const click$ = fromEvent(document, 'click');
+const click$ = fromEvent<MouseEvent>(document, 'click');
 
-// sample: obtengo el valor emitido justo antes de que se haya emitido un evento en el observer que se le pasa como argumento a sample
-
-interval$
+// auditTime: devuelve el ultimo valor emitido despues del tiempo indicado
+// El tiempo empieza a contar desde que se dipara el primer evento
+click$
 .pipe(
-    sample(click$)
+    auditTime(2000)
 )
 .subscribe(console.log);
