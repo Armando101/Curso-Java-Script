@@ -1,12 +1,7 @@
 import { of, from } from "rxjs";
-import { distinct } from "rxjs/operators";
+import { distinctUntilChanged } from "rxjs/operators";
 
-const numbers$ = of<number | string>(1, '1', 1, 3, 3, 4, 5, 6, 7, 1, 2, 3, 0);
-
-// Solo emite valores diferentes
-// Cabe destacar que para comparar los valores hace un ===
-numbers$.pipe(distinct())
-.subscribe(console.log);
+const numbers$ = of<number | string>(1, '1', 1, 3, 3, 4, 5, 6, 7, 1, 2, 2, 3, 0);
 
 interface Charcter {
     name: string;
@@ -25,11 +20,11 @@ const characters: Charcter[] =[
     { name: 'Spiderman'},
 ]
 
-// De esta manera devuelve lo mismo ya que al hacer === tambien hace comparacion de refrencias
-// from(characters).pipe(distinct()).subscribe(console.log);
+// UntilChanged solo compara con el valor emitido inmediatamente antes
+numbers$.pipe(distinctUntilChanged()).subscribe(console.log);
 
-// Podemos hacer un distinct de una propiedad como nombre
-// De esta manera solucionamos el error
+// Para objetos declaramos una funcion que reciba el valor inmediat anterior y el actual
+// Ahora comparamos sus atributos
 from(characters)
-    .pipe(distinct(character => character.name))
+    .pipe(distinctUntilChanged((before, currently) => before.name === currently.name))
     .subscribe(console.log);
