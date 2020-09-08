@@ -1,7 +1,5 @@
-import { of, from } from "rxjs";
-import { distinctUntilChanged } from "rxjs/operators";
-
-const numbers$ = of<number | string>(1, '1', 1, 3, 3, 4, 5, 6, 7, 1, 2, 2, 3, 0);
+import { from } from "rxjs";
+import { distinctUntilKeyChanged } from "rxjs/operators";
 
 interface Charcter {
     name: string;
@@ -20,11 +18,9 @@ const characters: Charcter[] =[
     { name: 'Spiderman'},
 ]
 
-// UntilChanged solo compara con el valor emitido inmediatamente antes
-numbers$.pipe(distinctUntilChanged()).subscribe(console.log);
 
-// Para objetos declaramos una funcion que reciba el valor inmediat anterior y el actual
-// Ahora comparamos sus atributos
+// distinctUntilKeyChanged compara por atributo de objeto
+// Compara con el valor emitido inmediato anterior
 from(characters)
-    .pipe(distinctUntilChanged((before, currently) => before.name === currently.name))
+    .pipe(distinctUntilKeyChanged('name'))
     .subscribe(console.log);
