@@ -1,11 +1,22 @@
-import { of } from "rxjs";
-import { startWith, endWith } from "rxjs/operators";
+import { ajax } from "rxjs/ajax";
+import { startWith } from "rxjs/operators";
 
-const numbers$ = of(1, 2, 3);
+const loadingDiv = document.createElement('div');
+loadingDiv.classList.add('loading');
+loadingDiv.innerHTML = 'Loading....';
 
-numbers$
-.pipe(
-    startWith('a', 'b', 'c'),
-    endWith('x', 'y', 'z')
-)
-.subscribe(console.log);
+const body = document.querySelector('body');
+
+// Stram
+ajax.getJSON('https://reqres.in/api/users/2?delay=3')
+    .pipe(
+        startWith(true)
+    )
+    .subscribe(response => {
+        if(response === true) {
+            body.append(loadingDiv);
+        } else {
+            document.querySelector('.loading').remove();
+        }
+        console.log(response);
+    })
