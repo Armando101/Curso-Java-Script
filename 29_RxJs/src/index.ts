@@ -1,17 +1,13 @@
-import { fromEvent, interval } from "rxjs";
-import { mergeMap, switchMap } from "rxjs/operators";
+import { interval, fromEvent } from "rxjs";
+import { concatMap, take } from "rxjs/operators";
 
+const interval$ = interval(500).pipe(take(3));
 const click$ = fromEvent(document, 'click');
-const interval$ = interval(1000);
 
-// MergeMap mantien una subscripcio activa por cada click
-// click$.pipe(
-//     mergeMap(() => interval$)
-// )
-// .subscribe(console.log);
-
-// SwitchMap solo mantien una subscripcion activa por cada click, cancela la anterior
-click$.pipe(
-    switchMap(() => interval$)
+// Cuando clicks consecutivos el ultimo se va a la cola y se ejecuta hasta despues que se hayan completado los anteriores
+// A diferencia del switchMap que lo que hace es cancelar todos los anteriores y solo deja el ultimo
+click$
+.pipe(
+    concatMap(() => interval$)
 )
 .subscribe(console.log);
