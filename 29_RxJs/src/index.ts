@@ -1,32 +1,33 @@
-import { fromEvent, combineLatest } from "rxjs";
-import { pluck } from "rxjs/operators";
+import { of, interval, forkJoin } from "rxjs";
+import { take, delay } from "rxjs/operators";
 
-const keyup$ = fromEvent(document, 'keyup');
-const click$ = fromEvent(document, 'click');
+// Solo regresa un valor cuando todos los observables se completan
+// Regresa un arreglo con el ultimo elemento de cada observer
+const numbers$ = of(1, 2, 3, 4);
+const interval$ = interval(1000).pipe(take(3));
+const letters$ = of('a', 'b', 'c').pipe(delay(3500));
 
-// Regresa un arreglo que combina el ultimo dato emitido por cada uno de los observers
-// Se completa hasta que todos los observers se completen
-combineLatest(
-    keyup$.pipe(pluck('type')),
-    click$.pipe(pluck('type'))
-)
-// .subscribe(console.log);
+// forkJoin(
+//     numbers$,
+//     interval$,
+//     letters$
+// ).subscribe(response => {
+//     console.log('Numeros: ', response[0]);
+//     console.log('Intervalo: ', response[0]);
+//     console.log('Letras: ', response[0]);
+// });
 
-const input1 = document.createElement('input');
-const input2 = document.createElement('input');
+// Mismo ejercicio usando Objetos
+// forkJoin({
+//     numbers$,
+//     interval$,
+//     letters$
+// }).subscribe(console.log);
 
-input1.placeholder = 'email@gmail.com';
-input2.type = 'password';
 
-document.querySelector('body').append(input1, input2);
-
-// Helper
-const getInputStream = (element: HTMLElement) =>
-    fromEvent<KeyboardEvent>(element, 'keyup').pipe(
-        pluck<KeyboardEvent, string>('target', 'value')
-    );
-
-combineLatest(
-    getInputStream(input1),
-    getInputStream(input2),
-).subscribe(console.log);
+// Otro caso con Objetos
+forkJoin({
+    num: numbers$,
+    interval: interval$,
+    letras: letters$
+}).subscribe(console.log);
