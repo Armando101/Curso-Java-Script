@@ -1,13 +1,15 @@
 import { interval, fromEvent } from "rxjs";
-import { concatMap, take } from "rxjs/operators";
+import { exhaustMap, take } from "rxjs/operators";
 
 const interval$ = interval(500).pipe(take(3));
 const click$ = fromEvent(document, 'click');
 
-// Cuando clicks consecutivos el ultimo se va a la cola y se ejecuta hasta despues que se hayan completado los anteriores
-// A diferencia del switchMap que lo que hace es cancelar todos los anteriores y solo deja el ultimo
+// Solo mantiene uns subscripcion activa
+// Si llega otra subscripcion y la anterior no se ha completado no se subscribe
+// Por mas clicks que de dentro del rango de tiempo (500ms) no se mandara la subscripcion
+// Esto es util para evitar que el usuario de muchos clicks y aun el primero no ha respondido
 click$
 .pipe(
-    concatMap(() => interval$)
+    exhaustMap(() => interval$)
 )
 .subscribe(console.log);
