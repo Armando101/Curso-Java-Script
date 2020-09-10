@@ -1,11 +1,13 @@
-import { interval, concat } from "rxjs";
-import { take } from "rxjs/internal/operators";
+import { fromEvent, merge } from "rxjs";
+import { pluck } from "rxjs/operators";
 
-const interval$ = interval(1000);
+const keyup$ = fromEvent(document, 'keyup');
+const click$ = fromEvent(document, 'click');
 
-// Emite los valores y no emite los valores del siguiente observable si el anterior no se ha completado
-concat(
-    interval$.pipe(take(3)),
-    interval$.pipe(take(2)),
-    [1, 2, 3, 4]
-).subscribe(console.log)
+// Emite los valores de acuerdo a como se emitan los observadores
+// El merge no se completa hasta que no se hayan completado todos los observadores
+merge(
+    keyup$.pipe(pluck('type')),
+    click$.pipe(pluck('type'))
+)
+.subscribe(console.log);
