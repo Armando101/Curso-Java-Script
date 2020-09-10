@@ -1,28 +1,63 @@
-import { of, interval, fromEvent } from "rxjs";
-import { mergeMap, map, take, takeUntil } from "rxjs/operators";
+import { fromEvent, Observable } from "rxjs";
+import { debounceTime, map, pluck, mergeAll, mergeMap, switchMap } from "rxjs/operators";
+import { ajax } from "rxjs/ajax";
+import { GitHubUser } from "./inerfaces/github-user.interface";
+import { GitHubUsersResponse } from "./inerfaces/github-users.interfaces";
 
-const letters$ = of('a', 'b', 'c');
+// Referencias
+const body = document.querySelector('body');
+const textInput = document.createElement('input');
+const orderList = document.createElement('ol');
+body.append(textInput, orderList);
 
-letters$
-.pipe(
-    mergeMap((letter) => interval(1000).pipe(
-        map(i => letter + i),
-        take(3)
-    ))
-)
-// .subscribe({
-//     next: value => console.log('next: ', value),
-//     complete: () => console.log('complete')
+// Helpers
+const showUsers = (users: GitHubUser[]) => {
+    console.log(users);
+    orderList.innerHTML = ``;
+
+    for(const user of users) {
+        const li = document.createElement('li');
+        const img = document.createElement('img');
+        const anchor = document.createElement('a');
+
+        img.src = user.avatar_url;
+        anchor.href = user.html_url;
+        anchor.text = ' See profile';
+        anchor.target = '_blank';
+
+        li.append(img);
+        li.append(user.login + '');
+        li.append(anchor);
+
+        orderList.append(li);
+    }
+}
+
+// Streams
+const input$ = fromEvent<KeyboardEvent>(textInput, 'keyup');
+
+// Para el tipado utilizamos quickType
+input$.pipe(
+    debounceTime<KeyboardEvent>(300),
+    pluck<KeyboardEvent, string>('target', 'value'),
+    mergeMap<string, Observable<GitHubUsersResponse>>(text =>  ajax.getJSON(`https://api.github.com/search/users?q=${ text }`)),
+    pluck<GitHubUsersResponse, GitHubUser[]>('items')
+);
+// .subscribe(users => {
+//     showUsers(users);
+//     console.log(users[0].avatar_url)
 // });
 
-const mouseDown$ = fromEvent(document, 'mousedown');
-const mouseUp$ = fromEvent(document, 'mouseup');
-const interval$ = interval();
+const url = 'https://httpbin.org/delay/1?arg=';
 
-mouseDown$
-.pipe(
-    mergeMap(()=> interval$.pipe(
-        takeUntil(mouseUp$)
-    ))
-)
-.subscribe(console.log);
+// De esta manera con el mergeMap realizamos una peticion por cada letra que escriba cuando solo me interesa la ultima solicitud
+input$.pipe(
+    pluck('target', 'value'),
+    mergeMap(text => ajax.getJSON(url + text))
+);
+// .subscribe(console.log)
+
+input$.pipe(
+    pluck('target', 'value'),
+    switchMap(text => ajax.getJSON(url + text))
+).subscribe(console.log)
