@@ -1,22 +1,11 @@
-import { ajax } from "rxjs/ajax";
-import { startWith } from "rxjs/operators";
+import { interval, concat } from "rxjs";
+import { take } from "rxjs/internal/operators";
 
-const loadingDiv = document.createElement('div');
-loadingDiv.classList.add('loading');
-loadingDiv.innerHTML = 'Loading....';
+const interval$ = interval(1000);
 
-const body = document.querySelector('body');
-
-// Stram
-ajax.getJSON('https://reqres.in/api/users/2?delay=3')
-    .pipe(
-        startWith(true)
-    )
-    .subscribe(response => {
-        if(response === true) {
-            body.append(loadingDiv);
-        } else {
-            document.querySelector('.loading').remove();
-        }
-        console.log(response);
-    })
+// Emite los valores y no emite los valores del siguiente observable si el anterior no se ha completado
+concat(
+    interval$.pipe(take(3)),
+    interval$.pipe(take(2)),
+    [1, 2, 3, 4]
+).subscribe(console.log)
