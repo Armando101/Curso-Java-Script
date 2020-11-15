@@ -1,9 +1,0 @@
-{
-	"plugins": [
-		// Plugin para funciones asincronas
-		"@babel/plugin-transform-runtime"
-	],
-	"presets": [
-		"@babel/preset-env"
-	]
-}
