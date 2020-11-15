@@ -71,3 +71,27 @@ plugins: [
     })
 ]
 ```
+
+## Soporte para imágenes, fuentes y videos
+Necesitamos instalar las siguientes dependencias
+
+```
+npm i -D -E url-loader
+npm i -D -E file-loader
+```
+
+Con url-loader indicamos la configuración de nuestros assets
+Indicamos cuales archivos va a comprimir,
+usamos la dependencia de url-loader
+Indicamos que sólo aplique esta compresión si la imágen es menor a 9kB, esto porque si es más grande ya no vemos beneficio sino todo lo contrario ya que aunque comprima, no se ve mucha mejora en el rendimiento. Lo que hace internamente es convertir el asset a base 64
+```js
+{
+    test: /\.jpg|png|gif|woff|eot|ttf|svg|mp4|webm$/,
+    use: {
+        loader: 'url-loader',
+        options: {
+        limit: 90000
+        },
+    }
+}
+```
