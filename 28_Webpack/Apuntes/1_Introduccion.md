@@ -171,3 +171,22 @@ También podemos usar un plugin de HTML
 ```
 
 Este nos sirve para generar un HTMl automáticamente y colocar ahí los archivos css y js
+
+## Servidor de desarrollo
+Para hacer que nuestro webpack se quede escuchando cambios agregamos una bandera
+
+```
+npm run build:dev -- -w
+```
+
+Para hacer que nuestro navegador recarge de manera automática cuando hacemos cambios primero instalamos lo siguiente
+
+```
+npm i webpack-dev-server -E -D
+```
+
+Ahpra agregamos la tarea de la siguiente manera
+```json
+"build:dev": "npx webpack-web-server --config ./5_webpack-dev-server/webpack.config.js",
+```
+Esto automáticamente corre el -- -w
