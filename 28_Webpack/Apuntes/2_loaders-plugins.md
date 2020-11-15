@@ -34,3 +34,40 @@ Agregamos la configuración en el .babelrlc
     ]
 }
 ```
+
+## Soporte de JS
+Para añadir react a nuestro proyecto agregamos el siguiente presset de babel
+```js
+"presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+]
+```
+
+Instalamos la librería de babel que soporta react
+```
+npm i -D -E @babel/preset-react
+```
+
+Ahora instalamo react
+```
+npm i react react-dom
+```
+
+También es necesario agregar en el index.html una section con el id container
+```html
+<body>
+    <section id="container"></section>
+</body>
+```
+
+Y en los plugins especificamos que vamos a leer este archivo
+```js
+plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+        title: 'webpack-dev-server',
+        template: path.resolve(__dirname, 'index.html')
+    })
+]
+```
