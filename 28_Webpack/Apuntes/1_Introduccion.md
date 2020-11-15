@@ -95,7 +95,7 @@ module.exports = {
 ```
 
 ## Manejo de assets con loaders
-Nativamente no podemos importar css en nuestros js, para esto utilizamos loaders, estos los configuramos de la siguiente manera en nuestro objeto de configuración.
+Nativamente no podemos importar css en nuestros js, para esto utilizamos loaders, estos los configuramos de la siguiente manera en nuestro objeto de configuración. La configuración de loaders la incluimos en un objeto llamado module
 ```js
 module: {
     rules: [
@@ -121,3 +121,53 @@ Sirve para interpretar css
 
 ### css-loader
 Sirve para inyectar el css en el html
+
+## Plugins
+La configuración de los plugins la metemos en un objeto llamado plugins.
+Vamos a utilizar un plugin para comprimir los archivos css.
+Anteriormente los comprimiamos y quedaban en un archivos js pero en esta ocasión queremos tener uno aparte, es por eso que establecemos la configuración de la siguiente manera.
+
+```
+npm i mini-css-extract-plugin html-webpack-plugin -E -D
+```
+
+Note que reemplazamos la configuración anterior del style loader.
+Primero el css-loader interpreta el css
+Después comprime el css con MiniCSSExtractPlugin, las reglas de como lo va a comprimir están dadas en el objeto plugins.
+```
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+
+
+module: {
+    rules: [
+        {
+            test: /\.css$/,
+            use: [
+                {
+                    loader: MiniCSSExtractPlugin.loader
+                },
+                'css-loader',
+            ]
+        }
+    ]
+},
+plugins: [
+    new MiniCSSExtractPlugin({
+        filename: 'css/[name].css'
+    })
+]
+```
+
+También podemos usar un plugin de HTML
+```js
+ plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Plugins'
+        }),
+        new MiniCSSExtractPlugin({
+            filename: 'css/[name].css'
+        })
+    ]
+```
+
+Este nos sirve para generar un HTMl automáticamente y colocar ahí los archivos css y js
