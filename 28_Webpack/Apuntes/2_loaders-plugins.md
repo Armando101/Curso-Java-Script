@@ -95,3 +95,44 @@ Indicamos que sólo aplique esta compresión si la imágen es menor a 9kB, esto 
     }
 }
 ```
+
+## Estilos con preprocesadores
+
+Instalamos las siguientes dependencias
+```
+npm install sass-loader stylus-loader less-loader postcss-loader --save-dev --save-exact
+```
+
+Ahora instalamos las dependencias de los preprocesadores
+```
+npm i stylus less node-sass -D
+```
+
+Ahora hacemos las configuraciones en webpack
+
+```
+{
+    test: /\.less$/,
+    use: [
+        'style-loader',
+        'css-loader',
+        'less-loader'
+    ]
+    },
+    {
+    test: /\.scss$/,
+    use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader'
+    ]
+    },
+    {
+    test: /\.stylus$/,
+    use: [
+        'style-loader',
+        'css-loader',
+        'stylus-loader'
+    ]
+}
+```

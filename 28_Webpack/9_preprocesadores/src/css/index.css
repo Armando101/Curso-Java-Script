@@ -1,0 +1,38 @@
+@font-face {
+    font-family: "open_sansregular";
+    src: url("../fonts/OpenSans-Regular-webfont.eot");
+    src: url("../fonts/OpenSans-Regular-webfont.eot?#iefix") format("embedded"),
+      url("../fonts/OpenSans-Regular-webfont.woff") format("woff"),
+      url("../fonts/OpenSans-Regular-webfont.ttf") format("truetype"),
+      url("../fonts/OpenSans-Regular-webfont.svg#open_sansregular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: lightskyblue;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    font-size: 40px;
+    font-family: open_sansregular;
+    /* animation: 800ms latido infinite; */
+}
+
+img {
+    width: 50%;
+}
+
+@keyframes latido {
+    0% {
+        transform: scale(1.1)
+    }
+    50% {
+        transform: scale(1)
+    }
+    100% {
+        transform: scale(1.1)
+    }
+}
