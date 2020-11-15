@@ -1,11 +1,12 @@
 import '../css/index.css';
-import text from './text';
+import search from './search';
+import render from './render';
 
-text();
-
-if (module.hot) {   // Si tenemos activo el hot module
-    module.hot.accept('./text', function() {    // Haz hot reaload cuando haya cambios en este archivo
-        text();
-        console.log('He recargado en caliente');
-    });
-}
+const id = prompt('Quien es ese pokemon');
+search(id)
+    .then((data) => {
+        render(data);
+    })
+    .catch(() => {
+        console.log('No hubo pokemon');
+    })

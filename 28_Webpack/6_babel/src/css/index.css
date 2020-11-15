@@ -10,6 +10,10 @@ body {
     animation: 800ms latido infinite;
 }
 
+img {
+    width: 50%;
+}
+
 @keyframes latido {
     0% {
         transform: scale(1.1)
