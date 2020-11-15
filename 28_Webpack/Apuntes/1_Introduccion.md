@@ -93,3 +93,31 @@ module.exports = {
     }
 }
 ```
+
+## Manejo de assets con loaders
+Nativamente no podemos importar css en nuestros js, para esto utilizamos loaders, estos los configuramos de la siguiente manera en nuestro objeto de configuración.
+```js
+module: {
+    rules: [
+        {
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader',
+            ]
+        }
+    ]
+}
+```
+
+Indicamos que para cualquier archivo que termine en _.css_ aplique un css-loader (interpreta los css), y después con el style-loader los inyecta en el html, los loaders se ejecutan de abajo hacía arriba, pero antes tenemos que instalar los siguientes paquetes.
+```
+npm i -D -E css-loader
+npm i -D -E style-loader
+```
+
+### style-loader
+Sirve para interpretar css
+
+### css-loader
+Sirve para inyectar el css en el html
