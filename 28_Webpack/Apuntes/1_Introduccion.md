@@ -190,3 +190,59 @@ Ahpra agregamos la tarea de la siguiente manera
 "build:dev": "npx webpack-web-server --config ./5_webpack-dev-server/webpack.config.js",
 ```
 Esto automáticamente corre el -- -w
+
+## Hot Module Replacement
+En la parte de configuración agregamos un nuevo objeto llamado devServer
+hot indica que está en modo hot reload
+open indica que se va a abrir el navegador automáticamente
+port indica el puerto en el cual va a correr
+```js
+devServer: {
+    hot: true,
+    open: true,
+    port: 8080
+},
+```
+Agregamos el siguiente plugin 
+```js
+new webpack.HotModuleReplacementPlugin()
+```
+
+En nuestro archivo js agregamos la siguiente configuración
+```js
+import '../css/index.css';
+import text from './text';
+
+text();
+
+if (module.hot) {   // Si tenemos activo el hot module
+    module.hot.accept('./text', function() {    // Haz hot reaload cuando haya cambios en este archivo
+        text();
+        console.log('He recargado en caliente');
+    });
+}
+```
+
+Para seguir con la optimización en el archivo de configuración regresamos a la configuración anterior para el css
+```js
+module: {
+    rules: [
+        {
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader',
+            ]
+        }
+    ]
+},
+plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+        title: 'webpack-dev-server'
+    })
+]
+```
+
+Esto porque en un entorno de desarrollo nos conviene que nuestro css se inyecte directo en el html y no que genere un nuevo archivo css.
+Para modo producción podemos cambiar a la otra configuración.
