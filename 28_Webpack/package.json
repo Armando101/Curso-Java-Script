@@ -14,6 +14,7 @@
     "build:react": "npx webpack-dev-server --config ./7_react/webpack.config.js",
     "build:url-loader": "npx webpack-dev-server --config ./8_url-loader/webpack.config.js",
     "build:prepro": "npx webpack-dev-server --config ./9_preprocesadores/webpack.config.js",
+    "build:prevent-duplication": "npx webpack-dev-server --config ./10_prevent-duplication/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
