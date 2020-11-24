@@ -110,13 +110,15 @@ nav ul {
   color: var(--blanco);
 }
 
-.nav-item:hover {
+.nav-item:hover, .nav-item:hover a {
   background-color: var(--verde);
+  color: var(--gris-oscuro);
 }
 
 .intro {
   margin: 0 196px;
   font-family: var(--secondary-font);
+  color: var(--blanco);
 }
 
 .social-media {
@@ -201,6 +203,10 @@ nav ul {
   display: flex;
   flex-direction: column;
   width: 30%;
+}
+
+.form-container label {
+  color: var(--blanco);
 }
 
 .message-input input {
