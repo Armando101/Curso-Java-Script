@@ -158,25 +158,13 @@ nav ul {
   cursor: pointer;
   transform: scale(1.1);
 }
-
-.project1 {
-  background: center / cover no-repeat url(./images/project1.png);
+.project button {
+  height: 100%;
 }
 
-.project2 {
-  background: center / cover no-repeat url(./images/project2.png);
-}
-
-.project3 {
-  background: center / cover no-repeat url(./images/project3.png);
-}
-
-.project4 {
-  background: center / cover no-repeat url(./images/project4.png);
-}
-
-.project5 {
-  background: center / cover no-repeat url(./images/project5.png);
+.project button img {
+  object-fit: cover;
+  height: 100%;
 }
 
 .arrow {
