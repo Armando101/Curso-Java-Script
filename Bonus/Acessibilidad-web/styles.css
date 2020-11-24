@@ -282,11 +282,12 @@ input:focus-within {
   padding: 8px
 }
 
-.send-button {
+.send-button,
+.modal-button {
   align-items: center;
   background-color: var(--verde);
+  color: var(--gris-oscuro);
   border-radius: 5px;
-  color: white;
   font-family: var(--secondary-font);
   display: flex;
   height: 50px;
@@ -295,6 +296,13 @@ input:focus-within {
   width: 150px;
   margin-left: auto;
   font-size: 16px;
+  cursor: pointer;
+}
+
+.send-button:focus,
+.modal-button:focus {
+  border: 5px solid var(--gris-oscuro);
+  outline: 3px solid var(--verde);
 }
 
 .notification {
@@ -335,10 +343,15 @@ input:focus-within {
   position: fixed;
   top: 15%;
   width: 700px;
+  padding: 56px;
+}
+
+#modal-header:focus {
+  outline: 3px solid var(--verde);
+  padding: 8px;
 }
 
 .modal-project-image {
-  background: center / cover no-repeat url(./images/project1.png);
   border-radius: 5px;
   border: 2px solid #000;
   height: 400px;
@@ -357,8 +370,4 @@ input:focus-within {
 .social-link-text {
   padding-right: 8px;
   padding-left: 8px;
-}
-
-.send-button {
-  color: var(--gris-oscuro);
 }

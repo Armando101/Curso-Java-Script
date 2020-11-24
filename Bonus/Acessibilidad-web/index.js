@@ -7,8 +7,11 @@ window.onload = () => {
   document.querySelectorAll(".project").forEach(element => {
     element.addEventListener("click", e => openModal(e));
   });
-  document.body.addEventListener("click", e => closeModal(e));
+
+  document.body.addEventListener('keyup', e => listenForEsc(e));
+
 };
+document.getElementById('close').addEventListener('click', e=>closeModal(e));
 
 /** Esta funcion se llama cuando la persona hace click en la fecha derecha del carousel para navegar a la derecha */
 function clickRight() {
@@ -35,12 +38,20 @@ function clickRight() {
         document.querySelector('.project5').removeAttribute('tabindex');
         document.querySelector('.project5-container').removeAttribute('aria-hidden');
       break;
-  
+
     default:
       break;
   }
-  
+
 }
+
+// Escucha por la clave esc para cerrar el modal
+function listenForEsc(e) {
+  if (e.keyCode === 27) {
+    closeModal(e);
+  }
+}
+
 
 /** Esta funcion se llama cuando la persona hace click en la fecha izquierda del carousel para navegar a la izquierda */
 function clickLeft() {
@@ -65,9 +76,9 @@ function clickLeft() {
         document.querySelector('.project4').setAttribute('tabindex', '-1');
         document.querySelector('.project4-container').setAttribute('aria-hidden', true);
         document.querySelector('.project1').removeAttribute('tabindex');
-        document.querySelector('.project1-container').removeAttribute('aria-hidden');  
+        document.querySelector('.project1-container').removeAttribute('aria-hidden');
       break;
-  
+
     default:
       break;
   }
@@ -85,6 +96,7 @@ function showNotification() {
 /** Esta funcion se llama cuando la persona hace click en cualquier porjecto del carousel */
 function openModal(e) {
   document.querySelector(".modal-container").style.display = "flex";
+  document.getElementById('modal-header').focus();
 }
 
 /** Esta funcion se llama para cerrar el modal */
