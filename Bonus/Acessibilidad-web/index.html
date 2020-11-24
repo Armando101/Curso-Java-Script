@@ -30,7 +30,9 @@
 
     <main id="main">
       <section class="intro">
-        Hola! Soy Armando Rivera 👋 Apasionado por la enseñanza y el código. Soy frontend developer trabajando especialmente con Angular. Desde el 2018 he dado clases de programación en la facultad de ingeniería de la Universidad Nacional Autónoma de México en la cual estudié a su vez Ingeniería Eléctrica Electrónica. Pertenezco al programa Platzi Master en el cual sólo acceden los mejores estudiantes de la plataforma.
+        <P>
+          Hola! Soy Armando Rivera 👋 Apasionado por la enseñanza y el código. Soy frontend developer trabajando especialmente con Angular. Desde el 2018 he dado clases de programación en la facultad de ingeniería de la Universidad Nacional Autónoma de México en la cual estudié a su vez Ingeniería Eléctrica Electrónica. Pertenezco al programa Platzi Master en el cual sólo acceden los mejores estudiantes de la plataforma.
+        </P>
         <ul class="social">
           <li>
             <a href="https://twitter.com/armandorn101" target="_blank">
@@ -93,7 +95,7 @@
           <label for="nombre">
             <span>Nombre</span>
             <input type="text" id="nombre" aria-label="nombre" autocomplete="name"/> <br/>
-            <span class="error" id="name-error"></span>
+            <span aria-live="assertive" class="error" id="name-error"></span>
           </label>
         <label for="correo">
           <span>Correo</span>
@@ -106,7 +108,7 @@
         <button class="send-button">Enviar</button>
       </form>
     </footer>
-    <div class="notification">El formulario fue enviado sin errores</div>
+    <div class="notification" aria-live="assertive">El formulario fue enviado sin errores</div> 
     <section class="modal-container">
       <div class="modal">
         <h2 id="modal-header" tabindex="0">Ejemplo de un proyecto</h2>
