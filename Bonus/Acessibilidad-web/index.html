@@ -13,6 +13,8 @@
 
   <body>
 
+    <a href="#main" class="skip-link">Saltar al contenido</a>
+
     <header>
       <img src="images/armando-rivera.jpg" alt="Armando Rivera" class="header-img">
       <h1 class="header">Armando Rivera</h1>
@@ -26,67 +28,70 @@
       </nav>
     </header>
 
-    <div class="intro">
-      Hola! Soy Armando Rivera 👋 Apasionado por la enseñanza y el código. Soy frontend developer trabajando especialmente con Angular. Desde el 2018 he dado clases de programación en la facultad de ingeniería de la Universidad Nacional Autónoma de México en la cual estudié a su vez Ingeniería Eléctrica Electrónica. Pertenezco al programa Platzi Master en el cual sólo acceden los mejores estudiantes de la plataforma.
-      <div class="social-media">
-        <div>
-          <a href="https://twitter.com/armandorn101" target="_blank"
-            ><img src="images/twitter.png"
-          /></a>
+    <main id="main">
+      <section class="intro">
+        Hola! Soy Armando Rivera 👋 Apasionado por la enseñanza y el código. Soy frontend developer trabajando especialmente con Angular. Desde el 2018 he dado clases de programación en la facultad de ingeniería de la Universidad Nacional Autónoma de México en la cual estudié a su vez Ingeniería Eléctrica Electrónica. Pertenezco al programa Platzi Master en el cual sólo acceden los mejores estudiantes de la plataforma.
+        <ul class="social">
+          <li>
+            <a href="https://twitter.com/armandorn101" target="_blank">
+              <img src="images/twitter.png"/>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/Armando101" target="_blank">
+              <img src="images/github-logo.png"/>
+              <p class="social-link-text">GitHub</p>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/armando101/" target="_blank">
+              <img src="images/linkedin.png"/>
+            </a>
+          </li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2>Mis proyectos</h2>
+        <div class="carousel">
+          <div class="arrow arrow-left" aria-label="backward button"></div>
+          <div class="window">
+            <ul class="project-container">
+              <li class="project project1">
+                <button><img src="/images/project1.png" alt="Primer proyecto"></button>
+              </li>
+              <li class="project project2">
+                <button><img src="./images/project2.png" alt="Segundo proyecto"></button>
+              </li>
+              <li class="project project3">
+                <button><img src="./images/project3.png" alt="Tercer proyecto"></button>
+              </li>
+              <li class="project project4">
+                <button><img src="./images/project4.png" alt="Cuarto proyecto" aria-hidden="true"></button>
+              </li>
+              <li class="project project5" aria-hidden="true">
+                <button><img src="./images/project5.png" alt="Quinto proyecto"></button>
+              </li>
+            </ul>
+          </div>
+          <div class="arrow arrow-right" aria-label="forward button"></div>
         </div>
-        <div>
-          <a href="https://github.com/Armando101" target="_blank"
-            ><img src="images/github-logo.png"
-          /></a>
-        </div>
-        <div>
-          <a href="https://www.linkedin.com/in/armando101/" target="_blank"
-            ><img src="images/linkedin.png"
-          /></a>
-        </div>
-      </div>
-    </div>
-
-    <section>
-      <h2>Mis proyectos</h2>
-      <div class="carousel">
-        <div class="arrow arrow-left" aria-label="backward button"></div>
-        <div class="window">
-          <ul class="project-container">
-            <li class="project project1">
-              <button><img src="/images/project1.png" alt="Primer proyecto"></button>
-            </li>
-            <li class="project project2">
-              <button><img src="./images/project2.png" alt="Segundo proyecto"></button>
-            </li>
-            <li class="project project3">
-            <button><img src="./images/project3.png" alt="Tercer proyecto"></button>
-            </li>
-            <li class="project project4">
-            <button><img src="./images/project4.png" alt="Cuarto proyecto" aria-hidden="true"></button>
-            </li>
-            <li class="project project5" aria-hidden="true">
-            <button><img src="./images/project5.png" alt="Quinto proyecto"></button>
-            </li>
-          </ul>
-        </div>
-        <div class="arrow arrow-right" aria-label="forward button"></div>
-      </div>
-    </section>
-
-    <footer class="contact-section"> 
-      <div class="header">Contacto</div>
-      <form class="form-container">
-        <label for="nombre">
-          <span>Nombre</span>
-          <input type="text" id="nombre" aria-label="nombre" autocomplete="name"/> <br/>
-        </label>
+      </section>
+    </main>
+      
+      <footer class="contact-section"> 
+        <div class="header">Contacto</div>
+        <form class="form-container">
+          <label for="nombre">
+            <span>Nombre</span>
+            <input type="text" id="nombre" aria-label="nombre" autocomplete="name"/> <br/>
+          </label>
         <label for="correo">
           <span>Correo</span>
           <input type="text" id="correo" aria-label="correo" autocomplete="email"/><br/>
         </label>
-        <label for="message">
-          <span>Mensaje</span>
+        <label class="message-input" for="message">
+          <span>Mensaje</span><br>
           <textarea name="messages" id="messages" cols="35" rows="10"></textarea>
         </label>
         <button class="send-button">Enviar</button>
@@ -100,6 +105,6 @@
       </div>
     </div>
 
-    <script src="index.js" type="text/javascript"></script>
+    <!-- <script src="index.js" type="text/javascript"></script> -->
   </body>
 </html>

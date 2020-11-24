@@ -55,6 +55,21 @@ body, header, section {
   width: 100%;
 }
 
+.skip-link {
+  height: 0;
+}
+ 
+.skip-link:focus, .skip-link:active {
+  background-color: var(--verde);
+  border-radius: 5px;
+  color: var(--gris-oscuro);
+  font-family: var(--secondary-font);
+  height: auto;
+  margin: 16px 0 8px;
+  padding: 8px;
+  text-decoration: none;
+}
+
 .header {
   color: var(--blanco);
   font-family: var(--main-font);
@@ -119,9 +134,10 @@ nav ul {
   margin: 0 196px;
   font-family: var(--secondary-font);
   color: var(--blanco);
+  width: 60%;
 }
 
-.social-media {
+.social {
   align-items: center;
   display: flex !important;
   justify-content: space-around;
@@ -209,7 +225,7 @@ nav ul {
   color: var(--blanco);
 }
 
-.message-input input {
+.message-input textarea {
   height: 150px;
   margin-bottom: 16px;
 }
@@ -281,4 +297,17 @@ input {
   height: 400px;
   margin: 16px;
   width: 550px;
+}
+
+.social li a {
+  align-items: center;
+  display: flex;
+  color: var(--blanco);
+  font-family: var(--secondary-font);
+  text-decoration: none;
+}
+
+.social-link-text {
+  padding-right: 8px;
+  padding-left: 8px;
 }
