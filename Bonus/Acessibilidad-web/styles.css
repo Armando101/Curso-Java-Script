@@ -130,6 +130,27 @@ nav ul {
   color: var(--gris-oscuro);
 }
 
+.nav-item:focus-within {
+  background-color: var(--verde);
+
+}
+
+.nav-item a:focus {
+  outline: none;
+  color: var(--gris-oscuro);
+
+}
+
+.social li a:focus {
+  outline: none;
+}
+
+.social li:focus-within {
+  outline: 3px solid var(--verde);
+  padding: 8px;
+  padding-right: 33px;
+}
+
 .intro {
   margin: 0 196px;
   font-family: var(--secondary-font);
@@ -142,7 +163,7 @@ nav ul {
   display: flex !important;
   justify-content: space-around;
   margin: 32px auto 0;
-  width: 20%;
+  width: 100%;
 }
 
 .carousel {
@@ -153,13 +174,25 @@ nav ul {
 
 .window {
   overflow: hidden;
-  width: 805px;
+  width: 815px;
+  padding: 8px;
 }
 
 .project-container {
   left: 0;
   position: relative;
   width: 1500px;
+}
+
+.project-container button {
+  background: none;
+  border: none;
+  padding: 0px;
+}
+
+.project-container button:focus-within {
+  outline: 3px solid var(--verde);
+  padding: 8px;
 }
 
 .project {
@@ -231,8 +264,12 @@ nav ul {
 }
 
 input {
-  outline: none;
   width: 100%;
+}
+
+input:focus-within {
+  outline: 3px solid var(--verde);
+  padding: 8px
 }
 
 .send-button {
