@@ -77,8 +77,14 @@
     <footer class="contact-section"> 
       <div class="header">Contacto</div>
       <form class="form-container">
-        Nombre<input type="text" aria-label="nombre"/> <br/>
-        Correo<input type="text" aria-label="correo"/> <br/>
+        <label for="nombre">
+          <span>Nombre</span>
+          <input type="text" id="nombre" aria-label="nombre" autocomplete="name"/> <br/>
+        </label>
+        <label for="correo">
+          <span>Correo</span>
+          <input type="text" id="correo" aria-label="correo" autocomplete="email"/><br/>
+        </label>
         <div class="message-input">Mensaje<input type="text" /> <br /></div>
         <button class="send-button">Enviar</button>
       </form>
