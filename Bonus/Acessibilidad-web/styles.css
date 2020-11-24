@@ -178,6 +178,12 @@ nav ul {
   padding: 8px;
 }
 
+section h2 {
+  color: var(--blanco);
+  margin: 20px;
+  font-size: 40px;
+}
+
 .project-container {
   left: 0;
   position: relative;
