@@ -246,6 +246,10 @@ section h2 {
   border-radius: 50%;
 }
 
+.arrow:focus {
+  outline: 3px solid var(--verde);
+}
+
 .contact-section {
   align-items: center;
   background-color: var(--gris-oscuro);
@@ -353,4 +357,8 @@ input:focus-within {
 .social-link-text {
   padding-right: 8px;
   padding-left: 8px;
+}
+
+.send-button {
+  color: var(--gris-oscuro);
 }
