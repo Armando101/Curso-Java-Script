@@ -50,7 +50,7 @@
     <section>
       <h2>Mis proyectos</h2>
       <div class="carousel">
-        <div class="arrow arrow-left"></div>
+        <div class="arrow arrow-left" aria-label="backward button"></div>
         <div class="window">
           <ul class="project-container">
             <li class="project project1">
@@ -63,22 +63,22 @@
             <button><img src="./images/project3.png" alt="Tercer proyecto"></button>
             </li>
             <li class="project project4">
-            <button><img src="./images/project4.png" alt="Cuarto proyecto"></button>
+            <button><img src="./images/project4.png" alt="Cuarto proyecto" aria-hidden="true"></button>
             </li>
-            <li class="project project5">
+            <li class="project project5" aria-hidden="true">
             <button><img src="./images/project5.png" alt="Quinto proyecto"></button>
             </li>
           </ul>
         </div>
-        <div class="arrow arrow-right"></div>
+        <div class="arrow arrow-right" aria-label="forward button"></div>
       </div>
     </section>
 
-    <footer class="contact-section">
+    <footer class="contact-section"> 
       <div class="header">Contacto</div>
       <form class="form-container">
-        Nombre<input type="text" /> <br />
-        Correo<input type="text" /> <br />
+        Nombre<input type="text" aria-label="nombre"/> <br/>
+        Correo<input type="text" aria-label="correo"/> <br/>
         <div class="message-input">Mensaje<input type="text" /> <br /></div>
         <button class="send-button">Enviar</button>
       </form>
