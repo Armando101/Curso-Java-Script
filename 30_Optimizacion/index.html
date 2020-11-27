@@ -12,11 +12,11 @@
     <link rel="preconnect" href="https://kitsu.io" crossorigin>
     <link rel="dns-prefetch" href="https://kitsu.io">
 
-    <!-- Fonts -->
+    <!-- Fonts
     <link
-      href="https://fonts.googleapis.com/css?family=Muli&display=block"
+      href="https://fonts.googleapis.com/css?family=Muli&display=swap"
       rel="stylesheet"
-    />
+    /> -->
     <!-- Styles -->
     <link rel="stylesheet" href="/styles.css" />
     <link rel="stylesheet" href="/desktop.css" media="screen and (min-width: 600px)" />
@@ -27,11 +27,13 @@
     <title>PlatziVideo</title>
   </head>
   <body>
-    <header>
-      <div class="logo"></div>
+    <header class="header">
+      <div class="logo">
+        <img width="200px" height="61px" src="/assets/logo-platzi-video.png" alt="platzi">
+      </div>
       <div class="menu">
         <div>
-          <img src="assets/user-icon.png" alt="" />
+          <img class="header__menu" src="assets/user-icon.png" alt="" />
           <p>Perfil</p>
         </div>
         <ul>
@@ -65,5 +67,15 @@
         <a href="https://kitsu.io" target="_blank">Kitsu</a>
       </p>
     </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+      WebFont.load({
+        google: {
+          families: ['Muli']
+        }
+      });
+    </script>
+
   </body>
 </html>
