@@ -124,7 +124,7 @@ ul:hover {
 
 .main h2 {
   color: white;
-  font-size: 30px;
+  font-size: 24px;
 }
 
 body .main .search-input {
@@ -189,6 +189,8 @@ footer a:hover {
 }
 
 .carousel-item {
+  /* Decimos al navegador que este contenedor va a experimentar una transformación */
+  will-change: transform;
   border-radius: 20px;
   position: relative;
   display: inline-block;
@@ -199,8 +201,23 @@ footer a:hover {
   cursor: pointer;
   transition: 450ms all;
   transform-origin: center left;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  /* Quitamos el box shadow porque ya lo tenemos en el before */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); */
 }
+
+.carousel-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 20px;
+  opacity: 0.4;
+  transition: 450ms all;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+}
+
 /* Change opacity to all items but current */
 .carousel > div:hover .carousel-item:not(:hover) {
   opacity: 0.3;
@@ -208,11 +225,22 @@ footer a:hover {
 /* Scale up current */
 .carousel-item:hover {
   transform: scale(1.5);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+  /* Este box shadow ya no se anima porque está animandose la opcidad en el before */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 1); */
 }
+
+.carousel-item:hover:before {
+  /* Animación */
+  opacity: 1;
+}
+
+
 /* Move subsecuent item */
 .carousel-item:hover + .carousel-item {
-  margin-left: 100px;
+  /* Recordemos que todo lo que no sea Opcity o transform realiza un paint 
+  Por eso cambiaremos este margin left por un transform */
+  /* margin-left: 100px; */
+  transform: translateX(100px);
 }
 
 .carousel-item > img {
@@ -275,13 +303,3 @@ footer a:hover {
  * Media Queries
  *******************************************
  */
-@media only screen and (max-width: 600px) {
-  .main h2 {
-    font-size: 24px;
-  }
-
-  footer {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-}
