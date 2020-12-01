@@ -8,7 +8,7 @@ const Controls = ({ slug, youtubeVideoId }) =>
   h(
     'div',
     h(
-      'a',
+      'a.js-video-link',
       {
         href: `https://www.youtube.com/watch?v=${youtubeVideoId}`,
         title: 'Watch trailer',
@@ -47,7 +47,7 @@ const CarouselItem = ({
     'div.carousel-item',
     h('img', { src: imageUrl, alt: '', loading: 'lazy' }),
     h(
-      'div',
+      'div.carousel-item__details',
       Controls({ slug, youtubeVideoId }),
       h('p', title),
       h('p', subtitle),

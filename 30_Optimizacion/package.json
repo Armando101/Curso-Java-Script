@@ -2,7 +2,7 @@
   "name": "platzi-optimizacion-web",
   "version": "0.1.0",
   "description": "Proyecto del curso de Optimizacion Web de Platzi",
-  "author": "@jonalvarezz",
+  "author": "@armando-rivera",
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack-dev-server",
@@ -34,6 +34,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
-    "date-fns": "^2.16.1"
+    "date-fns": "^2.16.1",
+    "lozad": "^1.16.0"
   }
 }
