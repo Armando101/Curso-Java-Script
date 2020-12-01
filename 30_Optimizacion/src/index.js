@@ -66,10 +66,18 @@ const Carousel = ({ itemsList = [] }) =>
     const observer = lozad(carouseImages);
     observer.observe();
 
-    const allYouTubeLinks = document.querySelectorAll('.js-video-link');
-    // console.log(allYouTubeLinks);
-    allYouTubeLinks.forEach((link) => {
-      link.addEventListener('click', modalListener);
+    document.body.addEventListener('click', (event) => {
+      // IMG A
+      const tagName = event.target.tagName;
+      if (['IMG', 'A'].includes(tagName)) {
+        modalListener(event)
+      }
     });
+
+    // const allYouTubeLinks = document.querySelectorAll('.js-video-link');
+    // console.log(allYouTubeLinks);
+    // allYouTubeLinks.forEach((link) => {
+    //   link.addEventListener('click', modalListener);
+    // });
 
 })(document, window)
