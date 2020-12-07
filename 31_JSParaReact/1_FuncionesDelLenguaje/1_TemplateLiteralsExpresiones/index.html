@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Funciones útiles del lenguaje</title>
+  </head>
+  <body>
+    <h1>Expresiones con Template Literals-expresiones</h1>
+
+    <script>
+      // Expresiones simples
+      const nombre = "Armando";
+      console.log(`Mi nombre es ${nombre}`);
+      console.log(`Mi nombre es ${(x = "Armando Rivera")}`);
+
+      // Funciones
+      console.log(
+        `Desde una función mi nombre es ${(function name() {
+          return "Armando Rivera";
+        })()}`
+      );
+      console.log(
+        `Desde una función sin nombre mi nombre es ${(function () {
+          return "Armando Rivera";
+        })()}`
+      );
+
+      console.log(
+        `Desde una arrow funtion mi nombre es ${(() => {
+          return "Armando Rivera";
+        })()}`
+      );
+
+      // Operadores condicionales
+      console.log(
+        `Desde el operador && mi nombre es ${true && "Armando Rivera"}`
+      );
+
+      console.log(
+        `Desde el operador || mi nombre es ${false || "Armando Rivera"}`
+      );
+
+      // Arreglos
+      console.log(
+        `Mi nombre es ${["a", "b"].map((letra) => `${letra}-styled`)}`
+      );
+    </script>
+  </body>
+</html>
