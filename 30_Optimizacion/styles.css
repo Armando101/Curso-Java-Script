@@ -238,7 +238,7 @@ footer a:hover {
 
 
 /* Move subsecuent item */
-.carousel-item:hover + .carousel-item {
+.carousel-item:hover ~ .carousel-item {
   /* Recordemos que todo lo que no sea Opcity o transform realiza un paint 
   Por eso cambiaremos este margin left por un transform */
   /* margin-left: 100px; */

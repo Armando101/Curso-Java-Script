@@ -25,3 +25,5 @@ Curso de optimización web dictado por [@jonalvarezz](https://twitter.com/jonalv
     El sitio estará disponible en http://localhost:8080.
 
     Happy hacking!
+2. **Notas del curso**
+https://www.notion.so/Optimizaci-n-Web-d079528ee6bf4f92a63d3c6204d3e7c7
