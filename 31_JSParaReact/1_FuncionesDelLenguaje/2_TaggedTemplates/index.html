@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tagged Templates</title>
+    <style>
+      body {
+        display: flex;
+        margin: 0;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        font-family: system-ui;
+        background-color: #f49097;
+        color: #f2f5ff;
+        font-size: 2em;
+        text-shadow: 1px 1px rgba(0, 0, 0, .5);
+      }
+    
+      strong {
+        color: #f5e960;
+        padding: .15em .4em;
+        background: #dfb2f4;
+        border-radius: 20px;
+        border: 2px solid #f2f5ff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <p>El trabajo duro supera al talento natural</p> -->
+    <script>
+      // Dependiendo los argumentos que envie le tengo que colocar parametros
+      // Me los muestra como un array
+      function taggedTemplate(strings, param1, param2) {
+        console.log(strings, param1, param2);
+      }
+
+      taggedTemplate`Hola ${'mundo'} ${'!!!'}`;
+
+      // Si no sabemos cuántos arguemntos vamos a recibir podemos usar un spread operator
+      function taggedTemplate2(strings, ...dynamicValues) {
+        console.log(strings, dynamicValues);
+      }
+      
+      taggedTemplate2`Hola ${'mundo'} ${'!!!'}`;
+      
+      function taggedTemplate3(strings, ...dynamicValues) {
+        // console.log(strings, dynamicValues);
+        let newContent = '';
+        strings.forEach((string, index) => {
+          const strong = dynamicValues[index] ? `<strong>${dynamicValues[index]}</strong>` : '';
+          // console.log(dynamicValues[index]);
+          newContent += `${string} ${strong}`;
+        });
+
+        return `<p>${newContent}</p>`;
+      }
+
+      const message = taggedTemplate3 `El ${'trabajo duro'} supera al ${'talento natural'}`;
+      document.body.innerHTML = message;
+    </script>
+  </body>
+</html>
