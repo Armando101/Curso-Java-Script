@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paramater Defaults</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <main class="wrapper">
+    <h1>Icecream Machine</h1>
+    <p>Elige los 2 sabores que más te gusten y haz tu orden</p>
+    <div class="icrecream-grid">
+      <div class="flavor" data-flavor="strawberry"></div>
+      <div class="flavor" data-flavor="chocolate"></div>
+      <div class="flavor" data-flavor="orange"></div>
+      <div class="flavor" data-flavor="vanilla"></div>
+      <div class="flavor" data-flavor="lemon"></div>
+    </div>
+    <button id="btn" class="button">Preparar Helado</button>
+  </main>
+
+  <script>
+    const $flavors = document.querySelectorAll('.flavor');
+    function selectFlavor() {
+      this.classList.toggle('is-active');
+    }
+    function isRequired(param) {
+      throw new Error(`${param} es requerido`);
+    }
+    function makeIceCream(flavor1 = isRequired('flavor1'), flavor2 = isRequired('flavor1')) {
+    // console.log(flavor1.dataset);
+    // console.log(flavor2);
+      alert(`Tienes un rico helado de ${flavor1.dataset.flavor} con ${flavor2.dataset.flavor}`);
+    }
+    console.log($flavors);
+
+    $flavors.forEach($element => $element.addEventListener('click', selectFlavor));
+    window.btn.addEventListener('click', (params) => {
+      const $flavors = document.querySelectorAll('.flavor.is-active');
+      console.log($flavors);
+
+      try {
+        makeIceCream($flavors[0], $flavors[1]);
+      } catch {
+        alert('Elije dos sabores');
+      }
+    });
+  </script>
+
+</body>
+</html>
