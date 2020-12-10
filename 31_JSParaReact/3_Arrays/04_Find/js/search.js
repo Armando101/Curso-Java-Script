@@ -6,10 +6,11 @@ const search = window['search-form'];
 search.addEventListener('submit', function (event) {
   event.preventDefault();
   const formData = new FormData(this);
-  const title = formData.get('title');
-  const movies = filterByTitle(title);
+  const query = formData.get('title');
+  const movies = searchMovie(query);
   render(movies);
 });
+
 /**
  * Encuentra las coincidencias de la cadena a buscar y el listado de películas
  * @param {string} title titulo a buscar
@@ -27,4 +28,27 @@ function filterByTitle(title) {
  */
 function cleanString(phrase) {
   return phrase.toLocaleLowerCase().trim().replace(/ /g, '');
+}
+
+/**
+ * Encuentra una pelícuala dado un id
+ * @param {string} id id de la película a buscar
+ * @returns {object} Un objeto de tipo película
+ */
+function findById(id) {
+  return movies.find((movie) => {
+    return movie.id === parseInt(id, 10);
+  });
+} 
+
+/**
+ * Busca una o varias películas dado una query, puede ser el id o el titulo
+ * @param {string} query criterio de búsqueda
+ * @returns {Array<object>} Peliculas a renderizar
+ */
+function searchMovie(query) {
+  if (isNaN(query) || query === '') {
+    return filterByTitle(query);
+  }
+  return [findById(query)];
 }
