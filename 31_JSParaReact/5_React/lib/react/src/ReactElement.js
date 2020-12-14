@@ -1,3 +1,12 @@
+import { render } from "../../react-dom.js";
+
+function renderChildren(children, container) {
+  if (Array.isArray(children)) {
+    return children.forEach(child => render(child, container));
+  }
+  return render(children, container);
+}
+
 /**
  * Coloca un atributo a un elemento HTML
  * @param {string} prop tipo de atributo que tendrá el elemento HTML
@@ -6,6 +15,12 @@
  * @returns {HTMLElement} elemento html con el atributo
  */
 function setProperties(prop, value, element) {
+  // Support for childre
+  if (prop === 'children') {
+    return renderChildren(value, element);
+  }
+
+  // Support for attributes
   element.setAttribute(prop, value);
   return element;
 }
