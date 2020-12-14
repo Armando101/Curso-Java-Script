@@ -32,7 +32,7 @@ function setProperties(prop, value, element) {
  * @param {string} content contenido
  * @returns {HTMLElement} Elemento html
  */
-export function createElement(type, props, content) {
+export function createElement(type, props, content='') {
   // Creando tipo de elemento
   const element = document.createElement(type);
 
@@ -42,7 +42,9 @@ export function createElement(type, props, content) {
   }
 
   // Propiedades
-  Object.keys(props).forEach((prop) => setProperties(prop, props[prop], element));
+  if (props) {
+    Object.keys(props).forEach((prop) => setProperties(prop, props[prop], element));
+  }
 
   return element;
 }
