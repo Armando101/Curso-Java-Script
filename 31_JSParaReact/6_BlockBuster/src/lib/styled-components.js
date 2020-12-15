@@ -8,7 +8,11 @@ const elements = [
   'img',
   'article',
   'footer',
-  'header'
+  'form',
+  'input',
+  'select',
+  'header',
+  'button'
 ];
 
 /**

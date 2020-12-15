@@ -44,12 +44,11 @@ body {
   display: none;
 }
 
-form {
-  /* border: 1px solid red; */
+/* form {
   min-width: 320px;
   display: flex;
   gap: 0.5em;
-}
+} */
 input {
   font-size: 1rem;
   font-family: system-ui;
