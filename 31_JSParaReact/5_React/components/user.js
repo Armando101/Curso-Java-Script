@@ -1,9 +1,23 @@
 import { Component, createElement } from "../lib/react/index.js";
 
 class User extends Component {
+  displayName = 'User';
   state = {
     age: this.props.age
   };
+
+  componentDidMount() {
+    console.log(`El componente ${this.displayName} ya se renderizó`);
+  }
+
+  componentWilMount() {
+    console.log(`El componente ${this.displayName} se va a renderizar`);
+  }
+
+  componentDidUpdate() {
+    console.log(`El componente ${this.displayName} se actualizó`);
+  }
+
   // constructor(props) {
   //   super(props);
   //   // Pasamos el this de User a la función
@@ -18,7 +32,7 @@ class User extends Component {
 
   // Aquí this es el de User porque usamos una arrow function
   handleClick = (event) => {
-    console.log(this.state);
+    // console.log(this.state);
     this.setState({
       age: this.state.age + 1
     });

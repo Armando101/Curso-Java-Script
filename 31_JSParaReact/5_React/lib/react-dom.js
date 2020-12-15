@@ -10,11 +10,12 @@ function render(element, container) {
   function reRender(newChild) {
     container.replaceChild(newChild, chilElement);
     chilElement = newChild;
-    console.log(newChild);
+    // console.log(newChild);
   }
   element.update = reRender;
-  let chilElement = element.render();
+  let chilElement = element.build();
   container.append(chilElement);
+  element.componentDidMount();
 }
 
 export {
