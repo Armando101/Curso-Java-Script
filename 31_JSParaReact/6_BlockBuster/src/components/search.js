@@ -1,5 +1,4 @@
 import { Component } from '../lib/react/index.js';
-import styled from '../lib/styled-components.js';
 import button from './button.js';
 import Form from "./form.js";
 import input from './input.js';

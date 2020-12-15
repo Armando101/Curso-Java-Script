@@ -12,7 +12,8 @@ const elements = [
   'input',
   'select',
   'header',
-  'button'
+  'button',
+  'section'
 ];
 
 /**
