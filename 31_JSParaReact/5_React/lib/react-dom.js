@@ -7,7 +7,13 @@ function render(element, container) {
   if (typeof element === 'string' || element instanceof Element) {
     return container.append(element);
   }
-  const chilElement = element.render();
+  function reRender(newChild) {
+    container.replaceChild(newChild, chilElement);
+    chilElement = newChild;
+    console.log(newChild);
+  }
+  element.update = reRender;
+  let chilElement = element.render();
   container.append(chilElement);
 }
 
