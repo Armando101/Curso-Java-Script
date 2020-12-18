@@ -11,7 +11,7 @@ function getAllIds(list, oldList = []) {
 
 function getMostValuedIds(list, oldList = []) {
   return list.reduce((list, movie) => {
-    if (movie.vote_average > 7) {
+    if (movie.vote_average >= 7) {
       list.push(movie.id);
     }
     return list;
@@ -20,7 +20,7 @@ function getMostValuedIds(list, oldList = []) {
 
 function getNotPopular(list, oldList = []) {
   return list.reduce((list, movie) => {
-    if (movie.vote_average <= 7) {
+    if (movie.vote_average < 7) {
       list.push(movie.id);
     }
     return list;

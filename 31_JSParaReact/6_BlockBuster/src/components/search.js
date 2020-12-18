@@ -4,7 +4,6 @@ import Form from "./form.js";
 import input from './input.js';
 
 class Search extends Component {
-
   render() {
     return Form({
       children: [
