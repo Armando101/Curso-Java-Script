@@ -33,6 +33,10 @@ class MySingleLinkedList {
     this.length = 1;
   }
 
+  /**
+   * Agrega un nuevo nodo al final de la lista
+   * @param {number} value valor a ingresar
+   */
   append(value) {
     const newNode = new Node(value);
     this.tail.next = newNode;
@@ -40,14 +44,22 @@ class MySingleLinkedList {
     this.length++;
   }
 
+  /**
+   * Agrega un nodo al inicio de la lista
+   * @param {number} value valor a ingresar
+   */
   prepend(value) {
     const newNode = new Node(value);
     newNode.next = this.head;
     this.head = newNode;
     this.length++;
-    return this;
   }
 
+  /**
+   * inserta un nodo en cualquier índice de la lista
+   * @param {number} value valor a ingresar
+   * @param {number} index indice donde se va a ingresar el nodo
+   */
   insert(value, index) {
     if (index === 0) {
       this.prepend(value);
@@ -63,20 +75,29 @@ class MySingleLinkedList {
     newNode.next = auxNode.next;
     auxNode.next = newNode;
     this.length++;
-    return this;
   }
 
+  /**
+   * Elimina un nodo al inicio de la lista
+   */
   unshift() {
     this.head = this.head.next;
     this.length--;
   }
 
+  /**
+   * Elimina un nodo al final de la lista
+   */
   pop() {
-    this.tail = this.getIndex(this.length);
+    this.tail = this.getIndex(this.length-1);
     this.tail.next = null;
     this.length--;
   }
 
+  /**
+   * Elimina un nodo en cualquier indice
+   * @param {number} index indice del nodo
+   */
   remove(index) {
     if (index === 0) {
       this.unshift();
@@ -93,6 +114,11 @@ class MySingleLinkedList {
     this.length--;
   }
 
+  /**
+   * Obtiene un nodo, esta es una función auxiliar
+   * @param {number} index indice del nodo a obtener
+   * @returns {Node} retorna un nodo antes del indice indicado
+   */
   getIndex(index) {
     let auxNode = this.head;
     for (let i = 0; i < index-1; i++) {
@@ -111,3 +137,7 @@ mySingleLinkedList.append(3);
 mySingleLinkedList.append(4);
 mySingleLinkedList.append(5);
 mySingleLinkedList.append(6);
+
+console.log(mySingleLinkedList);
+mySingleLinkedList.pop();
+console.log(mySingleLinkedList);
