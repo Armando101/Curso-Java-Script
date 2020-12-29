@@ -12,10 +12,17 @@ class Stack {
     this.length = 0;
   }
 
+  /**
+   * Toma el último elemento de la pila pero NO lo elimina
+   */
   peek() {
     return this.top;
   }
 
+  /**
+   * Agrega un nodo a la pila
+   * @param {number} value valor
+   */
   push(value) {
     const newNode = new Node(value);
     if (this.length === 0) {
@@ -31,6 +38,10 @@ class Stack {
     return this;
   }
 
+  /**
+   * Elimina un nodo
+   * @returns {Node} nodo eliminado
+   */
   pop() {
     if (this.length === 0) {
       console.error('Empty Stack')
