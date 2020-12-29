@@ -12,10 +12,18 @@ class Queue {
     this.length = 0;
   }
 
+  /**
+   * Toma el primer elemeto
+   * @returns {Node} primer elemento
+   */
   peek() {
     return this.first;
   }
 
+  /**
+   * Agrega un nodo a la queue
+   * @param {number} value valor a ingresar en el nuevo nodo
+   */
   enqueue(value) {
     const newNode = new Node(value);
     if (this.length === 0) {
@@ -28,6 +36,9 @@ class Queue {
     this.length++;
   }
 
+  /**
+   * Elimina un nodo de la queue
+   */
   dequeue() {
     if (this.length === 0) {
       return;
