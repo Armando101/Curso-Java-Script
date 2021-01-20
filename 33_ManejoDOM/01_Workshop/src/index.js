@@ -5,7 +5,11 @@
 
 const baseUrl = "https://platzi-avo.vercel.app";
 const appNode = document.querySelector('#app');
-
+appNode.addEventListener('click', () => {
+  if (event.target.nodeName === 'H2') {
+    window.alert('Hello');
+  }
+})
 // Intl
 // Est API Sirve para dar formato a:
 // 1- Fechas
@@ -39,7 +43,7 @@ window
       const title = document.createElement('h2');
       title.className = "text-lg";
       title.textContent = item.name;
-      
+
       // Crear precio
       const price = document.createElement('div');
       price.className = "text-gray-600";
