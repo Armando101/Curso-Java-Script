@@ -9,7 +9,7 @@ const isIntersecting = (entry) => {
 
 const action = (entry) => {
   const container = entry.target;
-  const imagen = container.firstChild;
+  const imagen = container.querySelector('img');
   const url = imagen.dataset.src;
   
   // // Carga una imagen
