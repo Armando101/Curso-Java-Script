@@ -8,13 +8,17 @@ const isIntersecting = (entry) => {
 }
 
 const action = (entry) => {
-  const nodo = entry.target;
-  console.log('Holis');
+  const container = entry.target;
+  const imagen = container.firstChild;
+  const url = imagen.dataset.src;
+  
+  // // Carga una imagen
+  imagen.src = url;
 
   // Deja de escuchar la imágen (unlisten)
   // Esto porque una vez que ya se escuchó ya no queremos que siga escuchando
   // Sólo una vez y listo
-  observer.unobserve(nodo);
+  observer.unobserve(container);
 }
 
 /**
