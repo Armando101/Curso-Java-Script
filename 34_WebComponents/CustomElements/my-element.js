@@ -9,8 +9,11 @@ class myElement extends HTMLElement {
     template.innerHTML = `
       <section>
         <h2>
-          <slot></slot>
+          <slot name="title"></slot>
         </h2>
+        <p>
+          <slot name="parrafo"></slot>
+        </p>
       </section>
       ${this.getStyles()}
     `;

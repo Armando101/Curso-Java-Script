@@ -13,7 +13,10 @@
     <h2>Hola mundo again</h2>
     <div class="">Soy más texto de ejemplp</div>
   </template>
-  <my-element>Soy un texto dentro de mi elemento</my-element>
+  <my-element>
+    <span slot="title">Soy un texto dentro de mi elemento</span>
+    <span slot="parrafo">Soy un texto de párrafo</span>
+  </my-element>
   <script type="module" src="./my-element.js"></script>
 </body>
 
