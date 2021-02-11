@@ -1,0 +1,11 @@
+my-element {
+  --primary-color: blue;
+}
+
+.segundo {
+  --primary-color: red;
+}
+
+.tercero {
+  --secondary-color: lime;
+}
