@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Elements</title>
+</head>
+
+<body>
+  <my-element>
+    <span slot="title">Hola desde un componente 1</span>
+    <span slot="parrafo">Soy texto de ejemplo 1</span>
+  </my-element>
+  
+  <!-- Dar estilos con una clase -->
+  <my-element class="blue">
+    <span slot="title">Hola desde un componente 2</span>
+    <span slot="parrafo">Soy texto de ejemplo 2</span>
+  </my-element>
+  
+  <!-- Dar estilos con un atributo -->
+  <my-element yellow>
+    <span slot="title">Hola desde un componente 3</span>
+    <span slot="parrafo">Soy texto de ejemplo 3</span>
+  </my-element>
+  
+  <article class="card">
+    <my-element>
+      <span slot="title">Hola desde un componente 3</span>
+      <span slot="parrafo">Soy texto de ejemplo 3</span>
+    </my-element>
+  </article>
+
+  <script type="module" src="./my-element.js"></script>
+
+</body>
+
+</html>
