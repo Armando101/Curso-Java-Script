@@ -1,0 +1,18 @@
+class MyCustomElement extends HTMLElement {
+  constructor() {
+    super();
+    console.log('Hola desde el contructor - Memoria');
+  }
+
+  connectedCallback() {
+    console.log('Hola desde el DOM');
+  }
+
+  disconnectedCallback() {
+    console.log('Adios del DOM');
+  }
+}
+
+customElements.define('my-custome-element', MyCustomElement);
+
+document.querySelector('my-custome-element').remove();
