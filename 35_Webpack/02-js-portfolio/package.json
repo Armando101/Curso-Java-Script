@@ -4,8 +4,8 @@
   "description": "A minimal portfolio with Vanilla JavaScript",
   "main": "index.js",
   "scripts": {
-    "build:prod": "webpack --mode production",
-    "build:dev": "webpack --mode development",
+    "build": "webpack --config webpack.config.js",
+    "build:dev": "webpack --config webpack.config.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
