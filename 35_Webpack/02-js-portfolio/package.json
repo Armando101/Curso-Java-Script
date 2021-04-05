@@ -4,7 +4,7 @@
   "description": "A minimal portfolio with Vanilla JavaScript",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "node ./scripts/create-env.js && webpack --config webpack.config.js",
     "build:dev": "webpack --config webpack.config.dev.js",
     "build:watch": "webpack --watch --config webpack.config.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
