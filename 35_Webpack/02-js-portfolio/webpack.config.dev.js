@@ -74,4 +74,11 @@ module.exports = {
     }),
     new Dotenv(),
   ],
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    open: true,
+    historyApiFallback: true,
+    port: 3006,
+  },
 };
