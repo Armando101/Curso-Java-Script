@@ -12,6 +12,6 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "moment": "^2.27.0",
-    "sharp": "^0.25.4"
+    "sharp": "^0.30.5"
   }
 }
