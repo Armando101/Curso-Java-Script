@@ -19,7 +19,7 @@
     "blankie": "^5.0.0",
     "boom": "^7.3.0",
     "crumb": "^7.2.3",
-    "firebase-admin": "^8.11.0",
+    "firebase-admin": "^11.4.1",
     "good": "^8.1.2",
     "good-console": "^8.0.0",
     "handlebars": "^4.7.6",
